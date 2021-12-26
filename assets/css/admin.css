@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap");
+
+:root {
+  --color1: #3c9944;
+  --color2: #26243d;
+  --color3: #006f9b;
+}
+
+body {
+  font-family: "Signika", sans-serif;
+  font-size: 16px;
+  background: #ffffff;
+  position: relative;
+  color: #2b2b2b;
+}
+
+a {
+  text-decoration: none;
+}
+
+::selection {
+  color: rgb(255, 255, 255);
+  background: rgb(29, 29, 29);
+}
+
+header {
+  height: 58px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 1.4%;
+  color: #ffffff;
+  background-color: var(--color2);
+  box-shadow: 0 0 8px #5a5a5a;
+  font-size: 0.97em;
+}
+
+header #btnMenu {
+  width: 45px;
+  height: 58px;
+  background: rgba(31, 42, 71, 0.5);
+  border: none;
+  color: #fdfdfd;
+  font-size: 18px;
+}
+
+header a {
+  color: white;
+}
+
+aside.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 70px;
+  z-index: 99;
+  transition: all 0.4s ease;
+  background-color: var(--color1);
+  box-shadow: 0 0 6px #111111;
+}
+
+aside.sidebar.active {
+  width: 234px;
+}
+
+aside.sidebar ul {
+  padding-left: 11px;
+  padding-right: 11px;
+  padding-top: 65px;
+  list-style: none;
+}
+
+aside.sidebar ul li {
+  position: relative;
+  height: 44px;
+  width: 100%;
+  margin: 7px 0px;
+  list-style: none;
+  line-height: 50px;
+}
+
+aside.sidebar ul li a {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: all 0.4s ease;
+}
+
+aside.sidebar ul li a:hover {
+  color: #ffffff;
+  background: rgba(41, 41, 41, 0.576);
+}
+
+aside.sidebar ul li a.active {
+  color: #ffffff;
+  background: rgba(41, 41, 41, 0.576);
+}
+
+aside.sidebar ul li i {
+  font-weight: normal;
+  height: 50px;
+  min-width: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+aside.sidebar .links_name {
+  font-size: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+aside.sidebar.active .links_name {
+  transition: 0s;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+aside.sidebar ul li .tooltip {
+  font-family: "Signika", sans-serif;
+  position: absolute;
+  left: 135px;
+  top: 0;
+  transform: translate(-50%, -44%);
+  border-radius: 6px;
+  height: 50px;
+  width: 140px;
+  background: #242121;
+  color: white;
+  line-height: 50px;
+  text-align: center;
+  transition: 0s;
+  opacity: 0;
+  pointer-events: none;
+  display: block;
+  font-size: 15px;
+}
+
+aside.sidebar.active ul li .tooltip {
+  display: none;
+}
+
+aside.sidebar ul li:hover .tooltip {
+  transition: all 0.5s ease;
+  opacity: 1;
+  top: 50%;
+}
+
+main.content {
+  position: absolute;
+  height: 100%;
+  width: calc(100% - 70px);
+  left: 70px;
+  transition: all 0.5s ease;
+  padding-left: 1.7%;
+  padding-right: 1.7%;
+  padding-top: 84px;
+}
+
+aside.sidebar.active ~ .content {
+  width: calc(100% - 234px);
+  left: 234px;
+}
+
+div.tab-titulo {
+  font-size: 1.4em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding-top: 10px;
+}
+
+table.table {
+  color: #525252;
+}
+
+table.table thead {
+  background: transparent;
+  color: #2f312f;
+}
+
+table thead th {
+  font-size: 14px;
+  text-align: center;
+}
+
+table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table > :not(caption) > * > * {
+  padding: 0.7rem 0.7rem;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: var(--color3);
+  border-radius: 0px;
+}
+
+.nav-pills .nav-link:not(.active):hover {
+  background-color: #f0f0f0;
+}
+
+.nav-pills .nav-link {
+  color: #2c3a28;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  border-radius: 0px;
+}
+
+input.form-control, textarea.form-control {
+  color: #363636;
+}
+
+select.form-select {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  color: #363636;
+}
+
+.btn {
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+#preloader {
+  width: calc(100% - 234px);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 234px;
+  z-index: 9;
+  background-color: white;
+  transition: opacity 1s;
+}
+
+#preloader.fade {
+  opacity: 0;
+}
+
+#preloader .loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#preloader .circle {
+  width: 120px;
+  height: 120px;
+  border: 4px solid #eeeeee;
+  border-top: 4px solid var(--color1);
+  border-radius: 50%;
+  animation-name: girar;
+  animation-duration: 0.9s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

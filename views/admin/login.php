@@ -26,8 +26,9 @@
             top: 50%;
             left: 50%;
             width: 340px;
-            transform: translate(-50%, -53%);
+            transform: translate(-50%, -54%);
             padding: 1% .8%;
+            box-shadow: 0 0 15px black;
         }
     </style>
 
@@ -54,7 +55,7 @@
     <script>
         function verificarAcceso(e) {
             e.preventDefault();
-            let uri = "/admin/login/validarAcceso";
+            let uri = "/admin/galeria/files/";
             let data = new FormData(document.getElementById('form-login'));
             fetch(uri, {
                 method: "POST",
