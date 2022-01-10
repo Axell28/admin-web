@@ -3,13 +3,23 @@
 class ArchivosModel
 {
 
-    public function guardarArchivo($ruta, $file)
+    public function guardarArchivo($file, string $ruta)
     {
-        $path = DIROOT . '/assets' . $ruta;
-        return move_uploaded_file($file, $path);
+        if($file['type'] == 'image/jpg' || $file['type'] == 'image/png' || $file['type'] == 'image/jpeg') {
+            $vals = explode('/', $ruta);
+            $path = DIROOT . '/assets' . $ruta;
+            if($vals[2] == 'banner') {
+                return move_uploaded_file($file['tmp_name'], $path);
+            } else {
+                return $this->procesarImagen($file, $path);
+            }
+        } else {
+            $path = DIROOT . '/assets' . $ruta;
+            return move_uploaded_file($file['tmp_name'], $path);
+        }
     }
 
-    public function eliminarArchivo($ruta)
+    public function eliminarArchivo(string $ruta)
     {
         $path = DIROOT . $ruta;
         if (file_exists($path)) {
@@ -50,5 +60,47 @@ class ArchivosModel
         $label = array('B', 'KB', 'MB', 'GB');
         for ($i = 0; $bytes >= 1024 && $i < (count($label) - 1); $bytes /= 1024, $i++);
         return (round($bytes, 2) . ' ' . $label[$i]);
+    }
+
+    private function procesarImagen($file, string $ruta)
+    {
+        $max_width = 1300;
+        $max_height = 1000;
+        list($widht, $height) = getimagesize($file['tmp_name']);
+
+        if ($widht >= $max_width) {
+            if ($file['type'] == 'image/jpeg' || $file['type'] == 'image/jpg') {
+                $imagenAux = imagecreatefromjpeg($file['tmp_name']);
+            } else if ($file['type'] == 'image/png') {
+                $imagenAux = imagecreatefrompng($file['tmp_name']);
+            }
+
+            $x_ratio = $max_width / $widht;
+            $y_ratio = $max_height / $height;
+
+            if (($widht <= $max_width) && ($widht <= $max_height)) {
+                $ancho_final = $widht;
+                $alto_final = $height;
+            } elseif (($x_ratio * $height) < $max_height) {
+                $alto_final = ceil($x_ratio * $height);
+                $ancho_final = $max_width;
+            } else {
+                $ancho_final = ceil($y_ratio * $widht);
+                $alto_final = $max_width;
+            }
+
+            $lienzo = imagecreatetruecolor($ancho_final, $alto_final);
+            imagecopyresampled($lienzo, $imagenAux, 0, 0, 0, 0, $ancho_final, $alto_final, $widht, $height);
+
+            if ($file['type'] == 'image/jpeg' || $file['type'] == 'image/jpg') {
+                return imagejpeg($lienzo, $ruta);
+            } else if ($file['type'] == 'image/png') {
+                return imagepng($lienzo, $ruta);
+            } else {
+                die("El tipo de imagen no esta soportado");
+            }
+        } else {
+            return move_uploaded_file($file['tmp_name'], $ruta);
+        }
     }
 }

@@ -37,11 +37,12 @@
     <!-- contenido principal -->
     <main class="content" id="app">
         <!-- loading -->
-        <div id="preloader">
+        <!-- <div id="preloader">
             <div class="loading">
                 <div class="circle"></div>
             </div>
-        </div>
+        </div> -->
+
         <div class="d-flex px-1" style="align-items: center;">
             <div class="tab-titulo">
                 GALERÍA
@@ -79,9 +80,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer bg-white d-flex">
+                    <div class="card-footer bg-white d-flex" style="align-items: center;">
                         <span>{{ arrayFiles.length }} de <?php echo $this->totalArchivos ?> resultados</span>
-                        <a class="text-primary ms-auto" @click="listarArchivos()" style="cursor: pointer;">Cargar más resultados &nbsp;<i class="fas fa-angle-right"></i></a>
+                        <a class="text-primary ms-auto" v-show="!loadFiles" @click="listarArchivos()" style="cursor: pointer;">Cargar más resultados &nbsp;<i class="fas fa-angle-right"></i></a>
+                        <div class="spinner-border text-primary ms-auto" v-show="loadFiles"></div>
                     </div>
                 </div>
             </div>
@@ -91,15 +93,15 @@
 
     <script>
         const modalFiles = new bootstrap.Modal(document.getElementById('modalFiles'));
-        /* modalFiles.show(); */
 
         new Vue({
             el: '#app',
             data() {
                 return {
                     arrayFiles: [],
+                    loadFiles: true,
                     inicio: 0,
-                    limite: 16
+                    limite: 4
                 }
             },
             created() {
@@ -108,6 +110,7 @@
             methods: {
                 listarArchivos() {
                     let vue = this;
+                    vue.loadFiles = true;
                     let uri = `/admin/galeria/files/${vue.inicio}/${vue.limite}`;
                     fetch(uri, {
                         method: "GET"
@@ -116,21 +119,24 @@
                     }).then(function(res) {
                         let data = JSON.parse(res);
                         let nuevaList = vue.arrayFiles.concat(data);
-                        vue.arrayFiles = nuevaList;
-                        vue.inicio = vue.limite;
-                        vue.limite += 16;
+                        setTimeout(() => {
+                            vue.loadFiles = false;
+                            vue.arrayFiles = nuevaList;
+                            vue.inicio = vue.limite;
+                            vue.limite += 4;
+                        }, 3000);
                     });
                 }
             }
         });
 
-        setTimeout(() => {
+        /* setTimeout(() => {
             let loader = document.getElementById('preloader');
             loader.style.opacity = '0';
             setTimeout(() => {
                 loader.style.display = 'none';
             }, 500);
-        }, 2000);
+        }, 2000); */
     </script>
 
 </body>

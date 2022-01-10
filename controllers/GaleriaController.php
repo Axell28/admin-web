@@ -19,22 +19,18 @@ class Galeria extends Controller {
         parent::renderView($this->nameView);
     }
 
-    public function files($params)
+    public function getImagenes($params)
     {
         $filesModel = new ArchivosModel();
         $listFotos = $filesModel->listarArchivos("/img/fotos/");
         $ini = $params[0]; 
         $lim = $params[1];
         $nuevaLista = array();
-        if($lim <= $filesModel->totalArchivos('/img/fotos/')) {
-            for ($i = $ini; $i < $lim ; $i++) { 
-                $nuevaLista[] = $listFotos[$i];
-            }
-        } else {
+        if($lim > $filesModel->totalArchivos('/img/fotos/')) {
             $lim = $filesModel->totalArchivos('/img/fotos/');
-            for ($i = $ini; $i < $lim ; $i++) { 
-                $nuevaLista[] = $listFotos[$i];
-            }
+        }
+        for ($i = $ini; $i < $lim ; $i++) { 
+            $nuevaLista[] = $listFotos[$i];
         }
         echo json_encode($nuevaLista, JSON_UNESCAPED_UNICODE);
     }

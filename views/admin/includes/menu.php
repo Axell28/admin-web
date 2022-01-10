@@ -36,7 +36,7 @@
             <span class="tooltip">Galerías</span>
         </li>
         <li>
-            <a href="/admin/archivos" class="">
+            <a href="/admin/archivos" class="<?php echo $this->nameView == 'archivos' ? 'active' : '' ?>">
                 <i class="far fa-folder-open"></i>
                 <span class="links_name">Archivos</span>
             </a>
