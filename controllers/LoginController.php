@@ -1,26 +1,47 @@
-<?php 
+<?php
 
-class Login {
+require_once DIROOT . '/models/LoginModel.php';
+
+class Login extends Controller
+{
 
     private $model;
 
     public function __construct()
     {
-        
+        $this->model = new LoginModel();
+        $this->nameView = strtolower(get_class($this));
     }
 
     public function index()
     {
-        require_once DIROOT . '/views/admin/login.php';
+        parent::renderView($this->nameView);
     }
 
-    public function validarAcceso()
+    public function auth()
     {
-        if(!empty($_POST)) {
-            $user = $_POST['name'];
-            $pass = $_POST['pass'];
-            print_r($_POST);
+        if (!empty($_POST)) {
+            $name = Funciones::limpString(parent::getPost('name'));
+            $pass = Funciones::limpString(parent::getPost('pass'));
+            $resp = $this->model->validarLogueo($name, $pass);
+            if ($resp == 'OK') {
+                session_start();
+                session_regenerate_id();
+                $_SESSION['auth-name'] = $name;
+                $_SESSION['auth-time'] = time();
+                echo 'OK';
+            } else {
+                die($resp);
+            }
+        } else {
+            die('No se pudo procesar la solicitud');
         }
     }
 
+    public function logout()
+    {
+        session_start();
+        session_destroy();
+        header('Location: ' . WEBURL . '/admin/login');
+    }
 }

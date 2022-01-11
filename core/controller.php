@@ -1,10 +1,14 @@
-<?php 
+<?php
 
-class Controller {
+class Controller
+{
 
     public function renderView($view)
     {
-        require_once DIROOT . "/views/admin/{$view}.php";
+        $file = DIROOT . "/views/admin/{$view}.php";
+        if (is_file($file)) {
+            require_once DIROOT . "/views/admin/{$view}.php";
+        }
     }
 
     public function getPost($name)
@@ -17,4 +21,11 @@ class Controller {
         return isset($_FILES[$name]) ? $_FILES[$name] : null;
     }
 
+    public function validarSesion()
+    {
+        session_start();
+        if (!isset($_SESSION['auth-name'])) {
+            header("Location: /admin/login");
+        }
+    }
 }

@@ -1,6 +1,3 @@
-<?php
-$date = strftime("%A, %d de %B del %Y", strtotime(date("d-m-Y")));
-?>
 <header class="fixed-top" id="header">
     <div style="width: 190px; display: flex; align-items: center; padding-left: 12px;">
         <img src="/assets/img/icons/escudo.png" height="38">
@@ -12,9 +9,9 @@ $date = strftime("%A, %d de %B del %Y", strtotime(date("d-m-Y")));
     <div class="ms-auto d-flex">
         <div class="me-4">
             <i class="fas fa-calendar-alt"></i>
-            <span>&nbsp;<?php echo utf8_encode($date); ?></span>
+            <span>&nbsp;<?php echo Funciones::getFechaActual() ?></span>
         </div>
-        <a href="/admin/login/closeSession" class="ms-1 text-white">
+        <a href="/admin/login/logout" class="ms-1 text-white">
             <i class="fas fa-sign-out-alt"></i>
             <span>&nbsp;Cerrar sesión</span>
         </a>

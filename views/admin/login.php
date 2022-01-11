@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
     <title>ADMIN - <?php echo EMPRESA ?></title>
 </head>
 
@@ -28,7 +30,7 @@
             width: 340px;
             transform: translate(-50%, -54%);
             padding: 1% .8%;
-            box-shadow: 0 0 15px black;
+            box-shadow: 0 0 24px black;
         }
     </style>
 
@@ -39,7 +41,7 @@
                 <img src="<?php echo WEBURL ?>/assets/img/icons/escudo.png" height="130">
                 <h4 class="fw-bold mt-3">AdminWeb</h4>
             </div>
-            <form id="form-login" onsubmit="verificarAcceso(event)">
+            <form id="formLogin" onsubmit="validarLogueo(event)">
                 <input type="text" name="name" class="form-control mb-3" placeholder="Nombre de usuario" required>
                 <input type="password" name="pass" class="form-control mb-3" placeholder="Contraseña" required>
                 <button class="btn btn-primary d-block w-100" type="submit">Ingresar&nbsp; <i class="fas fa-sign-in-alt"></i></button>
@@ -53,10 +55,17 @@
 
     <!-- code javascript -->
     <script>
-        function verificarAcceso(e) {
+        const mostrarAlert = (mensaje, icon) => {
+            Swal.fire({
+                icon: icon,
+                text: mensaje,
+            });
+        }
+
+        const validarLogueo = (e) => {
             e.preventDefault();
-            let uri = "/admin/galeria/files/";
-            let data = new FormData(document.getElementById('form-login'));
+            let uri = "<?php echo WEBURL ?>/admin/login/auth";
+            let data = new FormData(document.getElementById('formLogin'));
             fetch(uri, {
                 method: "POST",
                 mode: 'cors',
@@ -65,17 +74,10 @@
                 return res.text()
             }).then(function(res) {
                 if (res.trim() == "OK") {
-                    location.href = '/admin/home';
+                    location.href = '/admin/empresa';
                 } else {
-                    showAlert(res, "error");
+                    mostrarAlert(res, "error");
                 }
-            });
-        }
-
-        function showAlert(mensaje, icon) {
-            Swal.fire({
-                icon: icon,
-                text: mensaje,
             });
         }
     </script>

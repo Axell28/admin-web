@@ -1,38 +1,84 @@
-<?php 
+<?php
 
+require_once DIROOT . '/models/GaleriaModel.php';
 require_once DIROOT . '/models/ArchivosModel.php';
 
-class Galeria extends Controller {
+class Galeria extends Controller
+{
 
     public $model;
-    public $nameView; 
 
     public function __construct()
     {
+        parent::validarSesion();
+        $this->model = new GaleriaModel();
         $this->nameView = strtolower(get_class($this));
     }
 
     public function index()
     {
-        $filesModel = new ArchivosModel();
-        $this->totalArchivos = $filesModel->totalArchivos('/img/fotos/');
+        $this->listGaleria = $this->model->listarGalerias();
         parent::renderView($this->nameView);
     }
 
-    public function getImagenes($params)
+    public function vista($params)
     {
+        $this->action = 'guardar';
+        $this->galeriaInfo = array();
+        if (empty($params)) {
+            $this->galeriaInfo['idgal'] = null;
+            $this->galeriaInfo['titulo'] = '';
+            $this->galeriaInfo['detalle'] = '';
+            $this->galeriaInfo['ncols'] = '3';
+            $this->galeriaInfo['cuerpo'] = '[]';
+        } else {
+            $this->action = 'editar';
+            $this->galeriaInfo = $this->model->buscarGaleria($params[0]);
+        }
         $filesModel = new ArchivosModel();
-        $listFotos = $filesModel->listarArchivos("/img/fotos/");
-        $ini = $params[0]; 
-        $lim = $params[1];
-        $nuevaLista = array();
-        if($lim > $filesModel->totalArchivos('/img/fotos/')) {
-            $lim = $filesModel->totalArchivos('/img/fotos/');
-        }
-        for ($i = $ini; $i < $lim ; $i++) { 
-            $nuevaLista[] = $listFotos[$i];
-        }
-        echo json_encode($nuevaLista, JSON_UNESCAPED_UNICODE);
+        $this->listFiles = $filesModel->listarArchivos('/img/fotos/');
+        parent::renderView('galeria-editor');
     }
 
+    public function guardar()
+    {
+        if (!empty($_POST)) {
+            $params = array();
+            $params[] = parent::getPost("titulo");
+            $params[] = parent::getPost("detalle");
+            $params[] = parent::getPost("colum");
+            $params[] = parent::getPost("cuerpo");
+            $resp = $this->model->guardarGaleria($params);
+            if ($resp) echo "OK";
+        } else {
+            die('Error: No se pudo realizar la operación');
+        }
+    }
+
+    public function editar()
+    {
+        if (!empty($_POST)) {
+            $params = array();
+            $params[] = parent::getPost("titulo");
+            $params[] = parent::getPost("detalle");
+            $params[] = parent::getPost("colum");
+            $params[] = parent::getPost("cuerpo");
+            $params[] = parent::getPost("idgal");
+            $resp = $this->model->editarGaleria($params);
+            if ($resp) echo "OK";
+        } else {
+            die('Error: No se pudo realizar la operación');
+        }
+    }
+
+    public function eliminar($params)
+    {
+        if (!empty($params) && is_numeric($params[0])) {
+            $idgal = $params[0];
+            $resp = $this->model->eliminarGaleria($idgal);
+            if ($resp) echo "OK";
+        } else {
+            die('Error: No se pudo realizar la operación');
+        }
+    }
 }
