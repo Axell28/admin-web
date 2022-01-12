@@ -14,7 +14,7 @@ setlocale(LC_TIME, "spanish");
 
 // config database
 define("BD_HOST", "localhost");
-define("BD_NAME", "WEB_PRUEBA");
+define("BD_NAME", "WEB_ADMIN");
 define("BD_USER", "postgres");
 define("BD_PASS", "valle28");
 define("BD_DRIVER", "psql");

@@ -35,12 +35,15 @@
                 NOTICIAS
             </div>
             <div class="ms-auto d-flex" style="align-items: center;">
-                <div>Categoría : </div>
-                <div class="ms-3 me-3">
-                    <select class="form-select" onchange="cambiarCategoria(this.value)">
-                        <option value="all">Todas</option>
-                    </select>
-                </div>
+                <?php
+                if (count($this->listCategs) > 1) { ?>
+                    <div>Categoría : </div>
+                    <div class="ms-3 me-3">
+                        <select class="form-select" onchange="cambiarCategoria(this.value)">
+                            <option value="all">Todas</option>
+                        </select>
+                    </div>
+                <?php } ?>
                 <button class="btn btn-success text-white" onclick="location.href = '/admin/editor'"><i class="fas fa-plus"></i>&nbsp; Nueva noticia</button>
             </div>
         </div>

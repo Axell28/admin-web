@@ -33,10 +33,10 @@ class Galeria extends Controller
             $this->galeriaInfo['cuerpo'] = '[]';
         } else {
             $this->action = 'editar';
-            $this->galeriaInfo = $this->model->buscarGaleria($params[0]);
+            $this->galeriaInfo = $this->model->buscarGaleriaById($params[0]);
         }
         $filesModel = new ArchivosModel();
-        $this->listFiles = $filesModel->listarArchivos('/img/fotos/');
+        $this->listFiles = $filesModel->listarArchivos('/img/galeria/');
         parent::renderView('galeria-editor');
     }
 
@@ -73,10 +73,10 @@ class Galeria extends Controller
 
     public function eliminar($params)
     {
-        if (!empty($params) && is_numeric($params[0])) {
+        if(!empty($params) && is_numeric($params[0])) {
             $idgal = $params[0];
             $resp = $this->model->eliminarGaleria($idgal);
-            if ($resp) echo "OK";
+            if($resp) echo "OK";
         } else {
             die('Error: No se pudo realizar la operación');
         }

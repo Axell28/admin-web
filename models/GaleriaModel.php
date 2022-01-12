@@ -12,7 +12,7 @@ class GaleriaModel extends Conexion
     public function guardarGaleria($params)
     {
         try {
-            $sql = "INSERT INTO galeria (titulo, detalle, ncols, cuerpo) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO galeria (titulo, detalle, ncolum, cuerpo) VALUES (?, ?, ?, ?)";
             $stm = $this->pdo->prepare($sql);
             $res = $stm->execute($params);
             return $res;
@@ -63,8 +63,7 @@ class GaleriaModel extends Conexion
         }
     }
 
-    public function eliminarGaleria(int $idgal)
-    {
+    public function eliminarGaleria(int $idgal) {
         try {
             $sql = "DELETE FROM galeria WHERE idgal = ?";
             $stm = $this->pdo->prepare($sql);

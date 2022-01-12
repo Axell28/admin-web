@@ -43,12 +43,18 @@
     <!-- contenido principal -->
     <main class="content" id="app">
 
+        <div id="preloader">
+            <div class="loading">
+                <div class="circle"></div>
+            </div>
+        </div>
+
         <div class="d-flex px-1" style="align-items: center;">
             <div class="tab-titulo">
                 ARCHIVOS
             </div>
             <div class="ms-auto">
-                <label class="btn btn-success text-white px-3" for="fileupload">
+                <label class="btn btn-primary text-white px-3" for="fileupload">
                     <span><i class="fas fa-cloud-upload-alt"></i></span>
                     <span class="ms-1" id="loadtext">Cargar archivo</span>
                 </label>
@@ -93,7 +99,7 @@
                                     </td>
                                 </tr>
                                 <tr v-show="arrayImages.length == 0">
-                                    <td colspan="6">No se encontraron archivos</td>
+                                    <td colspan="6">No se encontrarón archivos</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -124,7 +130,7 @@
                                     </td>
                                 </tr>
                                 <tr v-show="arrayBanner.length == 0">
-                                    <td colspan="6">No se encontraron archivos</td>
+                                    <td colspan="6">No se encontrarón archivos</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -155,7 +161,7 @@
                                     </td>
                                 </tr>
                                 <tr v-show="arrayVideos.length == 0">
-                                    <td colspan="6">No se encontraron archivos</td>
+                                    <td colspan="6">No se encontrarón archivos</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -186,7 +192,7 @@
                                     </td>
                                 </tr>
                                 <tr v-show="arrayFiles.length == 0">
-                                    <td colspan="6">No se encontraron archivos</td>
+                                    <td colspan="6">No se encontrarón archivos</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -203,6 +209,7 @@
             data() {
                 return {
                     tabactive: "1",
+                    pathFiles: ['', '/img/galeria/', '/img/banner/', '/video/', '/files/'],
                     arrayImages: [],
                     arrayBanner: [],
                     arrayVideos: [],
@@ -229,13 +236,8 @@
             methods: {
                 async listarArchivos(tab) {
                     let uri = "/admin/archivos/listar";
-                    let dir = Array();
-                    dir["1"] = "/img/fotos/";
-                    dir["2"] = "/img/banner/";
-                    dir["3"] = "/video/";
-                    dir["4"] = "/files/";
                     let data = new FormData();
-                    data.append("path", dir[tab]);
+                    data.append("path", this.pathFiles[tab]);
                     let json = await this.requestAJAX(uri, data);
                     if (tab == "1") {
                         this.arrayImages = JSON.parse(json);
@@ -253,12 +255,12 @@
                     const fileup = document.getElementById("fileupload").files[0];
                     const sizekb = parseInt(fileup.size / 1024);
                     if (sizekb > 40120) {
-                        this.mostrarMessage("El archivo supera el límite del peso permitido, Max(40MB)", "warning");
+                        this.mostrarAlert("El archivo supera el límite del peso permitido, Max(40MB)", "warning");
                     } else {
                         document.getElementById("fileupload").disabled = true;
                         let http = new XMLHttpRequest();
                         let data = new FormData();
-                        data.append("path", `/img/banner/${vue.limpiarNameFile(fileup.name)}`);
+                        data.append("path", `${this.pathFiles[this.tabactive] + vue.limpiarNameFile(fileup.name)}`);
                         data.append("file", fileup);
                         http.open("post", uri);
                         http.upload.addEventListener("progress", function(e) {
@@ -270,13 +272,48 @@
                             document.getElementById("loadtext").innerText = "Cargar archivo";
                             document.getElementById("fileupload").disabled = false;
                             if (res.trim() == "OK") {
-                                vue.mostrarMessage("Archivo subido correctamente", "success");
+                                vue.listarArchivos(vue.tabactive);
+                                vue.mostrarAlert("Archivo subido correctamente", "success");
                             } else {
-                                vue.mostrarMessage(res, "error");
+                                vue.mostrarAlert(res, "error");
                             }
                         });
                         http.send(data);
                     }
+                },
+                eliminarArchivo(path) {
+                    let vue = this;
+                    Swal.fire({
+                        icon: 'question',
+                        text: '¿Está seguro de eliminar este archivo?',
+                        showDenyButton: true,
+                        allowOutsideClick: false,
+                        confirmButtonText: 'Aceptar',
+                        denyButtonText: 'Cancelar',
+                    }).then(async (result) => {
+                        if (result.isConfirmed) {
+                            let uri = "/admin/archivos/eliminar";
+                            let data = new FormData();
+                            data.append("path", path);
+                            let resp = await this.requestAJAX(uri, data);
+                            if (resp.trim() == "OK") {
+                                vue.listarArchivos(vue.tabactive);
+                                vue.mostrarAlert("Archivo eliminado", "success");
+                            } else {
+                                vue.mostrarAlert(resp, "error");
+                            }
+                        }
+                    });
+                },
+                copiarEnlace(path) {
+                    let link = location.origin + path;
+                    let aux = document.createElement("input");
+                    aux.setAttribute("value", link);
+                    document.body.append(aux);
+                    aux.select();
+                    document.execCommand("copy");
+                    aux.remove();
+                    this.mostrarAlert("Enlace copiado al portapapeles", "success");
                 },
                 requestAJAX(uri, data) {
                     const resp = fetch(uri, {
@@ -289,18 +326,18 @@
                     });
                     return resp;
                 },
-                mostrarMessage(message, type) {
+                mostrarAlert(mensaje, type) {
                     if (type == 'success') {
                         Swal.fire({
                             icon: 'success',
-                            text: message,
+                            text: mensaje,
                             showConfirmButton: false,
                             timer: 1800
                         });
                     } else {
                         Swal.fire({
                             icon: type,
-                            text: message,
+                            text: mensaje,
                         });
                     }
                 },
@@ -311,6 +348,13 @@
                 }
             }
         });
+        setTimeout(() => {
+            let loader = document.getElementById('preloader');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        }, 2400);
     </script>
 
 </body>

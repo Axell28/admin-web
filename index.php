@@ -5,6 +5,8 @@ require_once __DIR__ . '/core/conexion.php';
 require_once __DIR__ . '/core/funciones.php';
 require_once __DIR__ . '/core/controller.php';
 
+// echo Funciones::generarPass('contraseña'); exit;
+
 $uri = isset($_GET['uri']) ? $_GET['uri'] : 'index';
 $uri = rtrim($uri, '/');
 $uri = explode('/', $uri);

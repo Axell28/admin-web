@@ -1,21 +1,21 @@
 <aside class="sidebar active">
     <ul class="nav_list">
         <li>
-            <a href="/admin/home" class="<?php echo $this->nameView == 'home' ? 'active' : '' ?>">
+            <a href="/admin/empresa" class="<?php echo $this->nameView == 'empresa' ? 'active' : '' ?>">
                 <i class="fa fa-university" aria-hidden="true"></i>
                 <span class="links_name">Inicio</span>
             </a>
             <span class="tooltip">Inicio</span>
         </li>
         <li>
-            <a href="/admin/banner" class="">
+            <a href="/admin/banner" class="<?php echo $this->nameView == 'banner' ? 'active' : '' ?>">
                 <i class="fa fa-object-ungroup" aria-hidden="true"></i>
                 <span class="links_name">Banner</span>
             </a>
             <span class="tooltip">Banner</span>
         </li>
         <li>
-            <a href="/admin/noticias" class="<?php echo $this->nameView == 'noticias' ? 'active' : '' ?>">
+            <a href="/admin/noticias" class="<?php echo ($this->nameView == 'noticias' || $this->nameView == 'editor') ? 'active' : '' ?>">
                 <i class="far fa-newspaper"></i>
                 <span class="links_name">Noticias</span>
             </a>

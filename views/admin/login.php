@@ -74,7 +74,7 @@
                 return res.text()
             }).then(function(res) {
                 if (res.trim() == "OK") {
-                    location.href = '/admin/empresa';
+                    location.href = '/admin/noticias';
                 } else {
                     mostrarAlert(res, "error");
                 }
