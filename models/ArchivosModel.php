@@ -5,10 +5,10 @@ class ArchivosModel
 
     public function guardarArchivo($file, string $ruta)
     {
-        if($file['type'] == 'image/jpg' || $file['type'] == 'image/png' || $file['type'] == 'image/jpeg') {
+        if ($file['type'] == 'image/jpg' || $file['type'] == 'image/png' || $file['type'] == 'image/jpeg') {
             $vals = explode('/', $ruta);
             $path = DIROOT . '/assets' . $ruta;
-            if($vals[2] == 'banner') {
+            if ($vals[2] == 'banner') {
                 return move_uploaded_file($file['tmp_name'], $path);
             } else {
                 return $this->procesarImagen($file, $path);
@@ -42,7 +42,8 @@ class ArchivosModel
                     "size" => $this->obtenerSizeFile(filesize($dir->path . $file)),
                     "date" => date("d-m-Y H:i", filectime($dir->path . $file)),
                     "path" => '/assets'  . $ruta . utf8_encode($file),
-                    "icon" => null
+                    "icon" => $this->obtenerIcono(pathinfo($file, PATHINFO_EXTENSION)),
+                    "remove" => $this->isRemove(utf8_encode($file))
                 );
             endif;
         endwhile;
@@ -62,10 +63,24 @@ class ArchivosModel
         return (round($bytes, 2) . ' ' . $label[$i]);
     }
 
+    private function obtenerIcono($tipoFile)
+    {
+        $icono = 'far fa-file';
+        switch ($tipoFile) {
+            case 'pdf':
+                $icono = 'far fa-file-pdf';
+                break;
+            case 'mp4':
+                $icono = 'fas fa-film';
+                break;
+        }
+        return $icono;
+    }
+
     private function procesarImagen($file, string $ruta)
     {
-        $max_width = 1300;
-        $max_height = 1000;
+        $max_width = 1100;
+        $max_height = 900;
         list($widht, $height) = getimagesize($file['tmp_name']);
 
         if ($widht >= $max_width) {
@@ -102,5 +117,11 @@ class ArchivosModel
         } else {
             return move_uploaded_file($file['tmp_name'], $ruta);
         }
+    }
+
+    private function isRemove($file)
+    {
+        $lista = array('portada_3.png', 'spiderman-2021.jpg', 'metodologia.jpg');
+        return in_array($file, $lista);
     }
 }

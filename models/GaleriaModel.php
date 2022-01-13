@@ -12,7 +12,7 @@ class GaleriaModel extends Conexion
     public function guardarGaleria($params)
     {
         try {
-            $sql = "INSERT INTO galeria (titulo, detalle, ncolum, cuerpo) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO galeria (titulo, detalle, ncolum, cuerpo, modo) VALUES (?, ?, ?, ?, ?)";
             $stm = $this->pdo->prepare($sql);
             $res = $stm->execute($params);
             return $res;
@@ -24,7 +24,7 @@ class GaleriaModel extends Conexion
     public function editarGaleria($params)
     {
         try {
-            $sql = "UPDATE galeria SET titulo = ?, detalle = ?, ncols = ?, cuerpo = ? WHERE idgal = ?";
+            $sql = "UPDATE galeria SET titulo = ?, detalle = ?, ncols = ?, cuerpo = ?, modo = ? WHERE idgal = ?";
             $stm = $this->pdo->prepare($sql);
             $res = $stm->execute($params);
             return $res;

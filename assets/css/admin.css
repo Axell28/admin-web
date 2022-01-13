@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap");
 
 :root {
-  --color1: #7835a8;
-  --color2: #26243d;
-  --color3: #006f9b;
+  --color1: #505553;
+  --color2: #173a93;
+  --color3: #fd8f00;
 }
 
 body {
@@ -20,7 +20,7 @@ a {
 
 ::selection {
   color: rgb(255, 255, 255);
-  background: rgb(29, 29, 29);
+  background: rgb(28, 25, 36);
 }
 
 header {
@@ -38,7 +38,7 @@ header {
 header #btnMenu {
   width: 45px;
   height: 58px;
-  background: rgba(31, 42, 71, 0.5);
+  background: rgba(38, 38, 38, 0.5);
   border: none;
   color: #fdfdfd;
   font-size: 18px;

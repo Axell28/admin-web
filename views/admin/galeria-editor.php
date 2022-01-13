@@ -25,15 +25,20 @@
     <!-- styles -->
     <style>
         #content-grid {
-            columns: <?php echo $this->galeriaInfo['ncols'] ?>;
-            column-gap: 12px;
+            columns: <?php echo $this->galeriaInfo['ncolum'] ?>;
+            column-gap: 6px;
         }
 
         #content-grid>div.item {
             -webkit-column-break-inside: avoid;
             page-break-inside: avoid;
             break-inside: avoid;
-            margin-bottom: 12px;
+            margin-bottom: 6px;
+            overflow: hidden;
+        }
+
+        #content-grid img {
+            object-fit: cover;
         }
 
         #content-grid .bottoms {
@@ -63,7 +68,7 @@
 
         #modalFiles div.box-enlace-img:hover {
             cursor: pointer;
-            transform: scale(.9);
+            transform: scale(.92);
         }
 
         #modalFiles div.enlace-img {
@@ -121,7 +126,7 @@
 
         <div class="d-flex px-1" style="align-items: center;">
             <div class="tab-titulo">
-                GALERÍAS
+                CREAR GALERÍA
             </div>
             <div class="ms-auto d-flex flex-row" style="align-items: center;">
                 <button class="btn btn-danger text-white mx-3" data-bs-toggle="modal" data-bs-target="#modalFiles"><i class="fas fa-search"></i>&nbsp; Buscar archivos</button>
@@ -131,24 +136,32 @@
         <hr>
         <div class="row pt-3 pb-4">
             <div class="col mb-4">
-                <div id="content-grid">
-                </div>
+                <div id="content-grid"></div>
             </div>
             <div class="col-3">
                 <form id="formGaleria" class="card bg-light p-3 pt-4 shadow-sm" style="position: sticky; top: 5.5em;">
                     <span>Titulo de galería:</span>
                     <input type="text" class="form-control mt-1 mb-3" name="titulo" value="<?php echo $this->galeriaInfo['titulo'] ?>" autocomplete="off">
                     <span>Detalle:</span>
-                    <textarea class="form-control mt-1 mb-2" rows="3" name="detalle" maxlength="250"><?php echo $this->galeriaInfo['detalle'] ?></textarea>
+                    <textarea class="form-control mt-1 mb-2" rows="3" name="detalle" placeholder="Opcional" maxlength="250"><?php echo $this->galeriaInfo['detalle'] ?></textarea>
                     <hr>
+                    <div class="row pt-1">
+                        <div class="col">
+                            <span>Modo de galería:</span>
+                            <select class="form-select mt-1 mb-3" name="modo" id="modoGaleria" onchange="cambiarModo()">
+                                <option value="A" <?php echo $this->galeriaInfo['modo'] == 'A' ? 'selected' : '' ?>>Collage</option>
+                                <option value="B" <?php echo $this->galeriaInfo['modo'] == 'B' ? 'selected' : '' ?>>Cuadrícula</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="row">
+                        <div class="col">
+                            <span>Nro. de columnas:</span>
+                            <input type="number" name="colum" class="form-control mt-1 mb-3" min="1" max="6" value="<?php echo $this->galeriaInfo['ncolum'] ?>" onchange="cambiarColumns(this.value)">
+                        </div>
                         <div class="col-4">
                             <span>Items:</span>
                             <input type="text" class="form-control mt-1 mb-3" id="cantImg" readonly>
-                        </div>
-                        <div class="col">
-                            <span>Nro. de columnas:</span>
-                            <input type="number" name="colum" class="form-control mt-1 mb-3" min="1" max="6" value="<?php echo $this->galeriaInfo['ncols'] ?>" onchange="cambiarColumns(this.value)">
                         </div>
                     </div>
                     <input type="hidden" name="idgal" value="<?php echo $this->galeriaInfo['idgal'] ?>">
@@ -201,19 +214,32 @@
             listImagenes();
         }
 
+        const cambiarColumns = (valor) => {
+            let grid = document.getElementById('content-grid');
+            grid.style.columns = valor;
+        }
+
+        const cambiarModo = () => {
+            let valor = document.getElementById('modoGaleria').value;
+            let arrImg = document.querySelectorAll("#content-grid img");
+            arrImg.forEach(element => {
+                if (valor == 'A') {
+                    element.style.height = 'auto';
+                } else if (valor == 'B') {
+                    element.style.height = '240px';
+                }
+            });
+        }
+
         const listImagenes = () => {
             let html = '';
             itemsGaleria.forEach((item, index) => {
                 html += `<div class="item" style="position: relative;"><div class="bottoms">
-                <button class="btn btn-sm btn-danger mx-1" title="Eliminar" onclick="eliminarItem(${index})" style="width:36px; height: 36px;"><i class="far fa-trash-alt"></i></button></div> <img src="${item.path}" class="rounded" width="100%"></div>`;
+                <button class="btn btn-sm btn-danger mx-1" title="Eliminar" onclick="eliminarItem(${index})" style="width:36px; height: 36px;"><i class="far fa-trash-alt"></i></button></div> <img src="${item.path}" width="100%"></div>`;
             });
             document.getElementById('cantImg').value = itemsGaleria.length;
             document.getElementById('content-grid').innerHTML = html;
-        }
-
-        const cambiarColumns = (valor) => {
-            let grid = document.getElementById('content-grid');
-            grid.style.columns = valor;
+            cambiarModo();
         }
 
         const guardarGaleria = () => {
@@ -235,7 +261,7 @@
 
         const insertImagenxLink = () => {
             const uri = prompt('Ingrese el link de la imagen');
-            if(uri) {
+            if (uri) {
                 agregarItem('default', 'img', uri);
             }
         }

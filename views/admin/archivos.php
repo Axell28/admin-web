@@ -95,7 +95,7 @@
                                     <td>
                                         <button class="btn btn-outline-info mx-1" title="Copiar enlace" @click="copiarEnlace(item.path)"><i class="fas fa-paste"></i></button>
                                         <a :href="item.path" class="btn btn-outline-success mx-1" :download="item.name" title="Descargar"><i class="fas fa-file-download"></i></a>
-                                        <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)"><i class="far fa-trash-alt"></i></button>
+                                        <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)" :disabled="item.remove"><i class="far fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
                                 <tr v-show="arrayImages.length == 0">
@@ -126,7 +126,7 @@
                                     <td>
                                         <button class="btn btn-outline-info mx-1" title="Copiar enlace" @click="copiarEnlace(item.path)"><i class="fas fa-paste"></i></button>
                                         <a :href="item.path" class="btn btn-outline-success mx-1" :download="item.name" title="Descargar"><i class="fas fa-file-download"></i></a>
-                                        <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)"><i class="far fa-trash-alt"></i></button>
+                                        <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)" :disabled="item.remove"><i class="far fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
                                 <tr v-show="arrayBanner.length == 0">
@@ -157,7 +157,7 @@
                                     <td>
                                         <button class="btn btn-outline-info mx-1" title="Copiar enlace" @click="copiarEnlace(item.path)"><i class="fas fa-paste"></i></button>
                                         <a :href="item.path" class="btn btn-outline-success mx-1" :download="item.name" title="Descargar"><i class="fas fa-file-download"></i></a>
-                                        <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)"><i class="far fa-trash-alt"></i></button>
+                                        <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)" :disabled="item.remove"><i class="far fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
                                 <tr v-show="arrayVideos.length == 0">
@@ -188,7 +188,7 @@
                                     <td>
                                         <button class="btn btn-outline-info mx-1" title="Copiar enlace" @click="copiarEnlace(item.path)"><i class="fas fa-paste"></i></button>
                                         <a :href="item.path" class="btn btn-outline-success mx-1" :download="item.name" title="Descargar"><i class="fas fa-file-download"></i></a>
-                                        <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)"><i class="far fa-trash-alt"></i></button>
+                                        <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)" :disabled="item.remove"><i class="far fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
                                 <tr v-show="arrayFiles.length == 0">

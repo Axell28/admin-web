@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap"); 
+
+body {
+    font-family: "Signika", sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+#header nav.navbar {
+    padding: 1.5em 6%;
+    background-color: rgb(222, 222, 222);
+}

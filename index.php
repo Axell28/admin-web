@@ -36,6 +36,7 @@ if ($uri[0] == 'admin') {
 } else {
     $fileView = DIROOT . "/views/web/{$uri[0]}.php";
     if (file_exists($fileView)) {
+        $nameview = $uri[0];
         include_once $fileView;
     } else {
         die('Error 404 => This page does not exist');

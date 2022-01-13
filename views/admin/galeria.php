@@ -63,7 +63,7 @@
                 <div class="col-md-3 my-2" id="card-<?php echo $val['idgal'] ?>">
                     <div class="card h-100 shadow-sm">
                         <img src="https://thumbs.dreamstime.com/b/galer%C3%ADa-bot%C3%B3n-del-%C3%A1lbum-el-mejor-vector-130465107.jpg" width="100%" height="180" style="object-fit: cover;">
-                        <div class="card-body">
+                        <div class="card-body px-3">
                             <a href="/galeria/<?php echo $val['idgal'] ?>" target="_blank" class="text-uppercase"><?php echo $val['titulo'] ?></a>
                         </div>
                         <div class="card-footer bg-white">

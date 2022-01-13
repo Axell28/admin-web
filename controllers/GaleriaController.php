@@ -29,11 +29,12 @@ class Galeria extends Controller
             $this->galeriaInfo['idgal'] = null;
             $this->galeriaInfo['titulo'] = '';
             $this->galeriaInfo['detalle'] = '';
-            $this->galeriaInfo['ncols'] = '3';
+            $this->galeriaInfo['ncolum'] = '3';
             $this->galeriaInfo['cuerpo'] = '[]';
+            $this->galeriaInfo['modo'] = 'A';
         } else {
             $this->action = 'editar';
-            $this->galeriaInfo = $this->model->buscarGaleriaById($params[0]);
+            $this->galeriaInfo = $this->model->buscarGaleria($params[0]);
         }
         $filesModel = new ArchivosModel();
         $this->listFiles = $filesModel->listarArchivos('/img/galeria/');
@@ -48,6 +49,7 @@ class Galeria extends Controller
             $params[] = parent::getPost("detalle");
             $params[] = parent::getPost("colum");
             $params[] = parent::getPost("cuerpo");
+            $params[] = parent::getPost("modo");
             $resp = $this->model->guardarGaleria($params);
             if ($resp) echo "OK";
         } else {
@@ -64,6 +66,7 @@ class Galeria extends Controller
             $params[] = parent::getPost("colum");
             $params[] = parent::getPost("cuerpo");
             $params[] = parent::getPost("idgal");
+            $params[] = parent::getPost("modo");
             $resp = $this->model->editarGaleria($params);
             if ($resp) echo "OK";
         } else {
