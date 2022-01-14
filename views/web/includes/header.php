@@ -11,16 +11,18 @@ switch ($nameview) {
         $active2 .= ' active';
         break;
     case 'noticias':
+    case 'entrada':
         $active3 .= ' active';
         break;
     case 'galeria':
+    case 'galerias':
         $active4 .= ' active';
         break;
 }
 ?>
-<header class="" id="header">
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#">
+<header class="fixed-top" id="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/">
             <img src="/assets/img/icons/escudo.png" height="90">
             <span><?php echo EMPRESA ?></span>
         </a>
@@ -48,3 +50,8 @@ switch ($nameview) {
         </div>
     </nav>
 </header>
+
+<script>
+    const height = document.getElementById('header').clientHeight;
+    document.querySelector("body").style.marginTop = height + 'px';
+</script>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN - <?php echo EMPRESA ?></title>
-    <link rel="shortcut icon" href="<?php echo WEBURL ?>/assets/img/icons/escudo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo WEBURL ?>/assets/img/icons/escudo.png" type="image/png">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/admin.css">
@@ -105,7 +105,7 @@
             <hr>
             <div class="row pt-2">
                 <div class="col">
-                    <input type="text" class="form-control text-uppercase" id="titulo" name="titulo" placeholder="Titulo de publicación" value="<?php echo $this->noticiaInfo['titulo'] ?>" autocomplete="off" maxlength="120" required>
+                    <input type="text" class="form-control text-uppercase" id="titulo" name="titulo" placeholder="Titulo de publicación" value="<?php echo $this->noticiaInfo['titulo'] ?>" autocomplete="off" maxlength="140" required>
                     <div class="pt-3">
                         <textarea id="editor"><?php echo $this->noticiaInfo['cuerpo'] ?></textarea>
                     </div>
@@ -127,7 +127,7 @@
                         <span>Detalle:</span>
                         <textarea class="form-control mt-1 mb-3" rows="1" id="txtdetalle" name="detalle" maxlength="250" placeholder="Opcional"><?php echo $this->noticiaInfo['detalle'] ?></textarea>
                         <span>Imagen de portada:</span>
-                        <input type="link" class="form-control mt-1 mb-3" name="portada" value="<?php echo $this->noticiaInfo['portada'] ?>" onchange="onchangePortada(this.value)" placeholder="Link de imgen" autocomplete="off">
+                        <input type="link" class="form-control mt-1 mb-3" name="portada" id="textportada" value="<?php echo $this->noticiaInfo['portada'] ?>" onchange="onchangePortada(this.value)" placeholder="Link de imgen" autocomplete="off">
                         <img id="img-portada" src="<?php echo $this->noticiaInfo["portada"]; ?>" onerror="this.src = `https://via.placeholder.com/320x220`" class="rounded" width="100%" style="height: 200px; object-fit: cover;">
                         <!-- elementos ocultos -->
                         <input type="hidden" name="idnot" value="<?php echo $this->noticiaInfo['idnot'] ?>">
@@ -236,6 +236,22 @@
             const cuerpo = document.getElementById("cuerpo");
             cuerpo.value = tinyMCE.get('editor').getContent();
             e.currentTarget.submit();
+        }
+
+        const onchangePortada = (valor) => {
+            if (valor.substring(0, 19) == 'https://img.youtube') {
+                document.getElementById("img-portada").src = valor;
+            } else {
+                let videoId = valor.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+                if (videoId != null) {
+                    let thumb = `https://img.youtube.com/vi/${videoId[1]}/hqdefault.jpg`;
+                    document.getElementById("img-portada").src = thumb;
+                    document.getElementById("textportada").value = thumb;
+                } else {
+                    document.getElementById("img-portada").src = valor;
+                }
+            }
+
         }
 
         const guardarNoticia = () => {

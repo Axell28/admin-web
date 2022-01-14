@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN - <?php echo EMPRESA ?></title>
-    <link rel="shortcut icon" href="<?php echo WEBURL ?>/assets/img/icons/escudo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo WEBURL ?>/assets/img/icons/escudo.png" type="image/png">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/admin.css">

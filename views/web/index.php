@@ -1,3 +1,9 @@
+<?php
+require_once DIROOT . '/models/BannerModel.php';
+$model = new BannerModel();
+$arrBanner = $model->obtenerBanner();
+$arrBanner['cuerpo'] = (array) json_decode($arrBanner['cuerpo'], true);
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -5,13 +11,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo EMPRESA ?></title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/web.css">
 </head>
 
 <body>
 
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+
     <?php include_once 'includes/header.php'; ?>
+
+    <style>
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 8%;
+        }
+    </style>
+
+    <div id="carouselBanner" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <?php
+            for ($i = 0; $i < count($arrBanner['cuerpo']); $i++) { ?>
+                <button type="button" data-bs-target="#carouselBanner" data-bs-slide-to="<?php echo $i ?>" class="<?php echo $i == 0 ? 'active' : '' ?>"></button>
+            <?php } ?>
+        </div>
+        <div class="carousel-inner">
+            <?php
+            foreach ($arrBanner['cuerpo'] as $key => $item) { ?>
+                <div class="carousel-item <?php echo $key == 0 ? 'active' : '' ?>" style="position: relative;">
+                    <img src="<?php echo $item['imagen'] ?>" class="d-block w-100">
+                </div>
+            <?php } ?>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselBanner" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselBanner" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 
     <br><br><br>
 
@@ -28,6 +70,8 @@
             </div>
         </div>
     </section>
+
+    <br><br><br>
 
 </body>
 

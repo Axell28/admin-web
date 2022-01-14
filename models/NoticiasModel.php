@@ -132,7 +132,7 @@ class NoticiasModel extends Conexion
         }
     }
 
-    public function totalResultados()
+    public function totalRows()
     {
         return $this->total;
     }

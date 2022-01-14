@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN - <?php echo EMPRESA ?></title>
-    <link rel="shortcut icon" href="<?php echo WEBURL ?>/assets/img/icons/escudo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo WEBURL ?>/assets/img/icons/escudo.png" type="image/png">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/admin.css">
@@ -62,7 +62,7 @@
             foreach ($this->listGaleria as $val) { ?>
                 <div class="col-md-3 my-2" id="card-<?php echo $val['idgal'] ?>">
                     <div class="card h-100 shadow-sm">
-                        <img src="https://thumbs.dreamstime.com/b/galer%C3%ADa-bot%C3%B3n-del-%C3%A1lbum-el-mejor-vector-130465107.jpg" width="100%" height="180" style="object-fit: cover;">
+                        <img src="/assets/img/icons/galeria-holder.png" width="100%" height="200" style="object-fit: cover;">
                         <div class="card-body px-3">
                             <a href="/galeria/<?php echo $val['idgal'] ?>" target="_blank" class="text-uppercase"><?php echo $val['titulo'] ?></a>
                         </div>

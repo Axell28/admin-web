@@ -1,15 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap"); 
 
+:root {
+    --color1: #f88221;
+    --color2: #161678;
+}
+
 body {
     font-family: "Signika", sans-serif;
-    font-size: 17px;
+    font-size: 18px;
+    color: #4b4b4b;
+    line-height: 1.8;
 }
 
 a {
     text-decoration: none;
 }
 
+p {
+    line-height: 2;
+}
+
+h1, h2, h3 {
+    color: #161678;
+}
+
+#header {
+    box-shadow: 0 3px 3px #b0b0b0;
+}
+
 #header nav.navbar {
-    padding: 1.5em 6%;
-    background-color: rgb(222, 222, 222);
+    padding: .7em 6%;
+    background-color: var(--color1);
+}
+
+#header li.nav-item a.nav-link {
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 0 .8em;
+}
+
+.text-justify {
+    text-align: justify;
 }

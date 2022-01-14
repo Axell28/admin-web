@@ -15,6 +15,7 @@ if (isset($uri[1]) && is_numeric($uri[1])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo EMPRESA ?></title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/venobox.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/web.css">
@@ -46,7 +47,7 @@ if (isset($uri[1]) && is_numeric($uri[1])) {
 
     <section class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-xl-8">
+            <div class="col-xl-9">
                 <div class="text-center">
                     <h2 class="fw-bold"><?php echo $arrGaleria['titulo'] ?></h2>
                     <?php echo '<p>' . $arrGaleria['detalle'] .'</p>' ?>

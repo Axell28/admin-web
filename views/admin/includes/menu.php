@@ -22,13 +22,6 @@
             <span class="tooltip">Noticias</span>
         </li>
         <li>
-            <a href="/admin/revista" class="">
-                <i class="fas fa-list-ul"></i>
-                <span class="links_name">Revista</span>
-            </a>
-            <span class="tooltip">Revista</span>
-        </li>
-        <li>
             <a href="/admin/galeria" class="<?php echo $this->nameView == 'galeria' ? 'active' : '' ?>">
                 <i class="far fa-images"></i>
                 <span class="links_name">Galerias</span>

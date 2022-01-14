@@ -10,6 +10,7 @@ $arrGalerias = $model->listarGalerias();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo EMPRESA ?></title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/web.css">
 </head>
@@ -28,6 +29,9 @@ $arrGalerias = $model->listarGalerias();
             display: flex;
             align-items: center;
         }
+        .card-body a:hover {
+            color: blue;
+        }
         .card h5 {
             font-size: 14px;
             text-transform: uppercase;
@@ -37,9 +41,15 @@ $arrGalerias = $model->listarGalerias();
 
     <section class="container">
         <div class="row">
+            <div class="col">
+                <h2 class="fw-bold">Galerías</h2>
+            </div>
+        </div>
+        <hr>
+        <div class="row pt-4">
             <?php
             foreach ($arrGalerias as $galeria) { ?>
-                <div class="col-lg">
+                <div class="col-lg px-3">
                     <div class="card h-100 shadow">
                         <img src="/assets/img/icons/galeria-holder.png" width="100%" height="200" style="object-fit: cover;">
                         <div class="card-body pb-2">

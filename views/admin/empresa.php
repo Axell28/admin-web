@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN - <?php echo EMPRESA ?></title>
-    <link rel="shortcut icon" href="<?php echo WEBURL ?>/assets/img/icons/escudo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo WEBURL ?>/assets/img/icons/escudo.png" type="image/png">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/admin.css">
@@ -25,11 +25,11 @@
     <!-- main content -->
     <main class="content" id="app">
         <!-- loading -->
-        <!-- <div id="preloader">
+        <div id="preloader">
             <div class="loading">
                 <div class="circle"></div>
             </div>
-        </div> -->
+        </div>
         <form id="form-datos" onsubmit="actualizarDatos(event)" onkeypress="return event.keyCode != 13;">
             <div class="d-flex px-1" style="align-items: center;">
                 <div class="tab-titulo">
