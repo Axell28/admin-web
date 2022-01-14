@@ -69,7 +69,7 @@
                         <div class="card-footer bg-white">
                             <span><i class="far fa-calendar-alt"></i> <?php echo Funciones::formatFecha($val['fecpub']) ?></span>
                             <div class="ms-auto">
-                                <button class="btn btn-sm btn-outline-info me-1" title="Copiar enlace" onclick="copiarEnlace('/galeria/<?php echo $val['idgal'] ?>')"><i class="fas fa-paste"></i></button>
+                                <button class="btn btn-sm btn-outline-dark me-1" title="Copiar enlace" onclick="copiarEnlace('/galeria/<?php echo $val['idgal'] ?>')"><i class="fas fa-paste"></i></button>
                                 <a href="/admin/galeria/vista/<?php echo $val['idgal'] ?>" class="btn btn-sm btn-outline-success me-1" title="Editar"><i class="fas fa-pencil-alt"></i></a>
                                 <button class="btn btn-sm btn-outline-danger" title="Eliminar" onclick="eliminarGaleria('<?php echo $val['idgal'] ?>')"><i class="far fa-trash-alt"></i></button>
                             </div>

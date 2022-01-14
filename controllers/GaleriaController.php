@@ -65,8 +65,8 @@ class Galeria extends Controller
             $params[] = parent::getPost("detalle");
             $params[] = parent::getPost("colum");
             $params[] = parent::getPost("cuerpo");
-            $params[] = parent::getPost("idgal");
             $params[] = parent::getPost("modo");
+            $params[] = parent::getPost("idgal");
             $resp = $this->model->editarGaleria($params);
             if ($resp) echo "OK";
         } else {

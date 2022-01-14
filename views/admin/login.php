@@ -75,7 +75,7 @@
                 return res.text()
             }).then(function(res) {
                 if (res.trim() == "OK") {
-                    location.href = '/admin/noticias';
+                    location.href = '/admin/home';
                 } else {
                     mostrarAlert(res, "error");
                 }

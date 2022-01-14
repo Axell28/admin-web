@@ -32,14 +32,18 @@ if (isset($uri[1]) && is_numeric($uri[1])) {
     <style>
         #content-grid {
             columns: <?php echo $arrGaleria['ncolum'] ?>;
-            column-gap: 9px;
+            column-gap: 6px;
         }
 
         #content-grid>div.img-links {
             -webkit-column-break-inside: avoid;
             page-break-inside: avoid;
             break-inside: avoid;
-            margin-bottom: 9px;
+            margin-bottom: 6px;
+        }
+        #content-grid img {
+            height: <?php echo $arrGaleria['modo'] == 'A' ? 'auto' : '240px' ?>;
+            object-fit: cover;
         }
     </style>
 

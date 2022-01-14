@@ -55,7 +55,7 @@ class Editor extends Controller
             $datos = array();
             $datos[] = parent::getPost("categ");
             $datos[] = parent::getPost("titulo");
-            $datos[] = Funciones::formatURL(parent::getPost("titulo"));
+            $datos[] = substr(Funciones::formatURL(parent::getPost("titulo")), 0, 40);
             $datos[] = parent::getPost("portada");
             $datos[] = parent::getPost("detalle");
             $datos[] = parent::getPost("cuerpo");
@@ -73,7 +73,7 @@ class Editor extends Controller
             $datos = array();
             $datos[] = parent::getPost("categ");
             $datos[] = parent::getPost("titulo");
-            $datos[] = Funciones::formatURL(parent::getPost("titulo"));
+            $datos[] = substr(Funciones::formatURL(parent::getPost("titulo")), 0, 40);
             $datos[] = parent::getPost("portada");
             $datos[] = parent::getPost("detalle");
             $datos[] = parent::getPost("cuerpo");

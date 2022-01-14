@@ -70,8 +70,18 @@ class ArchivosModel
             case 'pdf':
                 $icono = 'far fa-file-pdf';
                 break;
+            case 'zip':
+            case 'rar':
+                $icono = 'far fa-file-archive';
+                break;
             case 'mp4':
                 $icono = 'fas fa-film';
+                break;
+            case 'docx':
+                $icono = 'far fa-file-word';
+                break;
+            case 'mp3':
+                $icono = 'fas fa-volume-down';
                 break;
         }
         return $icono;
@@ -121,7 +131,7 @@ class ArchivosModel
 
     private function isRemove($file)
     {
-        $lista = array('portada_3.png', 'spiderman-2021.jpg', 'metodologia.jpg');
+        $lista = array('portada_3.png', 'spiderman-2021.jpg', 'metodologia.jpg', 'fondo-grande-de-prueba.jpg');
         return in_array($file, $lista);
     }
 }

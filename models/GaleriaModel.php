@@ -24,7 +24,7 @@ class GaleriaModel extends Conexion
     public function editarGaleria($params)
     {
         try {
-            $sql = "UPDATE galeria SET titulo = ?, detalle = ?, ncols = ?, cuerpo = ?, modo = ? WHERE idgal = ?";
+            $sql = "UPDATE galeria SET titulo = ?, detalle = ?, ncolum = ?, cuerpo = ?, modo = ? WHERE idgal = ?";
             $stm = $this->pdo->prepare($sql);
             $res = $stm->execute($params);
             return $res;
