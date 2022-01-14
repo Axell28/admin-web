@@ -109,10 +109,6 @@
             border: 6px solid transparent;
             background-clip: content-box;
         }
-
-        #modalFiles .spinner-border {
-            visibility: hidden;
-        }
     </style>
 
     <!-- main content -->

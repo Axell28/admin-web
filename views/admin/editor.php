@@ -79,6 +79,30 @@
             text-overflow: ellipsis;
             max-width: 100%;
         }
+
+        #modalFiles div.modal-body::-webkit-scrollbar {
+            width: 21px;
+        }
+
+        #modalFiles div.modal-body::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        #modalFiles div.modal-body::-webkit-scrollbar-thumb {
+            background-color: #d6dee1;
+        }
+
+        #modalFiles div.modal-body::-webkit-scrollbar-thumb {
+            background-color: #d6dee1;
+            border-radius: 21px;
+        }
+
+        #modalFiles div.modal-body::-webkit-scrollbar-thumb {
+            background-color: #d6dee1;
+            border-radius: 21px;
+            border: 6px solid transparent;
+            background-clip: content-box;
+        }
     </style>
 
     <!-- contenido principal -->

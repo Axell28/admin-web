@@ -21,7 +21,7 @@
     <style>
         body {
             height: 100vh;
-            background-color: #ceeeae;
+            background-color: #f88221;
         }
 
         main.card {
