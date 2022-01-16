@@ -44,9 +44,12 @@
             padding-bottom: 4px;
         }
 
+        h6.categoria {
+            color: var(--color2);
+        }
+
         a.titulo {
-            font-weight: bold;
-            color: blue;
+            color: #3E6BA9;
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
@@ -76,6 +79,10 @@
                     <div class="ms-3 me-3">
                         <select class="form-select" onchange="cambiarCategoria(this.value)">
                             <option value="all">Todas</option>
+                            <?php
+                            foreach ($this->listCategs as $key => $item) { ?>
+                                <option value="<?php echo $key ?>" <?php echo $this->categoria == $key ? 'selected' : '' ?>><?php echo $item['nombre'] ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 <?php } ?>
@@ -93,7 +100,7 @@
                             <img src="<?php echo $val["portada"]; ?>" onerror="this.src = `https://via.placeholder.com/320x220`" width="100%" height="190" style="object-fit: cover;">
                         <?php } ?>
                         <div class="card-body p-3">
-                            <h6 class="text-success"><?php echo $val['catname'] ?></h6>
+                            <h6 class="categoria"><?php echo $val['catname'] ?></h6>
                             <a href="/entrada/<?php echo $val['tagname'] ?>" class="titulo text-uppercase" target="_blank"><?php echo $val['titulo'] ?></a>
                             <h6 class="mt-3"><i class="far fa-calendar-alt"></i> <?php echo Funciones::formatFecha($val['fecpub']) ?></h6>
                         </div>
@@ -116,7 +123,7 @@
                 Total de resultados : &nbsp; <?php echo $this->model->totalRows(); ?> registros
             </div>
             <div class="col">
-                
+
             </div>
         </div>
     </main>

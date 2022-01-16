@@ -38,7 +38,7 @@ switch ($nameview) {
                     <a class="<?php echo $active2 ?>" href="#">Nosotros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="<?php echo $active3 ?>" href="#">Noticias</a>
+                    <a class="<?php echo $active3 ?>" href="/noticias">Noticias</a>
                 </li>
                 <li class="nav-item">
                     <a class="<?php echo $active4 ?>" href="/galerias">Galerías</a>

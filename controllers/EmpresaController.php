@@ -38,6 +38,7 @@ class Empresa extends Controller
             $params[] = parent::getPost('intranet');
             $params[] = parent::getPost('liblink');
             $params[] = parent::getPost('libmail');
+            $params[] = parent::getPost('idemp');
             $result = $this->model->editarDataEmpresa($params);
             if ($result) echo 'OK';
         } else {

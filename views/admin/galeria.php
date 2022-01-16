@@ -53,7 +53,7 @@
                 GALERÍAS
             </div>
             <div class="ms-auto d-flex flex-row" style="align-items: center;">
-                <button class="btn btn-primary text-white" onclick="location.href = '/admin/galeria/vista'"><i class="fas fa-plus"></i>&nbsp; Nueva galería</button>
+                <button class="btn btn-success text-white" onclick="location.href = '/admin/galeria/vista'"><i class="fas fa-plus"></i>&nbsp; Nueva galería</button>
             </div>
         </div>
         <hr>

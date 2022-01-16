@@ -114,6 +114,7 @@
                     </select>
                 </div>
             </div>
+            <input type="hidden" value="<?php echo $this->dataEmp['idemp'] ?>" name="idemp">
         </form>
         <br><br>
     </main>

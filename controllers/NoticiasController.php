@@ -28,7 +28,7 @@ class Noticias extends Controller
             $this->pagina = !empty($params[0]) ? $params[0] : 1;
             $ini = (24 * $this->pagina) - 24;
             $ini = ($ini < 0) ? 0 : $ini;
-            $this->categoria = ($method == 'all') ? '' : $method;
+            $this->categoria = ($method == 'all') ? '%' : $method;
             $this->listNoticias = $this->model->listarNoticias($ini, $this->categoria);
             parent::renderView($this->nameView);
         } else {
@@ -69,7 +69,7 @@ class Noticias extends Controller
         } else {
             $html .= '<li class="page-item"><a class="page-link" href="/admin/noticias/' . $categ . '/' . ($pag - 1) . '"><span aria-hidden="true">&laquo;</span></a></li>';
         }
-        $npag = ceil($this->model->totalResultados() / 12);
+        $npag = ceil($this->model->totalRows() / 12);
         for ($item = 1; $item <= $npag; $item++) :
             $active = ($item == $pag) ? 'active' : '';
             $html .= '<li class="page-item ' . $active . '"><a class="page-link" href="/admin/noticias/' . $categ . '/' . $item . '">' . $item . '</a></li>';

@@ -77,7 +77,7 @@ class NoticiasModel extends Conexion
     public function listarNoticias(int $ini, string $catg)
     {
         try {
-            $sql = "SELECT (SELECT COUNT(*) FROM noticias WHERE idcat LIKE '%$catg') as total, n.idnot, n.titulo, n.tagname, n.idcat, UPPER(c.nombre) as catname, n.portada, n.fecpub, n.visible FROM noticias n INNER JOIN categoria c ON n.idcat = c.idcat WHERE n.idcat LIKE '%$catg' ORDER BY fecpub DESC LIMIT 12 OFFSET $ini;";
+            $sql = "SELECT (SELECT COUNT(*) FROM noticias WHERE idcat LIKE '$catg') as total, n.idnot, n.titulo, n.tagname, n.idcat, UPPER(c.nombre) as catname, n.portada, n.fecpub, n.visible FROM noticias n INNER JOIN categoria c ON n.idcat = c.idcat WHERE n.idcat LIKE '$catg' ORDER BY fecpub DESC LIMIT 12 OFFSET $ini;";
             $stm = $this->pdo->prepare($sql);
             $stm->execute();
             $res = $stm->fetchAll(PDO::FETCH_ASSOC);
@@ -93,7 +93,7 @@ class NoticiasModel extends Conexion
     public function listarNoticiasWeb(int $ini, int $limit, string $catg)
     {
         try {
-            $sql = "SELECT (SELECT COUNT(*) FROM noticias WHERE idcat LIKE '%$catg' AND n.fecpub <= NOW() AND n.visible = 'S') as total, n.idnot, n.titulo, n.tagname, n.idcat, c.nombre as catdes, n.portada, n.detalle, n.fecpub, n.visible FROM noticias n INNER JOIN categoria c ON n.idcat = c.idcat WHERE n.idcat LIKE '%$catg' AND n.fecpub <= NOW() AND n.visible = 'S' ORDER BY fecpub DESC LIMIT $limit OFFSET $ini";
+            $sql = "SELECT (SELECT COUNT(*) FROM noticias WHERE idcat LIKE '$catg' AND n.fecpub <= NOW() AND n.visible = 'S') as total, n.idnot, n.titulo, n.tagname, n.idcat, c.nombre as catdes, n.portada, n.detalle, n.fecpub, n.visible FROM noticias n INNER JOIN categoria c ON n.idcat = c.idcat WHERE n.idcat LIKE '$catg' AND n.fecpub <= NOW() AND n.visible = 'S' ORDER BY fecpub DESC LIMIT $limit OFFSET $ini";
             $stm = $this->pdo->prepare($sql);
             $stm->execute();
             $res = $stm->fetchAll(PDO::FETCH_ASSOC);

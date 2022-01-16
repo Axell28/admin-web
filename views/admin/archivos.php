@@ -54,7 +54,7 @@
                 ARCHIVOS
             </div>
             <div class="ms-auto">
-                <label class="btn btn-primary text-white px-3" for="fileupload">
+                <label class="btn btn-success text-white px-3" for="fileupload">
                     <span><i class="fas fa-cloud-upload-alt"></i></span>
                     <span class="ms-1" id="loadtext">Cargar archivo</span>
                 </label>
@@ -65,10 +65,10 @@
         <div class="row pt-1 pb-3">
             <div class="col-2">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <button class="nav-link active text-start" id="tab-fotos-tab" data-bs-toggle="pill" data-bs-target="#tab-fotos" type="button" role="tab" aria-controls="tab-fotos" aria-selected="true" @click="tabactive = 1"><i class="far fa-folder"></i>&nbsp; Imagenes</button>
-                    <button class="nav-link text-start" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" @click="tabactive = 2"><i class="far fa-folder"></i>&nbsp; Banner</button>
-                    <button class="nav-link text-start" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false" @click="tabactive = 3"><i class="far fa-folder"></i>&nbsp; Videos</button>
-                    <button class="nav-link text-start" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false" @click="tabactive = 4"><i class="far fa-folder"></i>&nbsp; Archivos</button>
+                    <button class="nav-link active text-start" id="tab-fotos-tab" data-bs-toggle="pill" data-bs-target="#tab-fotos" type="button" role="tab" aria-controls="tab-fotos" aria-selected="true" @click="tabactive = 1"><i class="far fa-folder-open"></i>&nbsp; Imagenes</button>
+                    <button class="nav-link text-start" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" @click="tabactive = 2"><i class="far fa-folder-open"></i></i>&nbsp; Banner</button>
+                    <button class="nav-link text-start" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false" @click="tabactive = 3"><i class="far fa-folder-open"></i></i>&nbsp; Videos</button>
+                    <button class="nav-link text-start" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false" @click="tabactive = 4"><i class="far fa-folder-open"></i></i>&nbsp; Archivos</button>
                 </div>
             </div>
             <div class="col">

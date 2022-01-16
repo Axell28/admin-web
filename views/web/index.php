@@ -18,6 +18,7 @@ $arrBanner['cuerpo'] = (array) json_decode($arrBanner['cuerpo'], true);
 
 <body>
 
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
 

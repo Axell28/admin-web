@@ -12,7 +12,7 @@ class EmpresaModel extends Conexion
     public function editarDataEmpresa($params)
     {
         try {
-            $sql = "UPDATE empresa SET nombre = ?, telefono = ?, celular = ?, direction = ?, correo = ?, metades = ?, facebook = ?, instagram = ?, whatsapp = ?, youtube = ?, twitter = ?,  intranet = ?, liblink = ?, libmail = ? WHERE idemp = 1";
+            $sql = "UPDATE empresa SET nombre = ?, telefono = ?, celular = ?, direction = ?, correo = ?, metades = ?, facebook = ?, instagram = ?, whatsapp = ?, youtube = ?, twitter = ?,  intranet = ?, liblink = ?, libmail = ? WHERE idemp = ?";
             $stm = $this->pdo->prepare($sql);
             $res = $stm->execute($params);
             return $res;

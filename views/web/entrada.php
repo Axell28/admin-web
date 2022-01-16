@@ -3,7 +3,7 @@ if (isset($uri[1])) {
     require_once DIROOT . '/models/NoticiasModel.php';
     $model = new NoticiasModel();
     $arrGaleria = $model->listarCategorias();
-    if(!empty($_POST) && $uri[1] == 'preview') {
+    if (!empty($_POST) && $uri[1] == 'preview') {
         $arrNoticia['idnot'] = 0;
         $arrNoticia['titulo'] = $_POST['titulo'];
         $arrNoticia['cuerpo'] = $_POST['cuerpo'];
@@ -13,6 +13,7 @@ if (isset($uri[1])) {
         $arrNoticia = $model->buscarNoticiaxTag($uri[1]);
     }
     $idCateg = $arrNoticia['categoria'];
+    $arrRecientes = $model->listarNoticiasWeb(0, 4, '%');
 } else {
     header("Location: /error");
 }
@@ -24,6 +25,7 @@ if (isset($uri[1])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo EMPRESA ?></title>
+    <link rel="shortcut icon" href="<?php echo WEBURL ?>/assets/img/icons/escudo.png" type="image/png">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/web.css">
@@ -41,15 +43,30 @@ if (isset($uri[1])) {
             font-size: 16px;
         }
 
+        li.list-group-item {
+            background: #FCFBF4;
+        }
+
+        li.list-group-item span.fecpub {
+            color: rgb(100, 100, 100);
+            font-size: 14px;
+        }
+
+        li.list-group-item a.titulo {
+            color: #6491BE;
+        }
+
         @media only screen and (max-width: 850px) {
             #entrada img {
                 width: 100%;
                 height: auto;
             }
+
             #entrada video {
                 width: 100%;
                 height: auto;
             }
+
             #entrada iframe {
                 max-width: 100%;
             }
@@ -83,8 +100,21 @@ if (isset($uri[1])) {
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-md-12 my-2 bg-light p-3">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis unde at quos deserunt cupiditate quam iusto vel, accusamus pariatur perferendis ex corrupti fugiat, omnis libero ducimus? Neque sapiente rerum quasi!
+            <div class="col-xl-3 col-md-12 my-2 p-2">
+                <h4 class="mb-3">Publicaciones recientes</h4>
+                <div class="card shadow-sm">
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush">
+                            <?php
+                            foreach ($arrRecientes as $key => $value) { ?>
+                                <li class="list-group-item pt-3">
+                                    <a href="/entrada/<?php echo $value['tagname'] ?>" class="titulo"><h6 class="mb-1"><?php echo $value['titulo'] ?></h6></a>
+                                    <span class="fecpub"><i class="far fa-calendar-alt"></i>&nbsp; <?php echo Funciones::formatFecha($value['fecpub']) ?></span>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

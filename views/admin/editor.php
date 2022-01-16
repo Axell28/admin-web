@@ -129,7 +129,7 @@
             <hr>
             <div class="row pt-2">
                 <div class="col">
-                    <input type="text" class="form-control text-uppercase" id="titulo" name="titulo" placeholder="Titulo de publicación" value="<?php echo $this->noticiaInfo['titulo'] ?>" autocomplete="off" maxlength="140" required>
+                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo de publicación" value="<?php echo $this->noticiaInfo['titulo'] ?>" autocomplete="off" maxlength="140" required>
                     <div class="pt-3">
                         <textarea id="editor"><?php echo $this->noticiaInfo['cuerpo'] ?></textarea>
                     </div>
