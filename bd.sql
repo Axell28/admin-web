@@ -167,10 +167,29 @@ CREATE TABLE "public"."usuario" (
 )
 ;
 
+
 -- ----------------------------
 -- Records of usuario
 -- ----------------------------
 INSERT INTO "public"."usuario" VALUES (1, 'webAdmin', '$2y$10$wcyBa0NcLSQKlwP0JSeTPeIvW1yxQcSlh4VREUXfA6INFgomD0Xx6');
+
+
+-- ----------------------------
+-- Table structure for modal
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."modal";
+CREATE TABLE "public"."modal" (
+  "idmod" int4 NOT NULL,
+  "titulo" varchar(100) COLLATE "pg_catalog"."default",
+  "cuerpo" varchar(350) COLLATE "pg_catalog"."default",
+  "visible" char(1) COLLATE "pg_catalog"."default"
+);
+
+-- ----------------------------
+-- Primary Key structure for table modal
+-- ----------------------------
+ALTER TABLE "public"."modal" ADD CONSTRAINT "modal_pkey" PRIMARY KEY ("idmod");
+
 
 -- ----------------------------
 -- Alter sequences owned by
