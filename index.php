@@ -36,9 +36,12 @@ if ($uri[0] == 'admin') {
 } else {
     $fileView = DIROOT . "/views/web/{$uri[0]}.php";
     if (file_exists($fileView)) {
+        require_once DIROOT . '/models/EmpresaModel.php';
+        $empresa = new EmpresaModel();
+        $empresa = $empresa->getDatosEmpresa();
         $nameview = $uri[0];
         include_once $fileView;
     } else {
-        die('Error 404 => This page does not exist');
+        include_once DIROOT . '/views/web/error.php';
     }
 }
