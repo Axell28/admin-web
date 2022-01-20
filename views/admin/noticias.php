@@ -123,7 +123,12 @@
                 Total de resultados : &nbsp; <?php echo $this->model->totalRows(); ?> registros
             </div>
             <div class="col">
-
+                <?php
+                if (count($this->listNoticias) > 0) : ?>
+                    <ul class="pagination justify-content-end">
+                        <?php echo $this->pagination($this->categoria, $this->pagina) ?>
+                    </ul>
+                <?php endif; ?>
             </div>
         </div>
     </main>

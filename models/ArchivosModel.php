@@ -30,7 +30,8 @@ class ArchivosModel
         return false;
     }
 
-    public function listarArchivos($ruta)
+
+    public function listarArchivos(string $ruta)
     {
         $dir = dir(DIROOT . '/assets' . $ruta);
         $list = array();
@@ -40,13 +41,18 @@ class ArchivosModel
                     "name" => utf8_encode($file),
                     "tipo" => pathinfo($file, PATHINFO_EXTENSION),
                     "size" => $this->obtenerSizeFile(filesize($dir->path . $file)),
-                    "date" => date("d-m-Y H:i", filectime($dir->path . $file)),
+                    "date" => date("d-m-Y H:i", filemtime($dir->path . $file)),
+                    "time" => filemtime($dir->path . $file),
                     "path" => '/assets'  . $ruta . utf8_encode($file),
                     "icon" => $this->obtenerIcono(pathinfo($file, PATHINFO_EXTENSION)),
                     "remove" => $this->isRemove(utf8_encode($file))
                 );
             endif;
         endwhile;
+        // ordernar por fecha de subida
+        usort($list, function ($a, $b) {
+            return $a['time'] < $b['time'];
+        });
         return $list;
     }
 
@@ -89,7 +95,7 @@ class ArchivosModel
 
     private function procesarImagen($file, string $ruta)
     {
-        $max_width = 1100;
+        $max_width = 1000;
         $max_height = 900;
         list($widht, $height) = getimagesize($file['tmp_name']);
 

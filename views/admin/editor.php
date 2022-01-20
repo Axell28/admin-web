@@ -294,7 +294,7 @@
                 return res.text()
             }).then(function(res) {
                 if (res.trim() == "OK") {
-                    mostrarAlert("Publicación <?php echo $this->action == 'save' ? 'guardada' : 'editada' ?> correctamente", "success");
+                    mostrarAlert("Publicación <?php echo $this->action == 'guardar' ? 'guardada' : 'editada' ?> correctamente", "success");
                 } else {
                     mostrarAlert(res, "error");
                 }

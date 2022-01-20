@@ -61,7 +61,7 @@ $arrNoticias = $modelo->listarNoticiasWeb(0, 50, '%');
             </div>
         </div>
         <hr>
-        <div class="row pt-1">
+        <div class="row justify-content-center pt-1">
             <?php
             foreach ($arrNoticias as $value) { ?>
                 <div class="col-md-4 my-3 px-3">

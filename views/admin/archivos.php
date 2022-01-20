@@ -58,13 +58,13 @@
                     <span><i class="fas fa-cloud-upload-alt"></i></span>
                     <span class="ms-1" id="loadtext">Cargar archivo</span>
                 </label>
-                <input type="file" id="fileupload" size="40120" accept="image/*" @change.prevent="cargarArchivo()">
+                <input type="file" id="fileupload" size="60120" accept="image/*" @change.prevent="cargarArchivo()">
             </div>
         </div>
         <hr>
         <div class="row pt-1 pb-3">
             <div class="col-2">
-                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="position: sticky; top: 5.5em;">
                     <button class="nav-link active text-start" id="tab-fotos-tab" data-bs-toggle="pill" data-bs-target="#tab-fotos" type="button" role="tab" aria-controls="tab-fotos" aria-selected="true" @click="tabactive = 1"><i class="far fa-folder-open"></i>&nbsp; Imagenes</button>
                     <button class="nav-link text-start" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" @click="tabactive = 2"><i class="far fa-folder-open"></i></i>&nbsp; Banner</button>
                     <button class="nav-link text-start" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false" @click="tabactive = 3"><i class="far fa-folder-open"></i></i>&nbsp; Videos</button>
@@ -254,8 +254,8 @@
                     const uri = "/admin/archivos/guardar";
                     const fileup = document.getElementById("fileupload").files[0];
                     const sizekb = parseInt(fileup.size / 1024);
-                    if (sizekb > 40120) {
-                        this.mostrarAlert("El archivo supera el límite del peso permitido, Max(40MB)", "warning");
+                    if (sizekb > 60120) {
+                        this.mostrarAlert("El archivo supera el límite del peso permitido, Max(60MB)", "warning");
                     } else {
                         document.getElementById("fileupload").disabled = true;
                         let http = new XMLHttpRequest();
@@ -276,6 +276,7 @@
                                 vue.mostrarAlert("Archivo subido correctamente", "success");
                             } else {
                                 vue.mostrarAlert(res, "error");
+                                document.getElementById("fileupload").disabled = false;
                             }
                         });
                         http.send(data);

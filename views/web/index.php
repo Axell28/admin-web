@@ -1,8 +1,11 @@
 <?php
 require_once DIROOT . '/models/BannerModel.php';
-$model = new BannerModel();
-$arrBanner = $model->obtenerBanner();
+require_once DIROOT . '/models/NoticiasModel.php';
+$modelA = new BannerModel();
+$modelB = new NoticiasModel();
+$arrBanner = $modelA->obtenerBanner();
 $arrBanner['cuerpo'] = (array) json_decode($arrBanner['cuerpo'], true);
+$arrNoticias = $modelB->listarNoticiasWeb(0, 4, '%');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -10,7 +13,8 @@ $arrBanner['cuerpo'] = (array) json_decode($arrBanner['cuerpo'], true);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo EMPRESA ?></title>
+    <meta name="description" content="<?php echo $empresa['metades'] ?>">
+    <title><?php echo $empresa['nombre'] ?></title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/web.css">
@@ -18,7 +22,6 @@ $arrBanner['cuerpo'] = (array) json_decode($arrBanner['cuerpo'], true);
 
 <body>
 
-    <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
 
@@ -28,6 +31,41 @@ $arrBanner['cuerpo'] = (array) json_decode($arrBanner['cuerpo'], true);
         .carousel-control-prev,
         .carousel-control-next {
             width: 8%;
+        }
+
+        #noticias div.card {
+            transition: transform .3s ease-in-out;
+        }
+
+        #noticias div.card:hover {
+            transform: scale(1.05);
+        }
+
+        #noticias h6.titulo {
+            line-height: 1.6;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            text-transform: uppercase;
+            color: var(--color1);
+        }
+
+        #noticias p.detalle {
+            font-size: 16px;
+            line-height: 1.6;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            color: rgb(120, 120, 120);
+        }
+
+        #noticias div.card-footer {
+            color: var(--color2);
+            font-size: 15px;
         }
     </style>
 
@@ -69,6 +107,34 @@ $arrBanner['cuerpo'] = (array) json_decode($arrBanner['cuerpo'], true);
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio adipisci itaque, laboriosam, inventore quaerat veritatis aliquid soluta nobis eveniet dolorem minus debitis exercitationem quos laborum, delectus facilis suscipit vitae nemo?
                 </p>
             </div>
+        </div>
+    </section>
+
+    <br><br><br>
+
+    <section class="container" id="noticias">
+        <div class="row">
+            <div class="col-lg text-center">
+                <h2>BLOG</h2>
+            </div>
+        </div>
+        <hr>
+        <div class="row justify-content-center pt-1">
+            <?php
+            foreach ($arrNoticias as $value) { ?>
+                <div class="col-md-3 my-3 px-2">
+                    <div class="card h-100 shadow">
+                        <img src="<?php echo $value['portada'] ?>" width="100%" height="185" style="object-fit: cover;">
+                        <a href="/entrada/<?php echo $value['tagname'] ?>" class="card-body">
+                            <h6 class="titulo"><?php echo $value['titulo'] ?></h6>
+                            <p class="detalle pb-0 mb-0"><?php echo $value['detalle'] ?></p>
+                        </a>
+                        <div class="card-footer bg-white">
+                            <span><i class="far fa-calendar-alt"></i>&nbsp; <?php echo Funciones::formatFecha($value['fecpub']) ?></span>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
     </section>
 

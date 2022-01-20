@@ -60,10 +60,11 @@ class Noticias extends Controller
         }
     }
 
-    public function pagination($categ, $pag)
+    public function pagination(string $categ, $pag)
     {
         $html = '';
         $categ = empty($categ) ? 'all' : $categ;
+        $categ = $categ == '%' ? 'all' : $categ;
         if ($pag == 1) {
             $html .= '<li class="page-item disabled"><a class="page-link" href="#"><span aria-hidden="true">&laquo;</span></a></li>';
         } else {

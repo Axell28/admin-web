@@ -101,18 +101,22 @@ if (isset($uri[1])) {
                 </div>
             </div>
             <div class="col-xl-3 col-md-12 my-2 p-2">
-                <h4 class="mb-3">Publicaciones recientes</h4>
-                <div class="card shadow-sm">
-                    <div class="card-body p-0">
-                        <ul class="list-group list-group-flush">
-                            <?php
-                            foreach ($arrRecientes as $key => $value) { ?>
-                                <li class="list-group-item pt-3">
-                                    <a href="/entrada/<?php echo $value['tagname'] ?>" class="titulo"><h6 class="mb-1"><?php echo $value['titulo'] ?></h6></a>
-                                    <span class="fecpub"><i class="far fa-calendar-alt"></i>&nbsp; <?php echo Funciones::formatFecha($value['fecpub']) ?></span>
-                                </li>
-                            <?php } ?>
-                        </ul>
+                <div style="position: sticky; top: 9.5em;">
+                    <h4 class="mb-3">Publicaciones recientes</h4>
+                    <div class="card shadow-sm">
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush">
+                                <?php
+                                foreach ($arrRecientes as $key => $value) { ?>
+                                    <li class="list-group-item pt-3">
+                                        <a href="/entrada/<?php echo $value['tagname'] ?>" class="titulo">
+                                            <h6 class="mb-1"><?php echo $value['titulo'] ?></h6>
+                                        </a>
+                                        <span class="fecpub"><i class="far fa-calendar-alt"></i>&nbsp; <?php echo Funciones::formatFecha($value['fecpub']) ?></span>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
