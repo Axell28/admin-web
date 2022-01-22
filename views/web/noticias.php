@@ -2,6 +2,13 @@
 require_once DIROOT . '/models/NoticiasModel.php';
 $modelo = new NoticiasModel();
 $arrNoticias = $modelo->listarNoticiasWeb(0, 50, '%');
+$arrCategorias = $modelo->listarCategorias();
+/* $categ = "%";
+if(isset($uri[1])) {
+    if(in_array($uri[1], array_column($arrCategorias, 'filtro'))) {
+        $categ = $uri[1];
+    }
+} */
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -77,6 +84,12 @@ $arrNoticias = $modelo->listarNoticiasWeb(0, 50, '%');
                     </div>
                 </div>
             <?php } ?>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-lg">
+                
+            </div>
         </div>
     </section>
 

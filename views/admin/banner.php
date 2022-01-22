@@ -190,14 +190,14 @@
                             if ($this->tipoBanner == 'slider') {
                                 foreach ($this->listFiles as $val) : ?>
                                     <div class="col-4 my-2 px-2 py-1">
-                                        <img src="<?php echo $val['path'] ?>" class="cover shadow-sm" width="100%" height="150" title="<?php echo $val['name'] ?>" onclick="agregarImagen(this.src)">
+                                        <img src="<?php echo $val['path'] ?>" class="cover shadow-sm" width="100%" height="150" title="<?php echo $val['name'] ?>" onclick="agregarFile(this.src)">
                                     </div>
                                 <?php endforeach;
                             } else {
                                 foreach ($this->listFiles as $val) : ?>
                                     <div class="col-3 my-2">
                                         <div class="card card-file">
-                                            <div class="card-body px-0 py-2 text-center" onclick="agregarImagen('<?php echo $val['path'] ?>')">
+                                            <div class="card-body px-0 py-2 text-center" onclick="agregarFile('<?php echo $val['path'] ?>')">
                                                 <span style="font-size: 35px;"><i class="fas fa-film"></i></span>
                                                 <div class="enlace px-3"><?php echo $val['name'] ?></div>
                                             </div>
@@ -232,7 +232,7 @@
                 $("#list-items").html(html);
             }
 
-            const agregarImagen = (url) => {
+            const agregarFile = (url) => {
                 sliderArray.push({
                     imagen: url
                 });
@@ -280,9 +280,32 @@
         </script>
     <?php } else if ($this->tipoBanner == 'video') { ?>
         <script>
-            const agregarImagen = (uri) => {
+            const agregarFile = (uri) => {
                 $('#video-banner').attr('src', uri);
                 $('#modalFiles').modal('hide');
+            }
+
+            const actualizar = () => {
+                let data = new FormData();
+                data.append("tipo", "<?php echo $this->tipoBanner ?>");
+                data.append("cuerpo", JSON.stringify({
+                    video: $('#video-banner').attr('src'),
+                    control: $('#video_opt_1').prop('checked'),
+                    muted: $('#video_opt_2').prop('checked'),
+                    repeat: $('#video_opt_3').prop('checked')
+                }));
+                fetch("/admin/banner/actualizar", {
+                    method: "POST",
+                    body: data
+                }).then(function(res) {
+                    return res.text()
+                }).then(function(res) {
+                    if (res.trim() == "OK") {
+                        mostrarAlert("Cambios guardados correctamente", "success");
+                    } else {
+                        mostrarAlert(res, "error");
+                    }
+                });
             }
         </script>
     <?php } ?>

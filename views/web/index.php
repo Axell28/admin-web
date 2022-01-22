@@ -15,6 +15,7 @@ $arrNoticias = $modelB->listarNoticiasWeb(0, 4, '%');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?php echo $empresa['metades'] ?>">
     <title><?php echo $empresa['nombre'] ?></title>
+    <link rel="shortcut icon" href="<?php echo WEBURL ?>/assets/img/icons/escudo.png" type="image/png">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/web.css">
@@ -69,30 +70,38 @@ $arrNoticias = $modelB->listarNoticiasWeb(0, 4, '%');
         }
     </style>
 
-    <div id="carouselBanner" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <?php
-            for ($i = 0; $i < count($arrBanner['cuerpo']); $i++) { ?>
-                <button type="button" data-bs-target="#carouselBanner" data-bs-slide-to="<?php echo $i ?>" class="<?php echo $i == 0 ? 'active' : '' ?>"></button>
-            <?php } ?>
-        </div>
-        <div class="carousel-inner">
-            <?php
-            foreach ($arrBanner['cuerpo'] as $key => $item) { ?>
-                <div class="carousel-item <?php echo $key == 0 ? 'active' : '' ?>" style="position: relative;">
-                    <img src="<?php echo $item['imagen'] ?>" class="d-block w-100">
+    <section class="container-fluid px-0">
+        <?php
+        if ($arrBanner['tipo'] == 'slider') { ?>
+            <div id="carouselBanner" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <?php
+                    for ($i = 0; $i < count($arrBanner['cuerpo']); $i++) { ?>
+                        <button type="button" data-bs-target="#carouselBanner" data-bs-slide-to="<?php echo $i ?>" class="<?php echo $i == 0 ? 'active' : '' ?>"></button>
+                    <?php } ?>
                 </div>
-            <?php } ?>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselBanner" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselBanner" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
+                <div class="carousel-inner">
+                    <?php
+                    foreach ($arrBanner['cuerpo'] as $key => $item) { ?>
+                        <div class="carousel-item <?php echo $key == 0 ? 'active' : '' ?>" style="position: relative;">
+                            <img src="<?php echo $item['imagen'] ?>" class="d-block w-100">
+                        </div>
+                    <?php } ?>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselBanner" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselBanner" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        <?php
+        } else if ($arrBanner['tipo'] == 'video') { ?>
+            <video src="<?php echo $arrBanner['cuerpo']['video']; ?>" width="100%" <?php echo $arrBanner['cuerpo']['control'] ? 'controls' : '' ?> <?php echo $arrBanner['cuerpo']['muted'] ? 'muted' : '' ?> autoplay></video>
+        <?php } ?>
+    </section>
 
     <br><br><br>
 
