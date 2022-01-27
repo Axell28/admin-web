@@ -1,11 +1,14 @@
 <?php
 require_once DIROOT . '/models/BannerModel.php';
 require_once DIROOT . '/models/NoticiasModel.php';
+require_once DIROOT . '/models/ModalModel.php';
 $modelA = new BannerModel();
 $modelB = new NoticiasModel();
+$modelC = new ModalModel();
 $arrBanner = $modelA->obtenerBanner();
 $arrBanner['cuerpo'] = (array) json_decode($arrBanner['cuerpo'], true);
 $arrNoticias = $modelB->listarNoticiasWeb(0, 4, '%');
+$arrModal = $modelC->obtenerModal();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -70,6 +73,28 @@ $arrNoticias = $modelB->listarNoticiasWeb(0, 4, '%');
         }
     </style>
 
+    <!-- Modal -->
+    <?php
+    if ($arrModal['visible'] == 'S') { ?>
+        <div class="modal fade" id="modalHome" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><?php echo $arrModal['titulo'] ?></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <?php echo $arrModal['cuerpo'] ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const modalHome = new bootstrap.Modal(document.getElementById('modalHome'));
+            modalHome.show();
+        </script>
+    <?php } ?>
+
     <section class="container-fluid px-0">
         <?php
         if ($arrBanner['tipo'] == 'slider') { ?>
@@ -84,7 +109,7 @@ $arrNoticias = $modelB->listarNoticiasWeb(0, 4, '%');
                     <?php
                     foreach ($arrBanner['cuerpo'] as $key => $item) { ?>
                         <div class="carousel-item <?php echo $key == 0 ? 'active' : '' ?>" style="position: relative;">
-                            <img src="<?php echo $item['imagen'] ?>" class="d-block w-100">
+                            <img src="<?php echo $item['imagen'] ?>" width="100%" style="height: 85vh;">
                         </div>
                     <?php } ?>
                 </div>

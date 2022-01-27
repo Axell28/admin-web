@@ -36,7 +36,7 @@
             <span class="tooltip">Archivos</span>
         </li>
         <li>
-            <a href="/admin/modal" class="">
+            <a href="/admin/modal" class="<?php echo $this->nameView == 'modal' ? 'active' : '' ?>">
                 <i class="far fa-window-maximize"></i>
                 <span class="links_name">Ventana emergente</span>
             </a>

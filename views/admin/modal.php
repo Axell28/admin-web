@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/admin.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
-    <script src="https://cdn.tiny.cloud/1/m923kxh2ht5z3iggdm8hghimyq6r44s6egfxl8xat90kag3t/tinymce/5/tinymce.min.js"></script>
 </head>
 
 <body>
 
     <!-- scripts -->
-    <script src="<?php echo WEBURL ?>/assets/js/bootstrap.min.js"></script>
+    <script src="<?php echo WEBURL ?>/assets/js/vue.min.js"></script>
+    <script async src="<?php echo WEBURL ?>/assets/js/bootstrap.min.js"></script>
     <script async src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
 
     <!-- includes -->
@@ -25,10 +25,6 @@
 
     <!-- styles -->
     <style>
-        #cuerpo {
-            display: none;
-        }
-
         #modalFiles div.box-enlace {
             display: flex;
             align-items: center;
@@ -105,61 +101,37 @@
         }
     </style>
 
-    <!-- contenido principal -->
+    <!-- main content -->
     <main class="content" id="app">
-        <!-- loading -->
-
-        <div id="preloader">
-            <div class="loading">
-                <div class="circle"></div>
+        <div class="d-flex px-1" style="align-items: center;">
+            <div class="tab-titulo">
+                VENTANA EMERGENTE
+            </div>
+            <div class="ms-auto d-flex flex-row" style="align-items: center;">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="check-visible" style="border-radius: 2px; transform: scale(1.08); cursor: pointer;" <?php echo $this->arrModal['visible'] == 'S' ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="check-visible">Ventana visible</label>
+                </div>
+                <button class="btn btn-danger text-white mx-3" data-bs-toggle="modal" data-bs-target="#modalFiles"><i class="fas fa-search"></i>&nbsp; Buscar archivos</button>
+                <button class="btn btn-success text-white" onclick="actualizarModal()"><i class="fas fa-save"></i>&nbsp; Guardar galería</button>
             </div>
         </div>
-
-        <form id="formNoticia" action="/entrada/preview" method="POST" target="_blank" onsubmit="showpreview(event)" onkeypress="return event.keyCode != 13;">
-            <div class="d-flex px-1" style="align-items: center;">
-                <div class="tab-titulo">
-                    EDICIÓN
-                </div>
-                <div class="ms-auto d-flex" style="align-items: center;">
-                    <button class="btn btn-danger text-white" type="button" data-bs-toggle="modal" data-bs-target="#modalFiles"><i class="fas fa-search"></i>&nbsp; Buscar archivos</button>
-                    <button class="btn btn-success text-white mx-3" type="submit"><i class="fas fa-eye"></i>&nbsp; Vista previa</button>
-                    <button class="btn btn-primary text-white" type="button" onclick="guardarNoticia()"><i class="fas fa-save"></i>&nbsp; Guardar noticia</button>
-                </div>
-            </div>
-            <hr>
-            <div class="row pt-2">
-                <div class="col">
-                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo de publicación" value="<?php echo $this->noticiaInfo['titulo'] ?>" autocomplete="off" maxlength="140" required>
-                    <div class="pt-3">
-                        <textarea id="editor"><?php echo $this->noticiaInfo['cuerpo'] ?></textarea>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card bg-light p-3">
-                        <span>Categoría:</span>
-                        <select class="form-select mt-1 mb-3" name="categ">
-                            <?php
-                            foreach ($this->listCategs as $key => $val) : ?>
-                                <option value="<?php echo $key ?>" <?php echo $this->noticiaInfo['idcat'] == $key ? 'selected' : '' ?>>
-                                    <?php echo $val['nombre'] ?>
-                                </option>
-                            <?php endforeach;
-                            ?>
-                        </select>
-                        <span>Fecha de publicación:</span>
-                        <input type="date" class="form-control mt-1 mb-3" name="fecpub" value="<?php echo $this->noticiaInfo['fecpub'] ?>">
-                        <span>Detalle:</span>
-                        <textarea class="form-control mt-1 mb-3" rows="1" id="txtdetalle" name="detalle" maxlength="250" placeholder="Opcional"><?php echo $this->noticiaInfo['detalle'] ?></textarea>
-                        <span>Imagen de portada:</span>
-                        <input type="link" class="form-control mt-1 mb-3" name="portada" id="textportada" value="<?php echo $this->noticiaInfo['portada'] ?>" onchange="onchangePortada(this.value)" placeholder="Link de imgen" autocomplete="off">
-                        <img id="img-portada" src="<?php echo $this->noticiaInfo["portada"]; ?>" onerror="this.src = `https://via.placeholder.com/320x220`" class="rounded" width="100%" style="height: 200px; object-fit: cover;">
-                        <!-- elementos ocultos -->
-                        <input type="hidden" name="idnot" value="<?php echo $this->noticiaInfo['idnot'] ?>">
-                        <textarea name="cuerpo" id="cuerpo"><?php echo $this->noticiaInfo['detalle'] ?></textarea>
+        <hr>
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content modal-base-content shadow" style="border-radius: 0;">
+                        <div class="modal-header modal-base-header">
+                            <input type="text" class="form-control me-3" id="cuerpo-titulo" value="<?php echo $this->arrModal['titulo'] ?>" placeholder="Ingrese un titulo aquí">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body modal-base-body">
+                            <?php echo $this->arrModal['cuerpo'] ?>
+                        </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
 
         <!-- ventana modal -->
         <div class="modal fade" id="modalFiles" tabindex="-1" aria-hidden="true">
@@ -168,18 +140,21 @@
                     <div class="modal-header py-2 border-bottom">
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-fotos-tab" data-bs-toggle="pill" data-bs-target="#pills-fotos" type="button" role="tab" aria-controls="pills-fotos" aria-selected="true" onclick="getCantFiles(<?php echo count($this->listFiles['fotos']) ?>, 1)">Imagenes</button>
+                                <button class="nav-link active" id="pills-fotos-tab" data-bs-toggle="pill" data-bs-target="#pills-fotos" type="button" role="tab" aria-controls="pills-fotos" aria-selected="true" onclick="getCantFiles(<?php echo count($this->listFiles['fotos']) ?>, 1)"><i class="far fa-folder-open"></i>&nbsp; Imagenes</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-videos-tab" data-bs-toggle="pill" data-bs-target="#pills-videos" type="button" role="tab" aria-controls="pills-videos" aria-selected="false" onclick="getCantFiles(<?php echo count($this->listFiles['video']) ?>, 2)">Videos</button>
+                                <button class="nav-link" id="pills-videos-tab" data-bs-toggle="pill" data-bs-target="#pills-videos" type="button" role="tab" aria-controls="pills-videos" aria-selected="false" onclick="getCantFiles(<?php echo count($this->listFiles['video']) ?>, 2)"><i class="far fa-folder-open"></i>&nbsp; Videos</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-files-tab" data-bs-toggle="pill" data-bs-target="#pills-files" type="button" role="tab" aria-controls="pills-files" aria-selected="false" onclick="getCantFiles(<?php echo count($this->listFiles['files']) ?>, 3)">Archivos</button>
+                                <button class="nav-link" id="pills-files-tab" data-bs-toggle="pill" data-bs-target="#pills-files" type="button" role="tab" aria-controls="pills-files" aria-selected="false" onclick="getCantFiles(<?php echo count($this->listFiles['files']) ?>, 3)"><i class="far fa-folder-open"></i>&nbsp; Archivos</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-frames-tab" data-bs-toggle="pill" data-bs-target="#pills-frames" type="button" role="tab" aria-controls="pills-frames" aria-selected="false" onclick="getCantFiles(null, 4)"><i class="far fa-folder-open"></i>&nbsp; Iframes</button>
                             </li>
                         </ul>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body modal-file-body">
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-fotos" role="tabpanel" aria-labelledby="pills-fotos-tab">
                                 <div class="row" id="row-fotos"></div>
@@ -210,6 +185,10 @@
                                     <?php } ?>
                                 </div>
                             </div>
+                            <div class="tab-pane fade" id="pills-frames" role="tabpanel" aria-labelledby="pills-frames-tab">
+                                <textarea class="form-control" id="textIframe" rows="6" placeholder="Ingresa el código Iframe a insertar"></textarea>
+                                <button class="btn btn-primary btn-sm mt-3" onclick="addContenido('frame', '')">Agregar Frame &nbsp;<i class="fas fa-arrow-alt-circle-right"></i></button>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer bg-white d-flex py-3" style="align-items: center;">
@@ -219,100 +198,31 @@
                 </div>
             </div>
         </div>
-
     </main>
 
+    <!-- code javascript -->
     <script>
-        const detalle = document.querySelector("#txtdetalle");
-        const arrFotos = JSON.parse(`<?php echo json_encode($this->listFiles['fotos'], JSON_UNESCAPED_UNICODE) ?>`);
         const modalFiles = new bootstrap.Modal(document.getElementById('modalFiles'));
+        const arrFotos = JSON.parse(`<?php echo json_encode($this->listFiles['fotos'], JSON_UNESCAPED_UNICODE) ?>`);
         let cont = 0;
         let tabFile = 1;
-        detalle.addEventListener('input', autoResize, false);
-
-        // run tinymce
-        tinymce.init({
-            selector: '#editor',
-            language: "es",
-            encoding: 'UTF-8',
-            plugins: 'link media table image emoticons advlist lists code table template example paste table',
-            toolbar: 'formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | numlist bullist checklist | forecolor backcolor | link media image pageembed emoticons | table | removeformat code ',
-            menubar: false,
-            content_style: '@import url("https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap"); body { font-family: "Signika", sans-serif; font-size: 17px; line-height: 1.7; }',
-            height: '800',
-            object_resizing: true,
-            fix_list_elements: true,
-            media_dimensions: true,
-            forced_root_block: 'div',
-            paste_as_text: true,
-            paste_remove_styles: true,
-            paste_remove_styles_if_webkit: true,
-            default_link_target: "_blank",
-        });
-
-        function autoResize() {
-            this.style.height = 'auto';
-            this.style.height = this.scrollHeight + 'px';
-        }
-
-        const showpreview = (e) => {
-            e.preventDefault();
-            const cuerpo = document.getElementById("cuerpo");
-            cuerpo.value = tinyMCE.get('editor').getContent();
-            e.currentTarget.submit();
-        }
-
-        const onchangePortada = (valor) => {
-            if (valor.substring(0, 19) == 'https://img.youtube') {
-                document.getElementById("img-portada").src = valor;
-            } else {
-                let videoId = valor.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-                if (videoId != null) {
-                    let thumb = `https://img.youtube.com/vi/${videoId[1]}/hqdefault.jpg`;
-                    document.getElementById("img-portada").src = thumb;
-                    document.getElementById("textportada").value = thumb;
-                } else {
-                    document.getElementById("img-portada").src = valor;
-                }
-            }
-
-        }
-
-        const guardarNoticia = () => {
-            let titulo = document.getElementById("titulo");
-            if (titulo.value == "") {
-                titulo.focus();
-                mostrarAlert("Debe ingresar el titulo de la publicación para continuar", "warning");
-                return;
-            }
-            document.getElementById("cuerpo").value = tinyMCE.get('editor').getContent();
-            let form = new FormData(document.getElementById("formNoticia"));
-            fetch("/admin/editor/<?php echo $this->action ?>", {
-                method: "POST",
-                body: form
-            }).then(function(res) {
-                return res.text()
-            }).then(function(res) {
-                if (res.trim() == "OK") {
-                    mostrarAlert("Publicación <?php echo $this->action == 'guardar' ? 'guardada' : 'editada' ?> correctamente", "success");
-                } else {
-                    mostrarAlert(res, "error");
-                }
-            });
-        }
 
         const getCantFiles = (cant, tab) => {
             tabFile = tab;
+            if (cant == null) {
+                document.getElementById("cant-files").innerText = '';
+                return;
+            }
             cant = tab == 1 ? cont : cant;
             document.getElementById("cant-files").innerText = 'Mostrando ' + cant + ' resultados';
         }
 
         const cargarArchivos = () => {
-            if (cont >= arrFotos.length || tabFile !== 1) {
+            if (cont >= arrFotos.length || tabFile !== 1 || tabFile == null) {
                 mostrarAlert('Ya no existe más archivos que mostrar', 'warning');
                 return;
             }
-            let mbody = document.querySelector('.modal-body');
+            let mbody = document.querySelector('.modal-file-body');
             let html = document.getElementById("row-fotos").innerHTML;
             let vmax = (cont + 24) >= arrFotos.length ? arrFotos.length : (cont + 24);
             for (let i = cont; i < vmax; i++) {
@@ -326,32 +236,48 @@
         }
 
         function addContenido(tipo, uri) {
-            let html = tinyMCE.get('editor').getContent();
+            let html = '';
             if (tipo == 'img') {
-                html += `<div><img src="${uri}" width="85%"></div>`;
+                html += `<img src="${uri}" class="img-fluid" width="100%">`;
             } else if (tipo == 'video') {
-                html += `<div><video src="${uri}" width="100%" height="420" controls></video></div>`;
+                html += `<video src="${uri}" width="100%" height="auto" controls></video>`;
             } else if (tipo == 'pdf') {
-                html += `<div><iframe src="${uri}" width="100%" height="720" frameborder="0"></iframe></div>`;
+                html += `<iframe src="${uri}" width="100%" height="820" frameborder="0"></iframe>`;
+            } else if (tipo == 'frame') {
+                let code = document.getElementById("textIframe").value;
+                html += code;
             } else {
                 html += `<div><a href="${uri}" target="_blank">${uri}</a></div>`;
             }
-            tinyMCE.get('editor').setContent(html);
+            document.querySelector(".modal-base-body").innerHTML = html;
             modalFiles.hide();
+        }
+
+        const actualizarModal = () => {
+            let isvisible = document.getElementById('check-visible').checked;
+            let form = new FormData();
+            form.append("titulo", document.getElementById("cuerpo-titulo").value);
+            form.append("cuerpo", document.querySelector(".modal-base-body").innerHTML);
+            form.append("visible", isvisible ? 'S' : 'N');
+            fetch("/admin/modal/actualizar", {
+                method: "POST",
+                body: form
+            }).then(function(res) {
+                return res.text()
+            }).then(function(res) {
+                if (res.trim() == "OK") {
+                    mostrarAlert("Cambios guardados correctamente", "success");
+                } else {
+                    mostrarAlert(res, "error");
+                }
+            });
         }
 
         const mostrarAlert = (mensaje, icon) => {
             Swal.fire({
                 icon: icon,
                 text: mensaje,
-                allowOutsideClick: false
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    if (icon === 'success') {
-                        location.href = '/admin/noticias/all';
-                    }
-                }
-            });;
+            });
         }
 
         cargarArchivos();
@@ -362,8 +288,9 @@
             setTimeout(() => {
                 loader.style.display = 'none';
             }, 500);
-        }, 2600);
+        }, 2400);
     </script>
+
 </body>
 
 </html>

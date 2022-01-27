@@ -1,20 +1,3 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : PGSQL
- Source Server Type    : PostgreSQL
- Source Server Version : 120009
- Source Host           : localhost:5432
- Source Catalog        : WEB_ADMIN
- Source Schema         : public
-
- Target Server Type    : PostgreSQL
- Target Server Version : 120009
- File Encoding         : 65001
-
- Date: 17/01/2022 11:07:12
-*/
-
 
 -- ----------------------------
 -- Sequence structure for empresa_idemp_seq
@@ -181,7 +164,7 @@ DROP TABLE IF EXISTS "public"."modal";
 CREATE TABLE "public"."modal" (
   "idmod" int4 NOT NULL,
   "titulo" varchar(100) COLLATE "pg_catalog"."default",
-  "cuerpo" varchar(350) COLLATE "pg_catalog"."default",
+  "cuerpo" text COLLATE "pg_catalog"."default",
   "visible" char(1) COLLATE "pg_catalog"."default"
 );
 

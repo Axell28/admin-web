@@ -60,23 +60,48 @@
             color: red;
         }
 
-        #modalFiles img.cover {
-            object-fit: cover;
+        #modalFiles div.box-enlace {
+            display: flex;
+            align-items: center;
+            color: rgb(80, 80, 80);
+            padding: 7px .8em;
+            border: 2px solid rgb(160, 160, 160);
+            border-radius: .3em;
+            background: rgb(250, 250, 250);
         }
 
-        #modalFiles img.cover:hover {
+        #modalFiles div.box-enlace-img {
+            position: relative;
+            border: 1px solid rgb(160, 160, 160);
+            border-radius: .2em;
+            overflow: hidden;
+            transition: transform .2s ease-in-out;
+        }
+
+        #modalFiles div.box-enlace-img:hover {
             cursor: pointer;
-            filter: grayscale(100%);
+            transform: scale(.94);
         }
 
-        #modalFiles div.card-file {
-            border-color: rgb(120, 120, 120);
+        #modalFiles div.enlace-img {
+            z-index: 2;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            padding: 5px .8em;
+            font-size: 14px;
+            background: linear-gradient(to bottom, rgba(20, 20, 20, .2), rgba(0, 0, 0, .9));
+            color: white;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 100%;
         }
 
-        #modalFiles div.card-file:hover {
-            color: var(--color1);
+        #modalFiles div.box-enlace:hover {
+            border-color: blue;
+            color: blue;
             cursor: pointer;
-            border-color: var(--color1);
         }
 
         #modalFiles div.enlace {
@@ -188,19 +213,19 @@
                         <div class="row">
                             <?php
                             if ($this->tipoBanner == 'slider') {
-                                foreach ($this->listFiles as $val) : ?>
-                                    <div class="col-4 my-2 px-2 py-1">
-                                        <img src="<?php echo $val['path'] ?>" class="cover shadow-sm" width="100%" height="150" title="<?php echo $val['name'] ?>" onclick="agregarFile(this.src)">
+                                foreach ($this->listFiles as $file) : ?>
+                                    <div class="col-sm-3 my-2">
+                                        <div class="box-enlace-img" onclick="agregarFile('<?php echo $file['path'] ?>')">
+                                            <div class="enlace-img"><?php echo $file['name'] ?></div><img src="<?php echo $file['path'] ?>" width="100%" height="130" style="object-fit: cover;">
+                                        </div>
                                     </div>
                                 <?php endforeach;
                             } else {
-                                foreach ($this->listFiles as $val) : ?>
-                                    <div class="col-3 my-2">
-                                        <div class="card card-file">
-                                            <div class="card-body px-0 py-2 text-center" onclick="agregarFile('<?php echo $val['path'] ?>')">
-                                                <span style="font-size: 35px;"><i class="fas fa-film"></i></span>
-                                                <div class="enlace px-3"><?php echo $val['name'] ?></div>
-                                            </div>
+                                foreach ($this->listFiles as $file) : ?>
+                                    <div class="col-sm-4 my-2">
+                                        <div class="box-enlace" onclick="agregarFile('<?php echo $file['path'] ?>')" style="align-items: center;">
+                                            <span class="fs-2"><i class="<?php echo $file['icon'] ?>"></i></span>
+                                            <div class="enlace ms-3"><?php echo $file['name'] ?><br><span style="font-size: 14px;"><?php echo $file['size'] ?></span></div>
                                         </div>
                                     </div>
                             <?php endforeach;
@@ -209,7 +234,6 @@
                     </div>
                     <div class="card-footer d-flex bg-white py-3" style="align-items: center;">
                         <span><?php echo count($this->listFiles) . ' de ' . count($this->listFiles) ?> resultados</span>
-                        <a class="text-primary ms-auto" onclick="loadFiles()" style="cursor: pointer;">Cargar más resultados &nbsp;<i class="fas fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
