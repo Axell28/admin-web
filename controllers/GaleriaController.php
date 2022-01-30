@@ -29,6 +29,7 @@ class Galeria extends Controller
             $this->galeriaInfo['idgal'] = null;
             $this->galeriaInfo['titulo'] = '';
             $this->galeriaInfo['detalle'] = '';
+            $this->galeriaInfo['portada'] = '';
             $this->galeriaInfo['ncolum'] = '3';
             $this->galeriaInfo['cuerpo'] = '[]';
             $this->galeriaInfo['modo'] = 'A';
@@ -50,6 +51,7 @@ class Galeria extends Controller
             $params[] = parent::getPost("colum");
             $params[] = parent::getPost("cuerpo");
             $params[] = parent::getPost("modo");
+            $params[] = parent::getPost("portada");
             $resp = $this->model->guardarGaleria($params);
             if ($resp) echo "OK";
         } else {
@@ -66,6 +68,7 @@ class Galeria extends Controller
             $params[] = parent::getPost("colum");
             $params[] = parent::getPost("cuerpo");
             $params[] = parent::getPost("modo");
+            $params[] = parent::getPost("portada");
             $params[] = parent::getPost("idgal");
             $resp = $this->model->editarGaleria($params);
             if ($resp) echo "OK";

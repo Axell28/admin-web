@@ -103,6 +103,14 @@
 
     <!-- main content -->
     <main class="content" id="app">
+
+        <!-- loading -->
+        <div id="preloader">
+            <div class="loading">
+                <div class="circle"></div>
+            </div>
+        </div>
+
         <div class="d-flex px-1" style="align-items: center;">
             <div class="tab-titulo">
                 VENTANA EMERGENTE

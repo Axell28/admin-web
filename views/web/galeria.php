@@ -53,7 +53,7 @@ if (isset($uri[1]) && is_numeric($uri[1])) {
         <div class="row justify-content-center">
             <div class="col-xl-9">
                 <div class="text-center">
-                    <h2 class="fw-bold"><?php echo $arrGaleria['titulo'] ?></h2>
+                    <h1 class="fw-bold"><?php echo $arrGaleria['titulo'] ?></h1>
                     <?php echo '<p>' . $arrGaleria['detalle'] .'</p>' ?>
                 </div>
                 <hr>

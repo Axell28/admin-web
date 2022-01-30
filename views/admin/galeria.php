@@ -61,15 +61,15 @@
             <?php
             foreach ($this->listGaleria as $val) { ?>
                 <div class="col-md-3 my-2" id="card-<?php echo $val['idgal'] ?>">
-                    <div class="card h-100 shadow-sm">
+                    <div class="card bg-white h-100 shadow-sm">
                         <img src="/assets/img/icons/galeria-holder.png" width="100%" height="200" style="object-fit: cover;">
-                        <div class="card-body px-3">
-                            <a href="/galeria/<?php echo $val['idgal'] ?>" target="_blank" class="text-uppercase"><?php echo $val['titulo'] ?></a>
+                        <div class="card-body bg-light px-3 border-top">
+                            <a href="/galeria/<?php echo $val['idgal'] ?>" target="_blank" class="text-uppercase" style="color: var(--color2);"><?php echo $val['titulo'] ?></a>
                         </div>
-                        <div class="card-footer bg-white">
+                        <div class="card-footer bg-light">
                             <span><i class="far fa-calendar-alt"></i> <?php echo Funciones::formatFecha($val['fecpub']) ?></span>
                             <div class="ms-auto">
-                                <button class="btn btn-sm btn-outline-dark me-1" title="Copiar enlace" onclick="copiarEnlace('/galeria/<?php echo $val['idgal'] ?>')"><i class="fas fa-paste"></i></button>
+                                <button class="btn btn-sm btn-outline-primary me-1" title="Copiar enlace" onclick="copiarEnlace('/galeria/<?php echo $val['idgal'] ?>')"><i class="fas fa-paste"></i></button>
                                 <a href="/admin/galeria/vista/<?php echo $val['idgal'] ?>" class="btn btn-sm btn-outline-success me-1" title="Editar"><i class="fas fa-pencil-alt"></i></a>
                                 <button class="btn btn-sm btn-outline-danger" title="Eliminar" onclick="eliminarGaleria('<?php echo $val['idgal'] ?>')"><i class="far fa-trash-alt"></i></button>
                             </div>

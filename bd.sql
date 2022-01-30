@@ -114,6 +114,7 @@ CREATE TABLE "public"."galeria" (
   "idgal" int4 NOT NULL DEFAULT nextval('galeria_idgal_seq'::regclass),
   "titulo" varchar(150) COLLATE "pg_catalog"."default" NOT NULL,
   "detalle" varchar(270) COLLATE "pg_catalog"."default",
+  "portada" varchar(300) COLLATE "pg_catalog"."default",
   "ncolum" int4,
   "cuerpo" text COLLATE "pg_catalog"."default",
   "fecpub" date DEFAULT CURRENT_TIMESTAMP,

@@ -126,7 +126,7 @@
             </div>
             <div class="ms-auto d-flex flex-row" style="align-items: center;">
                 <button class="btn btn-danger text-white mx-3" data-bs-toggle="modal" data-bs-target="#modalFiles"><i class="fas fa-search"></i>&nbsp; Buscar archivos</button>
-                <button class="btn btn-primary text-white" onclick="guardarGaleria()"><i class="fas fa-save"></i>&nbsp; Guardar galería</button>
+                <button class="btn btn-success text-white" onclick="guardarGaleria()"><i class="fas fa-save"></i>&nbsp; Guardar galería</button>
             </div>
         </div>
         <hr>
@@ -139,7 +139,9 @@
                     <span>Titulo de galería:</span>
                     <input type="text" class="form-control mt-1 mb-3" name="titulo" value="<?php echo $this->galeriaInfo['titulo'] ?>" autocomplete="off">
                     <span>Detalle:</span>
-                    <textarea class="form-control mt-1 mb-2" rows="3" name="detalle" placeholder="Opcional" maxlength="250"><?php echo $this->galeriaInfo['detalle'] ?></textarea>
+                    <textarea class="form-control mt-1 mb-3" rows="3" name="detalle" placeholder="Opcional" maxlength="250"><?php echo $this->galeriaInfo['detalle'] ?></textarea>
+                    <span>Imagen de portada:</span>
+                    <input type="text" class="form-control mt-1 mb-2" name="portada" value="<?php echo $this->galeriaInfo['portada'] ?>" placeholder="Link de imagen" autocomplete="off">
                     <hr>
                     <div class="row pt-1">
                         <div class="col">

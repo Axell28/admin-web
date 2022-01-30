@@ -93,7 +93,7 @@
                                     <td>{{item.size}}</td>
                                     <td>{{item.date}}</td>
                                     <td>
-                                        <button class="btn btn-outline-info mx-1" title="Copiar enlace" @click="copiarEnlace(item.path)"><i class="fas fa-paste"></i></button>
+                                        <button class="btn btn-outline-primary mx-1" title="Copiar enlace" @click="copiarEnlace(item.path)"><i class="fas fa-paste"></i></button>
                                         <a :href="item.path" class="btn btn-outline-success mx-1" :download="item.name" title="Descargar"><i class="fas fa-file-download"></i></a>
                                         <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)" :disabled="item.remove"><i class="far fa-trash-alt"></i></button>
                                     </td>
@@ -124,7 +124,7 @@
                                     <td>{{item.size}}</td>
                                     <td>{{item.date}}</td>
                                     <td>
-                                        <button class="btn btn-outline-info mx-1" title="Copiar enlace" @click="copiarEnlace(item.path)"><i class="fas fa-paste"></i></button>
+                                        <button class="btn btn-outline-primary mx-1" title="Copiar enlace" @click="copiarEnlace(item.path)"><i class="fas fa-paste"></i></button>
                                         <a :href="item.path" class="btn btn-outline-success mx-1" :download="item.name" title="Descargar"><i class="fas fa-file-download"></i></a>
                                         <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)" :disabled="item.remove"><i class="far fa-trash-alt"></i></button>
                                     </td>
@@ -155,7 +155,7 @@
                                     <td>{{item.size}}</td>
                                     <td>{{item.date}}</td>
                                     <td>
-                                        <button class="btn btn-outline-info mx-1" title="Copiar enlace" @click="copiarEnlace(item.path)"><i class="fas fa-paste"></i></button>
+                                        <button class="btn btn-outline-primary mx-1" title="Copiar enlace" @click="copiarEnlace(item.path)"><i class="fas fa-paste"></i></button>
                                         <a :href="item.path" class="btn btn-outline-success mx-1" :download="item.name" title="Descargar"><i class="fas fa-file-download"></i></a>
                                         <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)" :disabled="item.remove"><i class="far fa-trash-alt"></i></button>
                                     </td>
@@ -186,7 +186,7 @@
                                     <td>{{item.size}}</td>
                                     <td>{{item.date}}</td>
                                     <td>
-                                        <button class="btn btn-outline-info mx-1" title="Copiar enlace" @click="copiarEnlace(item.path)"><i class="fas fa-paste"></i></button>
+                                        <button class="btn btn-outline-primary mx-1" title="Copiar enlace" @click="copiarEnlace(item.path)"><i class="fas fa-paste"></i></button>
                                         <a :href="item.path" class="btn btn-outline-success mx-1" :download="item.name" title="Descargar"><i class="fas fa-file-download"></i></a>
                                         <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)" :disabled="item.remove"><i class="far fa-trash-alt"></i></button>
                                     </td>
