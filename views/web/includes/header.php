@@ -21,6 +21,28 @@ switch ($nameview) {
 }
 ?>
 <header class="fixed-top" id="header">
+    <div class="bar-sup">
+        <?php if (!empty($empresa['facebook'])) { ?>
+            <a href="<?php echo $empresa['facebook'] ?>" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <?php } ?>
+        <?php if (!empty($empresa['youtube'])) { ?>
+            <a href="<?php echo $empresa['youtube'] ?>" target="_blank"><i class="fab fa-youtube"></i> Youtube</a>
+        <?php } ?>
+        <?php if (!empty($empresa['instagram'])) { ?>
+            <a href="<?php echo $empresa['instagram'] ?>" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        <?php } ?>
+        <?php if (!empty($empresa['twitter'])) { ?>
+            <a href="<?php echo $empresa['twitter'] ?>" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+        <?php } ?>
+        <div class="ms-auto">
+            <?php if (!empty($empresa['telefono'])) { ?>
+                <a href="tel:<?php echo $empresa['telefono'] ?>"><i class="fas fa-phone-alt"></i> <?php echo $empresa['telefono'] ?></a>
+            <?php } ?>
+            <?php if (!empty($empresa['telefono'])) { ?>
+                <a href="<?php echo $empresa['intranet'] ?>" target="_blank"><i class="fas fa-globe"></i> Intranet</a>
+            <?php } ?>
+        </div>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="/">
             <img src="/assets/img/icons/escudo.png" height="90">

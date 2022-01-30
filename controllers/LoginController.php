@@ -1,7 +1,5 @@
 <?php
 
-require_once DIROOT . '/models/LoginModel.php';
-
 class Login extends Controller
 {
 

@@ -11,6 +11,13 @@ $uri = isset($_GET['uri']) ? $_GET['uri'] : 'index';
 $uri = rtrim($uri, '/');
 $uri = explode('/', $uri);
 
+spl_autoload_register(function ($class) {
+    $fileModel = DIROOT . "/models/{$class}.php";
+    if (file_exists($fileModel)) {
+        require_once $fileModel;
+    }
+});
+
 if ($uri[0] == 'admin') {
     $controller = isset($uri[1]) ? $uri[1] : 'login';
     $controller = ucwords($controller);
@@ -36,7 +43,6 @@ if ($uri[0] == 'admin') {
 } else {
     $fileView = DIROOT . "/views/web/{$uri[0]}.php";
     if (file_exists($fileView)) {
-        require_once DIROOT . '/models/EmpresaModel.php';
         $empresa = new EmpresaModel();
         $empresa = $empresa->getDatosEmpresa();
         $nameview = $uri[0];

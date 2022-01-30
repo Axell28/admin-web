@@ -1,7 +1,4 @@
 <?php
-require_once DIROOT . '/models/BannerModel.php';
-require_once DIROOT . '/models/NoticiasModel.php';
-require_once DIROOT . '/models/ModalModel.php';
 $modelA = new BannerModel();
 $modelB = new NoticiasModel();
 $modelC = new ModalModel();
@@ -132,14 +129,22 @@ $arrModal = $modelC->obtenerModal();
 
     <section class="container">
         <div class="row">
-            <div class="col">
-                <h1 class="mb-4">Página de inicio</h1>
+            <div class="col-lg text-center">
+                <h2>BIENVENIDOS</h2>
+            </div>
+        </div>
+        <hr>
+        <div class="row justify-content-between pt-4">
+            <div class="col-md-6 text-justify my-2">
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam sint animi corrupti delectus minus blanditiis, iusto perferendis. Minima eius voluptate temporibus, doloremque, sint, minus qui mollitia asperiores provident odio commodi!
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam error excepturi suscipit iure? Ullam ipsam obcaecati in! Eligendi beatae voluptate sapiente aut, aliquid debitis eaque modi sint vero fugit iste?
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa illo deserunt eligendi atque nostrum dolore laborum eveniet ducimus, quae iusto ullam repellat quisquam unde commodi nihil ipsa facere qui alias!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio adipisci itaque, laboriosam, inventore quaerat veritatis aliquid soluta nobis eveniet dolorem minus debitis exercitationem quos laborum, delectus facilis suscipit vitae nemo?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio adipisci itaque, laboriosam, inventore quaerat veritatis aliquid soluta nobis eveniet dolorem minus debitis exercitationem quos laboru
                 </p>
+            </div>
+            <div class="col-md-5 my-2">
+                <img src="https://www.magisnet.com/wp-content/uploads/2021/02/PROGRAMACIO%CC%81N.jpg" class="rounded shadow" width="100%">
             </div>
         </div>
     </section>

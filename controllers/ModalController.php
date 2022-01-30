@@ -1,8 +1,5 @@
 <?php
 
-require_once DIROOT . '/models/ArchivosModel.php';
-require_once DIROOT . '/models/ModalModel.php';
-
 class Modal extends Controller
 {
     public $model;

@@ -1,7 +1,5 @@
 <?php
 
-require_once DIROOT . '/models/ArchivosModel.php';
-
 class Archivos extends Controller
 {
 

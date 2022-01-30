@@ -1,9 +1,5 @@
 <?php
 
-require_once DIROOT . '/models/ArchivosModel.php';
-require_once DIROOT . '/models/BannerModel.php';
-
-
 class Banner extends Controller
 {
     public $model;

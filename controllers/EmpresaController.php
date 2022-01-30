@@ -1,7 +1,5 @@
 <?php
 
-require_once DIROOT . '/models/EmpresaModel.php';
-
 class Empresa extends Controller
 {
 

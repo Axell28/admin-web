@@ -1,8 +1,5 @@
 <?php
 
-require_once DIROOT . '/models/NoticiasModel.php';
-require_once DIROOT . '/models/ArchivosModel.php';
-
 class Editor extends Controller
 {
     public $model;

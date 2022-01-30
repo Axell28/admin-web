@@ -1,14 +1,7 @@
 <?php
-require_once DIROOT . '/models/NoticiasModel.php';
 $modelo = new NoticiasModel();
 $arrNoticias = $modelo->listarNoticiasWeb(0, 50, '%');
 $arrCategorias = $modelo->listarCategorias();
-/* $categ = "%";
-if(isset($uri[1])) {
-    if(in_array($uri[1], array_column($arrCategorias, 'filtro'))) {
-        $categ = $uri[1];
-    }
-} */
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -68,7 +61,7 @@ if(isset($uri[1])) {
             </div>
         </div>
         <hr>
-        <div class="row justify-content-center pt-1">
+        <div class="row justify-content-center py-1">
             <?php
             foreach ($arrNoticias as $value) { ?>
                 <div class="col-md-4 my-3 px-3">
@@ -86,9 +79,23 @@ if(isset($uri[1])) {
             <?php } ?>
         </div>
         <hr>
-        <div class="row">
+        <div class="row pt-2">
             <div class="col-lg">
-                
+                <ul class="pagination justify-content-end">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>

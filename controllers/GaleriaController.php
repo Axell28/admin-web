@@ -1,8 +1,5 @@
 <?php
 
-require_once DIROOT . '/models/GaleriaModel.php';
-require_once DIROOT . '/models/ArchivosModel.php';
-
 class Galeria extends Controller
 {
 

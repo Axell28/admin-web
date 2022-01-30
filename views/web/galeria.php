@@ -1,5 +1,4 @@
 <?php
-require_once DIROOT . '/models/GaleriaModel.php';
 $model = new GaleriaModel();
 if (isset($uri[1]) && is_numeric($uri[1])) {
     $arrGaleria = $model->buscarGaleria(intval($uri[1]));

@@ -1,7 +1,5 @@
 <?php
 
-require_once DIROOT . '/models/NoticiasModel.php';
-
 class Noticias extends Controller
 {
 

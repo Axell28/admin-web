@@ -1,5 +1,4 @@
 <?php
-require_once DIROOT . '/models/GaleriaModel.php';
 $model = new GaleriaModel();
 $arrGalerias = $model->listarGalerias();
 ?>

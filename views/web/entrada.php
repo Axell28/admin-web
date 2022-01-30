@@ -1,6 +1,5 @@
 <?php
 if (isset($uri[1])) {
-    require_once DIROOT . '/models/NoticiasModel.php';
     $model = new NoticiasModel();
     $arrGaleria = $model->listarCategorias();
     if (!empty($_POST) && $uri[1] == 'preview') {
@@ -101,7 +100,7 @@ if (isset($uri[1])) {
                 </div>
             </div>
             <div class="col-xl-3 col-md-12 my-2 p-2">
-                <div style="position: sticky; top: 9.5em;">
+                <div style="position: sticky; top: 10.5em;">
                     <h4 class="mb-3">Publicaciones recientes</h4>
                     <div class="card shadow-sm">
                         <div class="card-body p-0">
