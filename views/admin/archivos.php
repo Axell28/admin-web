@@ -53,7 +53,8 @@
             <div class="tab-titulo">
                 ARCHIVOS
             </div>
-            <div class="ms-auto">
+            <div class="ms-auto d-flex" style="align-items: center;">
+                <div class="me-4"><input type="search" v-model="buscar" class="form-control bg-light" placeholder="Buscar archivos"></div>
                 <label class="btn btn-success text-white px-3" for="fileupload">
                     <span><i class="fas fa-cloud-upload-alt"></i></span>
                     <span class="ms-1" id="loadtext">Cargar archivo</span>
@@ -86,7 +87,7 @@
                                 </tr>
                             </thead>
                             <tbody style="border-top: none;">
-                                <tr v-for="(item, index) in arrayImages">
+                                <tr v-for="(item, index) in arrImages">
                                     <td>{{index + 1}}</td>
                                     <td class="text-start"><a :href="item.path" target="_blank" style="word-break: break-all;">{{item.name}}</a></td>
                                     <td>{{item.tipo}}</td>
@@ -98,7 +99,7 @@
                                         <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)" :disabled="item.remove"><i class="far fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
-                                <tr v-show="arrayImages.length == 0">
+                                <tr v-show="arrImages.length == 0">
                                     <td colspan="6">No se encontrarón archivos</td>
                                 </tr>
                             </tbody>
@@ -117,7 +118,7 @@
                                 </tr>
                             </thead>
                             <tbody style="border-top: none;">
-                                <tr v-for="(item, index) in arrayBanner">
+                                <tr v-for="(item, index) in arrBanner">
                                     <td>{{index + 1}}</td>
                                     <td class="text-start"><a :href="item.path" target="_blank" style="word-break: break-all;">{{item.name}}</a></td>
                                     <td>{{item.tipo}}</td>
@@ -129,7 +130,7 @@
                                         <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)" :disabled="item.remove"><i class="far fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
-                                <tr v-show="arrayBanner.length == 0">
+                                <tr v-show="arrBanner.length == 0">
                                     <td colspan="6">No se encontrarón archivos</td>
                                 </tr>
                             </tbody>
@@ -148,7 +149,7 @@
                                 </tr>
                             </thead>
                             <tbody style="border-top: none;">
-                                <tr v-for="(item, index) in arrayVideos">
+                                <tr v-for="(item, index) in arrVideos">
                                     <td>{{index + 1}}</td>
                                     <td class="text-start"><a :href="item.path" target="_blank" style="word-break: break-all;">{{item.name}}</a></td>
                                     <td>{{item.tipo}}</td>
@@ -160,7 +161,7 @@
                                         <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)" :disabled="item.remove"><i class="far fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
-                                <tr v-show="arrayVideos.length == 0">
+                                <tr v-show="arrVideos.length == 0">
                                     <td colspan="6">No se encontrarón archivos</td>
                                 </tr>
                             </tbody>
@@ -179,7 +180,7 @@
                                 </tr>
                             </thead>
                             <tbody style="border-top: none;">
-                                <tr v-for="(item, index) in arrayFiles">
+                                <tr v-for="(item, index) in arrFiles">
                                     <td>{{index + 1}}</td>
                                     <td class="text-start"><a :href="item.path" target="_blank" style="word-break: break-all;">{{item.name}}</a></td>
                                     <td>{{item.tipo}}</td>
@@ -191,7 +192,7 @@
                                         <button class="btn btn-outline-danger mx-1" title="Eliminar" @click="eliminarArchivo(item.path)" :disabled="item.remove"><i class="far fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
-                                <tr v-show="arrayFiles.length == 0">
+                                <tr v-show="arrFiles.length == 0">
                                     <td colspan="6">No se encontrarón archivos</td>
                                 </tr>
                             </tbody>
@@ -208,12 +209,13 @@
             el: '#app',
             data() {
                 return {
-                    tabactive: "1",
-                    pathFiles: ['', '/img/galeria/', '/img/banner/', '/video/', '/files/'],
-                    arrayImages: [],
-                    arrayBanner: [],
-                    arrayVideos: [],
-                    arrayFiles: []
+                    buscar: '',
+                    tabactive: "0",
+                    pathFiles: ['/img/galeria/', '/img/banner/', '/video/', '/files/'],
+                    arrImages: [],
+                    arrBanner: [],
+                    arrVideos: [],
+                    arrFiles: []
                 }
             },
             created() {
@@ -233,20 +235,28 @@
                     }
                 }
             },
+            computed: {
+                arrfilter: function() {
+                    /* let aux = this.arrImages;
+                    return aux.filter((file) => {
+                        return file.name.match(this.buscar)
+                    }); */
+                }
+            },
             methods: {
                 async listarArchivos(tab) {
                     let uri = "/admin/archivos/listar";
                     let data = new FormData();
-                    data.append("path", this.pathFiles[tab]);
+                    data.append("path", this.pathFiles[tab - 1]);
                     let json = await this.requestAJAX(uri, data);
                     if (tab == "1") {
-                        this.arrayImages = JSON.parse(json);
+                        this.arrImages = JSON.parse(json);
                     } else if (tab == "2") {
-                        this.arrayBanner = JSON.parse(json);
+                        this.arrBanner = JSON.parse(json);
                     } else if (tab == "3") {
-                        this.arrayVideos = JSON.parse(json);
+                        this.arrVideos = JSON.parse(json);
                     } else if (tab == "4") {
-                        this.arrayFiles = JSON.parse(json);
+                        this.arrFiles = JSON.parse(json);
                     }
                 },
                 cargarArchivo() {
@@ -260,7 +270,7 @@
                         document.getElementById("fileupload").disabled = true;
                         let http = new XMLHttpRequest();
                         let data = new FormData();
-                        data.append("path", `${this.pathFiles[this.tabactive] + vue.limpiarNameFile(fileup.name)}`);
+                        data.append("path", `${this.pathFiles[this.tabactive - 1] + vue.limpiarNameFile(fileup.name)}`);
                         data.append("file", fileup);
                         http.open("post", uri);
                         http.upload.addEventListener("progress", function(e) {
@@ -345,7 +355,7 @@
                 limpiarNameFile(str) {
                     str = str.replace(/\s+/g, '-');
                     str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, '');
-                    return str;
+                    return str.toLowerCase();
                 }
             }
         });

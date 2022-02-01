@@ -52,8 +52,14 @@
             cursor: move;
         }
 
+        div.gallery .card-footer {
+            display: flex;
+            align-items: center;
+        }
+
         div.gallery .card-footer a {
             cursor: pointer;
+            color: var(--color1);
         }
 
         div.gallery .card-footer a:hover {
@@ -262,6 +268,11 @@
                 });
                 listItems();
                 $('#modalFiles').modal('hide');
+            }
+
+            const editarItem = (index) => {
+                let obj = sliderArray[index];
+                window.location.href = `/admin/banner/editor/${index}`;
             }
 
             const eliminarItem = (index) => {

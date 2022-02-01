@@ -36,7 +36,7 @@ class Galeria extends Controller
         }
         $filesModel = new ArchivosModel();
         $this->listFiles = $filesModel->listarArchivos('/img/galeria/');
-        parent::renderView('galeria-editor');
+        parent::renderView('galeria.editor');
     }
 
     public function guardar()

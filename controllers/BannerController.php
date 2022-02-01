@@ -18,6 +18,17 @@ class Banner extends Controller
         header("Location: /admin/banner/{$this->estruct['tipo']}");
     }
 
+    // no añaden esta función todavía
+    public function editor($params)
+    {
+        if(!empty($params) && is_numeric($params[0])) {
+            $index = $params[0];
+            $arrCuerpo = json_decode($this->estruct['cuerpo'], true);
+            $this->imgBanner = $arrCuerpo[$index]['imagen'];
+            parent::renderView('banner.editor');
+        }
+    }
+
     public function slider()
     {
         $this->tipoBanner = 'slider';
