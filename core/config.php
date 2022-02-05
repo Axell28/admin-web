@@ -6,7 +6,7 @@ define("DIROOT", dirname(__DIR__));
 
 // config pagweb
 define("EMPRESA", 'EMPRESA WEB');
-define("LIMXPAG", 6);
+define("LIMXPAG", 3);
 
 // config timezone
 date_default_timezone_set("America/Lima");

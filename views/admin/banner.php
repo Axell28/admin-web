@@ -257,7 +257,7 @@
                 var html = "";
                 sliderArray.forEach((element, index) => {
                     html += `<li id="item_${index}" class="ui-sortable-handle my-3"><div class="card"><div class="card-body p-0">`;
-                    html += `<img src="${element.imagen}"></div><div class="card-footer"><a onclick="eliminarItem(${index})"><i class="far fa-trash-alt"></i> Eliminar</a></div></div></li>`;
+                    html += `<img src="${element.imagen}"></div><div class="card-footer"><a class="me-3" onclick="editarItem(${index})"><i class="fas fa-pencil-alt"></i> Editar</a><a onclick="eliminarItem(${index})"><i class="far fa-trash-alt"></i> Eliminar</a></div></div></li>`;
                 });
                 $("#list-items").html(html);
             }

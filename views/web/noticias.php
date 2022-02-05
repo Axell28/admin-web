@@ -1,6 +1,10 @@
 <?php
 $modelo = new NoticiasModel();
-$arrNoticias = $modelo->listarNoticiasWeb(0, 50, '%');
+$categ = isset($uri[1]) ? $uri[1] : '%';
+$nroPag = isset($uri[2]) ? $uri[2] : 1;
+$initE = (LIMXPAG * $nroPag) - LIMXPAG;
+$initE = ($initE < 0) ? 0 : $initE;
+$arrNoticias = $modelo->listarNoticiasWeb($initE, 3, $categ);
 $arrCategorias = $modelo->listarCategorias();
 ?>
 <!DOCTYPE html>
@@ -9,6 +13,7 @@ $arrCategorias = $modelo->listarCategorias();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?php echo $empresa['metades'] ?>">
     <title><?php echo EMPRESA ?></title>
     <link rel="shortcut icon" href="<?php echo WEBURL ?>/assets/img/icons/escudo.png" type="image/png">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
@@ -82,19 +87,7 @@ $arrCategorias = $modelo->listarCategorias();
         <div class="row pt-2">
             <div class="col-lg">
                 <ul class="pagination justify-content-end">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
+                    <?php echo $modelo->paginationWeb($categ, $nroPag); ?>
                 </ul>
             </div>
         </div>

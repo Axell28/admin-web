@@ -107,10 +107,6 @@ $arrModal = $modelC->obtenerModal();
                     foreach ($arrBanner['cuerpo'] as $key => $item) { ?>
                         <div class="carousel-item <?php echo $key == 0 ? 'active' : '' ?>" style="position: relative;">
                             <img src="<?php echo $item['imagen'] ?>" width="100%" style="height: 85vh;">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>First slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                            </div>
                         </div>
                     <?php } ?>
                 </div>
@@ -178,6 +174,11 @@ $arrModal = $modelC->obtenerModal();
                     </div>
                 </div>
             <?php } ?>
+        </div>
+        <div class="row pt-4">
+            <div class="text-center">
+                <button class="btn btn-primary">Ver mas noticias&nbsp; <i class="fas fa-arrow-alt-circle-right"></i></button>
+            </div>
         </div>
     </section>
 

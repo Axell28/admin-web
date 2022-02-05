@@ -70,7 +70,7 @@ class Noticias extends Controller
         }
         $npag = ceil($this->model->totalRows() / 12);
         for ($item = 1; $item <= $npag; $item++) :
-            $active = ($item == $pag) ? 'active' : '';
+            $active = ($item == $npag) ? 'active' : '';
             $html .= '<li class="page-item ' . $active . '"><a class="page-link" href="/admin/noticias/' . $categ . '/' . $item . '">' . $item . '</a></li>';
         endfor;
         if ($pag == $npag) {
@@ -81,9 +81,4 @@ class Noticias extends Controller
         return $html;
     }
 
-    public static function paginationWeb(string $categ, mixed $npag, int $totalRes)
-    {
-        $html = '';
-        return $html;
-    }
 }

@@ -81,9 +81,7 @@ class NoticiasModel extends Conexion
             $stm = $this->pdo->prepare($sql);
             $stm->execute();
             $res = $stm->fetchAll(PDO::FETCH_ASSOC);
-            if ($stm->rowCount() > 0) {
-                $this->total = $res[0]['total'];
-            }
+            $this->total = ($stm->rowCount() > 0) ? $res[0]['total'] : 0;
             return $res;
         } catch (PDOException $e) {
             die($e->getMessage());
@@ -92,8 +90,9 @@ class NoticiasModel extends Conexion
 
     public function listarNoticiasWeb(int $ini, int $limit, string $catg)
     {
+        $catg = ($catg == 'all') ? '%' : $catg;
         try {
-            $sql = "SELECT (SELECT COUNT(*) FROM noticias WHERE idcat LIKE '$catg' AND n.fecpub <= NOW() AND n.visible = 'S') as total, n.idnot, n.titulo, n.tagname, n.idcat, c.nombre as catdes, n.portada, n.detalle, n.fecpub, n.visible FROM noticias n INNER JOIN categoria c ON n.idcat = c.idcat WHERE n.idcat LIKE '$catg' AND n.fecpub <= NOW() AND n.visible = 'S' ORDER BY fecpub DESC LIMIT $limit OFFSET $ini";
+            $sql = "SELECT (SELECT COUNT(*) FROM noticias WHERE idcat LIKE '$catg' AND fecpub <= NOW() AND visible = 'S') as total, n.idnot, n.titulo, n.tagname, n.idcat, c.nombre as catdes, n.portada, n.detalle, n.fecpub, n.visible FROM noticias n INNER JOIN categoria c ON n.idcat = c.idcat WHERE n.idcat LIKE '$catg' AND n.fecpub <= NOW() AND n.visible = 'S' ORDER BY fecpub DESC LIMIT $limit OFFSET $ini";
             $stm = $this->pdo->prepare($sql);
             $stm->execute();
             $res = $stm->fetchAll(PDO::FETCH_ASSOC);
@@ -135,5 +134,27 @@ class NoticiasModel extends Conexion
     public function totalRows()
     {
         return $this->total;
+    }
+
+    public function paginationWeb($categ, $pag)
+    {
+        $html = '';
+        $categ = $categ == '%' ? 'all' : $categ;
+        if ($pag == 1) {
+            $html .= '<li class="page-item disabled"><a class="page-link" href="#"><span aria-hidden="true">&laquo;</span></a></li>';
+        } else {
+            $html .= '<li class="page-item"><a class="page-link" href="/noticias/' . $categ . '/' . ($pag - 1) . '"><span aria-hidden="true">&laquo;</span></a></li>';
+        }
+        $npag = ceil($this->totalRows() / LIMXPAG);
+        for ($item = 1; $item <= $npag; $item++) :
+            $active = ($item == $pag) ? 'active' : '';
+            $html .= '<li class="page-item ' . $active . '"><a class="page-link" href="/noticias/' . $categ . '/' . $item . '">' . $item . '</a></li>';
+        endfor;
+        if ($pag == $npag) {
+            $html .= '<li class="page-item disabled"><a class="page-link" href="#"><span aria-hidden="true">&raquo;</span></a></li>';
+        } else {
+            $html .= '<li class="page-item"><a class="page-link" href="/noticias/' . $categ . '/' . ($pag + 1) . '"><span aria-hidden="true">&raquo;</span></a></li>';
+        }
+        return $html;
     }
 }
