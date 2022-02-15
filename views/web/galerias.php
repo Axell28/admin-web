@@ -42,7 +42,7 @@ $arrGalerias = $model->listarGalerias();
     <section class="container">
         <div class="row">
             <div class="col">
-                <h2 class="fw-bold">Galerías</h2>
+                <h2>GALERÍAS</h2>
             </div>
         </div>
         <hr>

@@ -42,11 +42,11 @@
     <!-- main content -->
     <main class="content" id="app">
         <!-- loading -->
-        <div id="preloader">
+        <!-- <div id="preloader">
             <div class="loading">
                 <div class="circle"></div>
             </div>
-        </div>
+        </div> -->
 
         <div class="d-flex px-1" style="align-items: center;">
             <div class="tab-titulo">
@@ -62,11 +62,13 @@
             foreach ($this->listGaleria as $val) { ?>
                 <div class="col-md-3 my-2" id="card-<?php echo $val['idgal'] ?>">
                     <div class="card bg-white h-100 shadow-sm">
-                        <img src="/assets/img/icons/galeria-holder.png" width="100%" height="200" style="object-fit: cover;">
-                        <div class="card-body bg-light px-3 border-top">
+                        <div style="background: linear-gradient(#ffffff, #efefef);">
+                            <img src="/assets/img/icons/galeria-holder.png" width="100%" height="200" style="object-fit: cover;">
+                        </div>
+                        <div class="card-body bg-white px-3 border-top">
                             <a href="/galeria/<?php echo $val['idgal'] ?>" target="_blank" class="text-uppercase" style="color: var(--color2);"><?php echo $val['titulo'] ?></a>
                         </div>
-                        <div class="card-footer bg-light">
+                        <div class="card-footer bg-white">
                             <span><i class="far fa-calendar-alt"></i> <?php echo Funciones::formatFecha($val['fecpub']) ?></span>
                             <div class="ms-auto">
                                 <button class="btn btn-sm btn-outline-primary me-1" title="Copiar enlace" onclick="copiarEnlace('/galeria/<?php echo $val['idgal'] ?>')"><i class="fas fa-paste"></i></button>

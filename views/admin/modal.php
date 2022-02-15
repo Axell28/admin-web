@@ -156,9 +156,9 @@
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-files-tab" data-bs-toggle="pill" data-bs-target="#pills-files" type="button" role="tab" aria-controls="pills-files" aria-selected="false" onclick="getCantFiles(<?php echo count($this->listFiles['files']) ?>, 3)"><i class="far fa-folder-open"></i>&nbsp; Archivos</button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <!-- <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-frames-tab" data-bs-toggle="pill" data-bs-target="#pills-frames" type="button" role="tab" aria-controls="pills-frames" aria-selected="false" onclick="getCantFiles(null, 4)"><i class="far fa-folder-open"></i>&nbsp; Iframes</button>
-                            </li>
+                            </li> -->
                         </ul>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -193,10 +193,10 @@
                                     <?php } ?>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="pills-frames" role="tabpanel" aria-labelledby="pills-frames-tab">
+                            <!-- <div class="tab-pane fade" id="pills-frames" role="tabpanel" aria-labelledby="pills-frames-tab">
                                 <textarea class="form-control" id="textIframe" rows="6" placeholder="Ingresa el código Iframe a insertar"></textarea>
                                 <button class="btn btn-primary btn-sm mt-3" onclick="addContenido('frame', '')">Agregar Frame &nbsp;<i class="fas fa-arrow-alt-circle-right"></i></button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="card-footer bg-white d-flex py-3" style="align-items: center;">
@@ -235,7 +235,7 @@
             let vmax = (cont + 24) >= arrFotos.length ? arrFotos.length : (cont + 24);
             for (let i = cont; i < vmax; i++) {
                 const element = arrFotos[i];
-                html += `<div class="col-sm-2 my-2"> <div class="box-enlace-img" onclick="addContenido('img', '${element.path}')"> <div class="enlace-img">${element.name}</div><img src="${element.path}" width="100%" height="170" style="object-fit: cover;"> </div></div>`;
+                html += `<div class="col-sm-2 my-2"> <div class="box-enlace-img placeholder-glow" onclick="addContenido('img', '${element.path}')"> <div class="enlace-img">${element.name}</div><img src="${element.path}" width="100%" height="170" style="object-fit: cover;"> </div></div>`;
             }
             cont += 24;
             document.getElementById("row-fotos").innerHTML = html;
