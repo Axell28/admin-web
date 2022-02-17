@@ -3,12 +3,11 @@
 class ArchivosModel
 {
 
-    public function guardarArchivo($file, string $ruta)
+    public function guardarArchivo($file, string $folder, string $ruta)
     {
         if ($file['type'] == 'image/jpg' || $file['type'] == 'image/png' || $file['type'] == 'image/jpeg') {
-            $vals = explode('/', $ruta);
             $path = DIROOT . '/assets' . $ruta;
-            if ($vals[2] == 'banner') {
+            if ($folder == 'banner') {
                 return move_uploaded_file($file['tmp_name'], $path);
             } else {
                 return $this->procesarImagen($file, $path);

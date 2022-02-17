@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="<?= LANG_DEFAULT ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -12,14 +12,11 @@
 
 <body>
 
-    <?php include_once 'includes/header.php'; ?>
-
-    <br><br><br>
-
-    <section class="container">
-        <div class="row">
-            <div class="col">
-                <h1 class="mb-4">404 NOT FOUND</h1>
+    <section class="container" style="height: 100vh;">
+        <div class="row justify-content-center" style="height: 100vh;">
+            <div class="col my-auto text-center">
+                <h1 class="mb-3" style="font-size: 5em;">404</h1>
+                <h2 class="text-muted">PAGE NOT FOUND</h2>
             </div>
         </div>
     </section>

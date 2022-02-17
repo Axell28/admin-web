@@ -93,7 +93,7 @@
         <div class="row">
             <?php
             foreach ($this->listNoticias as $val) : ?>
-                <div class="col-md-3 my-3 px-3" id="card-<?php echo $val['idnot'] ?>">
+                <div class="col-xxl-3 col-md-4 my-3 px-3" id="card-<?php echo $val['idnot'] ?>">
                     <div class="card h-100 shadow-sm">
                         <?php
                         if (!empty($val['portada'])) { ?>

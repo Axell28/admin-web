@@ -4,6 +4,7 @@ require_once __DIR__ . '/core/config.php';
 require_once __DIR__ . '/core/conexion.php';
 require_once __DIR__ . '/core/funciones.php';
 require_once __DIR__ . '/core/controller.php';
+require_once __DIR__ . '/core/GoogleTranslate.php';
 
 // echo Funciones::generarPass('contraseña'); exit;
 

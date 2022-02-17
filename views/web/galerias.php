@@ -3,7 +3,7 @@ $model = new GaleriaModel();
 $arrGalerias = $model->listarGalerias();
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="<?= LANG_DEFAULT ?>">
 
 <head>
     <meta charset="UTF-8">

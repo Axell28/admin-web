@@ -22,8 +22,9 @@ class Archivos extends Controller
     {
         if (!empty($_POST) && !empty($_FILES)) {
             $path = parent::getPost('path');
+            $dirc = parent::getPost('dirc');
             $file = parent::getFile('file');
-            $resp = $this->model->guardarArchivo($file, $path);
+            $resp = $this->model->guardarArchivo($file, $dirc, $path);
             if ($resp) {
                 echo "OK";
             } else {

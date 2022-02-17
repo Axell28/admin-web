@@ -271,6 +271,7 @@
                         let http = new XMLHttpRequest();
                         let data = new FormData();
                         data.append("path", `${this.pathFiles[this.tabactive - 1] + vue.limpiarNameFile(fileup.name)}`);
+                        data.append("dirc", vue.tabactive == '2' ? 'banner' : '');
                         data.append("file", fileup);
                         http.open("post", uri);
                         http.upload.addEventListener("progress", function(e) {

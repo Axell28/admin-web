@@ -18,7 +18,7 @@ if (isset($uri[1])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= LANG_DEFAULT ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -92,11 +92,11 @@ if (isset($uri[1])) {
             <div class="col-xl-8 my-2">
                 <div class="card border-0">
                     <div class="card-header bg-white p-2 pb-0">
-                        <h3 class="mb-3"><?php echo $arrNoticia['titulo'] ?></h3>
+                        <h3 class="mb-3"><?php echo $arrNoticia['titulo']; ?></h3>
                         <p><i class="far fa-calendar-alt"></i>&nbsp; 13-01-2021</p>
                     </div>
                     <div class="card-bodyp text-justify p-2 pt-4">
-                        <?php echo $arrNoticia['cuerpo'] ?>
+                        <?php echo $arrNoticia['cuerpo']; ?>
                     </div>
                 </div>
             </div>
@@ -109,10 +109,10 @@ if (isset($uri[1])) {
                                 <?php
                                 foreach ($arrRecientes as $key => $value) { ?>
                                     <li class="list-group-item pt-3">
-                                        <a href="/entrada/<?php echo $value['tagname'] ?>" class="titulo">
-                                            <h6 class="mb-1"><?php echo $value['titulo'] ?></h6>
+                                        <a href="/entrada/<?php echo $value['tagname']; ?>" class="titulo">
+                                            <h6 class="mb-1"><?php echo $value['titulo']; ?></h6>
                                         </a>
-                                        <span class="fecpub"><i class="far fa-calendar-alt"></i>&nbsp; <?php echo Funciones::formatFecha($value['fecpub']) ?></span>
+                                        <span class="fecpub"><i class="far fa-calendar-alt"></i>&nbsp; <?php echo Funciones::formatFecha($value['fecpub']); ?></span>
                                     </li>
                                 <?php } ?>
                             </ul>
@@ -124,6 +124,7 @@ if (isset($uri[1])) {
     </section>
 
     <br><br><br>
+
 
 </body>
 

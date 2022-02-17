@@ -4,9 +4,11 @@
 define("WEBURL", 'http://admin-web.me');
 define("DIROOT", dirname(__DIR__));
 
-// config pagweb
+// config página web
 define("EMPRESA", 'EMPRESA WEB');
-define("LIMXPAG", 3);
+define("LIMXPAG", 6);
+define('LANG_ACTIVE', false);
+define('LANG_DEFAULT', 'es');
 
 // config timezone
 date_default_timezone_set("America/Lima");

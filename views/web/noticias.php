@@ -4,11 +4,11 @@ $categ = isset($uri[1]) ? $uri[1] : '%';
 $nroPag = isset($uri[2]) ? $uri[2] : 1;
 $initE = (LIMXPAG * $nroPag) - LIMXPAG;
 $initE = ($initE < 0) ? 0 : $initE;
-$arrNoticias = $modelo->listarNoticiasWeb($initE, 3, $categ);
+$arrNoticias = $modelo->listarNoticiasWeb($initE, LIMXPAG, $categ);
 $arrCategorias = $modelo->listarCategorias();
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="<?= LANG_DEFAULT ?>">
 
 <head>
     <meta charset="UTF-8">

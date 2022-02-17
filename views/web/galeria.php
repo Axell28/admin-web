@@ -8,7 +8,7 @@ if (isset($uri[1]) && is_numeric($uri[1])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="<?= LANG_DEFAULT ?>">
 
 <head>
     <meta charset="UTF-8">

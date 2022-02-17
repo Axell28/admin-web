@@ -8,7 +8,7 @@ $arrNoticias = $modelB->listarNoticiasWeb(0, 4, '%');
 $arrModal = $modelC->obtenerModal();
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="<?= LANG_DEFAULT ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -177,7 +177,7 @@ $arrModal = $modelC->obtenerModal();
         </div>
         <div class="row pt-4">
             <div class="text-center">
-                <button class="btn btn-primary">Ver mas noticias&nbsp; <i class="fas fa-arrow-alt-circle-right"></i></button>
+                <a href="noticias" class="btn btn-primary">Ver mas noticias&nbsp; <i class="fas fa-arrow-alt-circle-right"></i></a>
             </div>
         </div>
     </section>
