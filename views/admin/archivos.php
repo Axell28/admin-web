@@ -66,10 +66,10 @@
         <div class="row pt-1 pb-3">
             <div class="col-2">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="position: sticky; top: 5.5em;">
-                    <button class="nav-link active text-start" id="tab-fotos-tab" data-bs-toggle="pill" data-bs-target="#tab-fotos" type="button" role="tab" aria-controls="tab-fotos" aria-selected="true" @click="tabactive = 1"><i class="far fa-folder-open"></i>&nbsp; Imagenes</button>
-                    <button class="nav-link text-start" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" @click="tabactive = 2"><i class="far fa-folder-open"></i></i>&nbsp; Banner</button>
-                    <button class="nav-link text-start" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false" @click="tabactive = 3"><i class="far fa-folder-open"></i></i>&nbsp; Videos</button>
-                    <button class="nav-link text-start" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false" @click="tabactive = 4"><i class="far fa-folder-open"></i></i>&nbsp; Archivos</button>
+                    <button class="nav-link active text-start d-flex" id="tab-fotos-tab" data-bs-toggle="pill" data-bs-target="#tab-fotos" type="button" role="tab" aria-controls="tab-fotos" aria-selected="true" @click="tabactive = 0"><span><i class="far fa-folder-open"></i>&nbsp; Imagenes</span></button>
+                    <button class="nav-link text-start d-flex" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" @click="tabactive = 1"><span><i class="far fa-folder-open"></i></i>&nbsp; Banner</span></button>
+                    <button class="nav-link text-start d-flex" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false" @click="tabactive = 2"><i class="far fa-folder-open"></i></i>&nbsp; Videos</button>
+                    <button class="nav-link text-start d-flex" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false" @click="tabactive = 3"><i class="far fa-folder-open"></i></i>&nbsp; Archivos</button>
                 </div>
             </div>
             <div class="col">
@@ -210,7 +210,7 @@
             data() {
                 return {
                     buscar: '',
-                    tabactive: "0",
+                    tabactive: 0,
                     pathFiles: ['/img/galeria/', '/img/banner/', '/video/', '/files/'],
                     arrImages: [],
                     arrBanner: [],
@@ -219,43 +219,35 @@
                 }
             },
             created() {
+                this.listarArchivos("0");
                 this.listarArchivos("1");
                 this.listarArchivos("2");
                 this.listarArchivos("3");
-                this.listarArchivos("4");
             },
             watch: {
                 tabactive: (val) => {
-                    if (val == 1 || val == 2) {
+                    if (val == 0 || val == 1) {
                         document.getElementById("fileupload").setAttribute("accept", "image/*");
-                    } else if (val == 3) {
+                    } else if (val == 2) {
                         document.getElementById("fileupload").setAttribute("accept", "video/*");
-                    } else if (val == 4) {
+                    } else if (val == 3) {
                         document.getElementById("fileupload").setAttribute("accept", ".xlsx,.xls,.doc,.docx,.ppt,.pptx,.txt,.pdf,.rar,.zip,.mp3");
                     }
-                }
-            },
-            computed: {
-                arrfilter: function() {
-                    /* let aux = this.arrImages;
-                    return aux.filter((file) => {
-                        return file.name.match(this.buscar)
-                    }); */
                 }
             },
             methods: {
                 async listarArchivos(tab) {
                     let uri = "/admin/archivos/listar";
                     let data = new FormData();
-                    data.append("path", this.pathFiles[tab - 1]);
+                    data.append("path", this.pathFiles[tab]);
                     let json = await this.requestAJAX(uri, data);
-                    if (tab == "1") {
+                    if (tab == 0) {
                         this.arrImages = JSON.parse(json);
-                    } else if (tab == "2") {
+                    } else if (tab == 1) {
                         this.arrBanner = JSON.parse(json);
-                    } else if (tab == "3") {
+                    } else if (tab == 2) {
                         this.arrVideos = JSON.parse(json);
-                    } else if (tab == "4") {
+                    } else if (tab == 3) {
                         this.arrFiles = JSON.parse(json);
                     }
                 },
@@ -270,8 +262,8 @@
                         document.getElementById("fileupload").disabled = true;
                         let http = new XMLHttpRequest();
                         let data = new FormData();
-                        data.append("path", `${this.pathFiles[this.tabactive - 1] + vue.limpiarNameFile(fileup.name)}`);
-                        data.append("dirc", vue.tabactive == '2' ? 'banner' : '');
+                        data.append("path", `${this.pathFiles[this.tabactive] + vue.limpiarNameFile(fileup.name)}`);
+                        data.append("dirc", vue.tabactive == 1 ? 'banner' : '');
                         data.append("file", fileup);
                         http.open("post", uri);
                         http.upload.addEventListener("progress", function(e) {

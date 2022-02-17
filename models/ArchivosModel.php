@@ -30,12 +30,12 @@ class ArchivosModel
     }
 
 
-    public function listarArchivos(string $ruta)
+    public function listarArchivos(string $ruta, string $filter = null)
     {
         $dir = dir(DIROOT . '/assets' . $ruta);
         $list = array();
         while (($file = $dir->read()) != false) :
-            if (strlen($file) > 3) :
+            if (strlen($file) > 2) :
                 $list[] = array(
                     "name" => utf8_encode($file),
                     "tipo" => pathinfo($file, PATHINFO_EXTENSION),
