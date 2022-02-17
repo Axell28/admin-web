@@ -219,10 +219,10 @@
                 }
             },
             created() {
-                this.listarArchivos("0");
-                this.listarArchivos("1");
-                this.listarArchivos("2");
-                this.listarArchivos("3");
+                this.listarArchivos(0);
+                this.listarArchivos(1);
+                this.listarArchivos(2);
+                this.listarArchivos(3);
             },
             watch: {
                 tabactive: (val) => {
