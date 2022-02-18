@@ -7,6 +7,7 @@ class Galeria extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         parent::validarSesion();
         $this->model = new GaleriaModel();
         $this->nameView = strtolower(get_class($this));

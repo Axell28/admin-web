@@ -8,6 +8,7 @@ class Archivos extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         parent::validarSesion();
         $this->model = new ArchivosModel();
         $this->nameView = strtolower(get_class($this));

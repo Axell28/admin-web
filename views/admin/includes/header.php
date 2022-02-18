@@ -13,7 +13,7 @@
         </div>
         <a href="/admin/login/logout" class="ms-1 text-white">
             <i class="fas fa-sign-out-alt"></i>
-            <span>&nbsp;Cerrar sesión</span>
+            <span>&nbsp; <?php echo $this->translate('Cerrar sesión'); ?> </span>
         </a>
     </div>
 </header>

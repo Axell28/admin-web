@@ -50,20 +50,20 @@
 
         <div class="d-flex px-1" style="align-items: center;">
             <div class="tab-titulo">
-                GALERÍAS
+                <?php echo $this->translate('GALERÍAS'); ?>
             </div>
             <div class="ms-auto d-flex flex-row" style="align-items: center;">
-                <button class="btn btn-success text-white" onclick="location.href = '/admin/galeria/vista'"><i class="fas fa-plus"></i>&nbsp; Nueva galería</button>
+                <button class="btn btn-success text-white" onclick="location.href = '/admin/galeria/vista'"><i class="fas fa-plus"></i>&nbsp; <?php echo $this->translate('Nueva galería'); ?> </button>
             </div>
         </div>
         <hr>
         <div class="row">
             <?php
             foreach ($this->listGaleria as $val) { ?>
-                <div class="col-md-3 my-2" id="card-<?php echo $val['idgal'] ?>">
+                <div class="col-xxl-3 col-md-4 my-2" id="card-<?php echo $val['idgal'] ?>">
                     <div class="card bg-white h-100 shadow-sm">
                         <div style="background: linear-gradient(#ffffff, #efefef);">
-                            <img src="/assets/img/icons/galeria-holder.png" width="100%" height="200" style="object-fit: cover;">
+                            <img src="<?php echo $val['portada'] ?>" onerror="this.src = '/assets/img/icons/galeria-holder.png'" width="100%" height="200" style="object-fit: cover;">
                         </div>
                         <div class="card-body bg-white px-3 border-top">
                             <a href="/galeria/<?php echo $val['idgal'] ?>" target="_blank" class="text-uppercase" style="color: var(--color2);"><?php echo $val['titulo'] ?></a>
@@ -71,9 +71,9 @@
                         <div class="card-footer bg-white">
                             <span><i class="far fa-calendar-alt"></i> <?php echo Funciones::formatFecha($val['fecpub']) ?></span>
                             <div class="ms-auto">
-                                <button class="btn btn-sm btn-outline-primary me-1" title="Copiar enlace" onclick="copiarEnlace('/galeria/<?php echo $val['idgal'] ?>')"><i class="fas fa-paste"></i></button>
-                                <a href="/admin/galeria/vista/<?php echo $val['idgal'] ?>" class="btn btn-sm btn-outline-success me-1" title="Editar"><i class="fas fa-pencil-alt"></i></a>
-                                <button class="btn btn-sm btn-outline-danger" title="Eliminar" onclick="eliminarGaleria('<?php echo $val['idgal'] ?>')"><i class="far fa-trash-alt"></i></button>
+                                <button class="btn btn-sm btn-outline-primary me-1" title="<?php echo $this->translate('Copiar enlace'); ?>" onclick="copiarEnlace('/galeria/<?php echo $val['idgal'] ?>')"><i class="fas fa-paste"></i></button>
+                                <a href="/admin/galeria/vista/<?php echo $val['idgal'] ?>" class="btn btn-sm btn-outline-success me-1" title="<?php echo $this->translate('Editar'); ?>"><i class="fas fa-pencil-alt"></i></a>
+                                <button class="btn btn-sm btn-outline-danger" title="<?php echo $this->translate('Eliminar'); ?>" onclick="eliminarGaleria('<?php echo $val['idgal'] ?>')"><i class="far fa-trash-alt"></i></button>
                             </div>
                         </div>
                     </div>
@@ -87,11 +87,11 @@
         const eliminarGaleria = (id) => {
             Swal.fire({
                 icon: 'question',
-                text: '¿Está seguro de eliminar esta galería?',
+                text: '<?php echo $this->translate('¿Está seguro de eliminar esta galería?'); ?>',
                 showDenyButton: true,
                 allowOutsideClick: false,
-                confirmButtonText: 'Aceptar',
-                denyButtonText: 'Cancelar',
+                confirmButtonText: '<?php echo $this->translate('Aceptar'); ?>',
+                denyButtonText: '<?php echo $this->translate('Cancelar'); ?>',
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     let uri = `/admin/galeria/eliminar/${id}`;
@@ -102,7 +102,7 @@
                     }).then(function(res) {
                         if (res.trim() == "OK") {
                             document.getElementById("card-" + id).remove();
-                            mostrarAlert("Galería eliminada correctamente", "success");
+                            mostrarAlert("<?php echo $this->translate('Galería eliminada correctamente'); ?>", "success");
                         } else {
                             mostrarAlert(res, "error");
                         }
@@ -119,7 +119,7 @@
             aux.select();
             document.execCommand("copy");
             aux.remove();
-            mostrarAlert("Enlace copiado al portapapeles", "success");
+            mostrarAlert("<?php echo $this->translate('Enlace copiado al portapapeles'); ?>", "success");
         }
 
         const mostrarAlert = (mensaje, icon) => {

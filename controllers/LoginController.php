@@ -7,6 +7,7 @@ class Login extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         $this->model = new LoginModel();
         $this->nameView = strtolower(get_class($this));
     }
@@ -29,10 +30,10 @@ class Login extends Controller
                 $_SESSION['auth-time'] = time();
                 echo 'OK';
             } else {
-                die($resp);
+                die($this->translate($resp));
             }
         } else {
-            die('No se pudo procesar la solicitud');
+            die($this->translate('No se pudo procesar la solicitud'));
         }
     }
 

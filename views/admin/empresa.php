@@ -33,38 +33,38 @@
         <form id="form-datos" onsubmit="actualizarDatos(event)" onkeypress="return event.keyCode != 13;">
             <div class="d-flex px-1" style="align-items: center;">
                 <div class="tab-titulo">
-                    PRINCIPAL
+                    <?php echo $this->translate('EMPRESA'); ?>
                 </div>
                 <div class="ms-auto d-flex flex-row" style="align-items: center;">
-                    <button class="btn btn-success text-white"><i class="fas fa-sync"></i>&nbsp; Actualizar datos</button>
+                    <button class="btn btn-success text-white"><i class="fas fa-sync"></i>&nbsp; <?php echo $this->translate('Actualizar datos'); ?></button>
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col-4 my-2">
-                    <span>Nombre de la institución:</span>
+                    <span> <?php echo $this->translate('Nombre de la institución:'); ?> </span>
                     <input type="text" class="form-control mt-1" name="nombre" value="<?php echo $this->dataEmp['nombre'] ?>" required>
                 </div>
                 <div class="col-4 my-2">
-                    <span>Teléfono:</span>
+                    <span> <?php echo $this->translate('Teléfono:'); ?> </span>
                     <input type="text" class="form-control mt-1" name="telefono" value="<?php echo $this->dataEmp['telefono'] ?>">
                 </div>
                 <div class="col-4 my-2">
-                    <span>Celular:</span>
+                    <span> <?php echo $this->translate('Celular:'); ?> </span>
                     <input type="text" class="form-control mt-1" name="celular" value="<?php echo $this->dataEmp['celular'] ?>">
                 </div>
             </div>
             <div class="row pt-1 pb-2">
                 <div class="col-4 my-2">
-                    <span>Dirección:</span>
+                    <span> <?php echo $this->translate('Dirreción:'); ?> </span>
                     <input type="text" class="form-control mt-1" name="direction" value="<?php echo $this->dataEmp['direction'] ?>" required>
                 </div>
                 <div class="col-4 my-2">
-                    <span>Correo de contacto:</span>
+                    <span> <?php echo $this->translate('Correo de contacto:'); ?> </span>
                     <input type="email" class="form-control mt-1" name="correo" value="<?php echo $this->dataEmp['correo'] ?>" required>
                 </div>
                 <div class="col-4 my-2">
-                    <span><i class="fas fa-info-circle text-muted" title="En meta description podemos describir brevemente el contenido de la página web, su papel central influye de manera decisiva en la elección del usuario del mejor resultado acorde con su búsqueda, este meta tag es considerado uno de los más importantes en cuanto a la optimización para los buscadores." style="cursor: pointer;"></i> Meta descripción:</span>
+                    <span><i class="fas fa-info-circle text-muted" title="<?php echo $this->translate('En meta description podemos describir brevemente el contenido de la página web, su papel central influye de manera decisiva en la elección del usuario del mejor resultado acorde con su búsqueda, este meta tag es considerado uno de los más importantes en cuanto a la optimización para los buscadores.'); ?> " style="cursor: pointer;"></i> <?php echo $this->translate('Meta descripción:'); ?> </span>
                     <textarea class="form-control mt-1" rows="1" name="metades" maxlength="350"><?php echo $this->dataEmp['metades'] ?></textarea>
                 </div>
             </div>
@@ -100,17 +100,17 @@
             <hr>
             <div class="row">
                 <div class="col-4 my-2">
-                    <span>Enlace a libro de reclamaciones:</span>
+                    <span> <?php echo $this->translate('Enlace a libro de reclamaciones:'); ?> </span>
                     <input type="link" class="form-control mt-1" name="liblink" value="<?php echo $this->dataEmp['liblink'] ?>">
                 </div>
                 <div class="col-4 my-2">
-                    <span>Correo de reclamos:</span>
+                    <span> <?php echo $this->translate('Correo de reclamos:'); ?> </span>
                     <input type="email" class="form-control mt-1" name="libmail" value="<?php echo $this->dataEmp['libmail'] ?>">
                 </div>
                 <div class="col-4 my-2">
-                    <span>Sonido de fondo:</span>
+                    <span> <?php echo $this->translate('Sonido de fondo:'); ?> </span>
                     <select class="form-select mt-1" name="audio">
-                        <option value="">Ninguno</option>
+                        <option value=""> <?php echo $this->translate('Ninguno'); ?> </option>
                     </select>
                 </div>
             </div>
@@ -131,7 +131,7 @@
                 return res.text()
             }).then(function(res) {
                 if (res.trim() == "OK") {
-                    showAlert("Todos los datos fueron actualizados", "success");
+                    showAlert("<?= $this->translate('Todos los datos fueron actualizados') ?>", "success");
                 } else {
                     showAlert(res, "error");
                 }

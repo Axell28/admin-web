@@ -6,6 +6,7 @@ class Editor extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         $this->model = new NoticiasModel();
         $this->nameView = strtolower(get_class($this));
     }

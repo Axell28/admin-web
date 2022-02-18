@@ -7,7 +7,7 @@ define("DIROOT", dirname(__DIR__));
 // config página web
 define("EMPRESA", 'EMPRESA WEB');
 define("LIMXPAG", 6);
-define('LANG_ACTIVE', false);
+define('LANG_ACTIVE', true);
 define('LANG_DEFAULT', 'es');
 
 // config timezone

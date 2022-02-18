@@ -70,15 +70,15 @@
 
         <div class="d-flex px-1" style="align-items: center;">
             <div class="tab-titulo">
-                NOTICIAS
+                <?php echo $this->translate('NOTICIAS'); ?>
             </div>
             <div class="ms-auto d-flex" style="align-items: center;">
                 <?php
                 if (count($this->listCategs) > 1) { ?>
-                    <div>Categoría : </div>
+                    <div><?php echo $this->translate('Categoría'); ?> : </div>
                     <div class="ms-3 me-3">
                         <select class="form-select" onchange="cambiarCategoria(this.value)">
-                            <option value="all">Todas</option>
+                            <option value="all"><?php echo $this->translate('Todas'); ?></option>
                             <?php
                             foreach ($this->listCategs as $key => $item) { ?>
                                 <option value="<?php echo $key ?>" <?php echo $this->categoria == $key ? 'selected' : '' ?>><?php echo $item['nombre'] ?></option>
@@ -86,7 +86,7 @@
                         </select>
                     </div>
                 <?php } ?>
-                <button class="btn btn-success text-white" onclick="location.href = '/admin/editor'"><i class="fas fa-plus"></i>&nbsp; Nueva noticia</button>
+                <button class="btn btn-success text-white" onclick="location.href = '/admin/editor'"><i class="fas fa-plus"></i>&nbsp; <?php echo $this->translate('Nueva noticia'); ?></button>
             </div>
         </div>
         <hr>
@@ -105,8 +105,8 @@
                             <h6 class="mt-3"><i class="far fa-calendar-alt"></i> <?php echo Funciones::formatFecha($val['fecpub']) ?></h6>
                         </div>
                         <div class="card-footer gx-5">
-                            <a href="/admin/editor/vista/<?php echo $val['idnot'] ?>" class="btn btn-sm btn-outline-success me-1" title="Editar"><i class="fas fa-pencil-alt"></i></a>
-                            <button class="btn btn-sm btn-outline-danger ms-1" title="Eliminar" onclick="eliminarNoticia(<?php echo $val['idnot'] ?>)"><i class="far fa-trash-alt"></i></button>
+                            <a href="/admin/editor/vista/<?php echo $val['idnot'] ?>" class="btn btn-sm btn-outline-success me-1" title="<?php echo $this->translate('Editar'); ?>"><i class="fas fa-pencil-alt"></i></a>
+                            <button class="btn btn-sm btn-outline-danger ms-1" title="<?php echo $this->translate('Eliminar'); ?>" onclick="eliminarNoticia(<?php echo $val['idnot'] ?>)"><i class="far fa-trash-alt"></i></button>
                             <div class="ms-auto d-flex">
                                 <label class="form-check-label me-1" style="padding-top: 1px; cursor: pointer;" for="check-<?php echo $val['idnot'] ?>">Visible</label>
                                 <input class="form-check-input ms-1" type="checkbox" id="check-<?php echo $val['idnot'] ?>" onclick="cambiarEstado(<?php echo $val['idnot'] ?>)" style="border-radius: 2px; transform: scale(1.08); cursor: pointer;" <?php echo $val['visible'] == 'S' ? 'checked' : '' ?>>
@@ -120,7 +120,7 @@
         <hr>
         <div class="row pt-1 pb-4">
             <div class="col pt-1">
-                Total de resultados : &nbsp; <?php echo $this->model->totalRows(); ?> registros
+                <?php echo $this->translate('Total de resultados :'); ?> &nbsp; <?php echo $this->model->totalRows(); ?> <?php echo $this->translate('registros'); ?>
             </div>
             <div class="col">
                 <?php

@@ -7,6 +7,7 @@ class Noticias extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         parent::validarSesion();
         $this->model = new NoticiasModel();
         $this->nameView = strtolower(get_class($this));

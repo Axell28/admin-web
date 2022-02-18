@@ -158,12 +158,12 @@
             <div class="ms-auto d-flex flex-row" style="align-items: center;">
                 <div class="ms-3">
                     <select class="form-select" onchange="selectBanner(this)">
-                        <option value="slider" <?php echo ($this->tipoBanner == 'slider') ? 'selected' : '' ?>>Banner tipo slider</option>
-                        <option value="video" <?php echo ($this->tipoBanner == 'video') ? 'selected' : '' ?>>Banner tipo video</option>
+                        <option value="slider" <?php echo ($this->tipoBanner == 'slider') ? 'selected' : '' ?>> <?php echo $this->translate('Banner tipo slider'); ?> </option>
+                        <option value="video" <?php echo ($this->tipoBanner == 'video') ? 'selected' : '' ?>> <?php echo $this->translate('Banner tipo video'); ?> </option>
                     </select>
                 </div>
-                <button class="btn btn-danger text-white mx-3" data-bs-toggle="modal" data-bs-target="#modalFiles"><i class="fas fa-search"></i>&nbsp; Buscar archivos</button>
-                <button class="btn btn-success" onclick="actualizar()"><i class="fas fa-sync"></i>&nbsp; Actualizar Banner</button>
+                <button class="btn btn-danger text-white mx-3" data-bs-toggle="modal" data-bs-target="#modalFiles"><i class="fas fa-search"></i>&nbsp;  <?php echo $this->translate('Buscar archivos'); ?> </button>
+                <button class="btn btn-success" onclick="actualizar()"><i class="fas fa-sync"></i>&nbsp; <?php echo $this->translate('Actualizar Banner'); ?>  </button>
             </div>
         </div>
         <hr>
@@ -180,22 +180,22 @@
                     <div class="col-sm-3">
                         <div class="card shadow-sm">
                             <div class="card-header px-3 py-2">
-                                <b><i class="fas fa-bars"></i>&nbsp; Opciones</b>
+                                <b><i class="fas fa-bars"></i>&nbsp; <?php echo $this->translate('Opciones'); ?> </b>
                             </div>
                             <div class="card-body">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="video_opt_1" <?php echo $this->jsonData['control'] ? 'checked' : '' ?>>
-                                    <label class="form-check-label" for="video_opt_1">Mostrar controles</label>
+                                    <label class="form-check-label" for="video_opt_1"> <?php echo $this->translate('Mostrar controles'); ?> </label>
                                 </div>
                                 <hr>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="video_opt_2" <?php echo $this->jsonData['muted'] ? 'checked' : '' ?>>
-                                    <label class="form-check-label" for="video_opt_2">Silenciado</label>
+                                    <label class="form-check-label" for="video_opt_2"> <?php echo $this->translate('Silenciado'); ?> </label>
                                 </div>
                                 <hr>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="video_opt_3" <?php echo $this->jsonData['repeat'] ? 'checked' : '' ?>>
-                                    <label class="form-check-label" for="video_opt_3">Repetir video</label>
+                                    <label class="form-check-label" for="video_opt_3"> <?php echo $this->translate('Repetir video'); ?> </label>
                                 </div>
                             </div>
                         </div>
@@ -212,7 +212,7 @@
             <div class="modal-dialog modal-xl modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Seleccionar <?php echo $this->tipoBanner == 'slider' ? 'Imagen' : 'Video' ?></h5>
+                        <h5 class="modal-title"> <?php echo $this->translate('Seleccionar'); ?> <?php echo $this->tipoBanner == 'slider' ? 'Imagen' : 'Video' ?></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body px-4">
@@ -239,7 +239,7 @@
                         </div>
                     </div>
                     <div class="card-footer d-flex bg-white py-3" style="align-items: center;">
-                        <span><?php echo count($this->listFiles) . ' de ' . count($this->listFiles) ?> resultados</span>
+                        <span><?php echo count($this->listFiles) . ' de ' . count($this->listFiles) ?> <?php echo $this->translate('resultados'); ?> </span>
                     </div>
                 </div>
             </div>
@@ -257,7 +257,7 @@
                 var html = "";
                 sliderArray.forEach((element, index) => {
                     html += `<li id="item_${index}" class="ui-sortable-handle my-3"><div class="card"><div class="card-body p-0">`;
-                    html += `<img src="${element.imagen}"></div><div class="card-footer"><a onclick="eliminarItem(${index})"><i class="far fa-trash-alt"></i> Eliminar</a></div></div></li>`;
+                    html += `<img src="${element.imagen}"></div><div class="card-footer"><a onclick="eliminarItem(${index})"><i class="far fa-trash-alt"></i> <?php echo $this->translate('Eliminar'); ?> </a></div></div></li>`;
                     // <a class="me-3" onclick="editarItem(${index})"><i class="fas fa-pencil-alt"></i> Editar</a>
                 });
                 $("#list-items").html(html);
@@ -283,7 +283,7 @@
 
             const actualizar = () => {
                 if (sliderArray.length < 1) {
-                    mostrarAlert("Debes agregar mínimo una imagen para continuar.", "warning");
+                    mostrarAlert("<?php echo $this->translate('Debes agregar mínimo una imagen para continuar.'); ?>", "warning");
                     return;
                 }
                 let auxArray = [];
@@ -305,7 +305,7 @@
                     return res.text()
                 }).then(function(res) {
                     if (res.trim() == "OK") {
-                        mostrarAlert("Cambios guardados correctamente", "success");
+                        mostrarAlert("<?php echo $this->translate('Cambios guardados correctamente'); ?>", "success");
                     } else {
                         mostrarAlert(res, "error");
                     }
@@ -337,7 +337,7 @@
                     return res.text()
                 }).then(function(res) {
                     if (res.trim() == "OK") {
-                        mostrarAlert("Cambios guardados correctamente", "success");
+                        mostrarAlert("<?php echo $this->translate('Cambios guardados correctamente'); ?>", "success");
                     } else {
                         mostrarAlert(res, "error");
                     }
@@ -359,7 +359,7 @@
         }
 
         const loadFiles = () => {
-            mostrarAlert('Ya no existe más archivos que mostrar', 'warning');
+            mostrarAlert(' <?php echo $this->translate('Ya no existe más archivos que mostrar'); ?>', 'warning');
         }
 
         setTimeout(() => {

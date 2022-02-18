@@ -6,6 +6,7 @@ class Modal extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         parent::validarSesion();
         $this->model = new ModalModel();
         $this->nameView = strtolower(get_class($this));

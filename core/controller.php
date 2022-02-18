@@ -3,12 +3,25 @@
 class Controller
 {
 
-    public function renderView($view)
+    private $gt;
+
+    public function __construct()
+    {
+        $this->gt = new GoogleTranslate();
+    }
+
+    public function renderView(string $view)
     {
         $file = DIROOT . "/views/admin/{$view}.php";
         if (is_file($file)) {
             require_once DIROOT . "/views/admin/{$view}.php";
         }
+    }
+
+    public function translate(string $str)
+    {
+        $str = $this->gt->translate(LANG_DEFAULT, 'en', $str);
+        return $str;
     }
 
     public function getPost($name)

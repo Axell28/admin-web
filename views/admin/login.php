@@ -43,9 +43,9 @@
                 <h4 class="fw-bold mt-3">AdminWeb</h4>
             </div>
             <form id="formLogin" onsubmit="validarLogueo(event)">
-                <input type="text" name="name" class="form-control mb-3" placeholder="Nombre de usuario" required>
-                <input type="password" name="pass" class="form-control mb-3" placeholder="Contraseña" required>
-                <button class="btn btn-primary d-block w-100" type="submit">Ingresar&nbsp; <i class="fas fa-sign-in-alt"></i></button>
+                <input type="text" name="name" class="form-control mb-3" placeholder="<?php echo $this->translate('Nombre de usuario'); ?>" required>
+                <input type="password" name="pass" class="form-control mb-3" placeholder="<?php echo $this->translate('Contraseña'); ?>" required>
+                <button class="btn btn-primary d-block w-100" type="submit"><?php echo $this->translate('Ingresar'); ?>&nbsp; <i class="fas fa-sign-in-alt"></i></button>
             </form>
         </div>
     </main>

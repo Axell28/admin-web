@@ -7,6 +7,7 @@ class Banner extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         parent::validarSesion();
         $this->model = new BannerModel();
         $this->estruct = $this->model->obtenerBanner();

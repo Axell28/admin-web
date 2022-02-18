@@ -147,13 +147,17 @@ class GoogleTranslate
      */
     public static function translate($source, $target, $text)
     {
-        // Request translation
-        $response = self::requestTranslation($source, $target, $text);
+        if(LANG_ACTIVE) {
+            // Request translation
+            $response = self::requestTranslation($source, $target, $text);
+            // Clean translation
+            $translation = self::getSentencesFromJSON($response);
 
-        // Clean translation
-        $translation = self::getSentencesFromJSON($response);
+            return $translation;
+        } else {
+            return $text;
+        }
 
-        return $translation;
     }
 
     /**

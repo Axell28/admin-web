@@ -3,44 +3,44 @@
         <li>
             <a href="/admin/empresa" class="<?php echo $this->nameView == 'empresa' ? 'active' : '' ?>">
                 <i class="fa fa-university" aria-hidden="true"></i>
-                <span class="links_name">Inicio</span>
+                <span class="links_name"><?php echo $this->translate('Empresa'); ?></span>
             </a>
-            <span class="tooltip">Inicio</span>
+            <span class="tooltip"><?php echo $this->translate('Empresa'); ?> </span>
         </li>
         <li>
             <a href="/admin/banner" class="<?php echo $this->nameView == 'banner' ? 'active' : '' ?>">
                 <i class="fa fa-object-ungroup" aria-hidden="true"></i>
-                <span class="links_name">Banner</span>
+                <span class="links_name"> <?php echo $this->translate('Banner'); ?> </span>
             </a>
-            <span class="tooltip">Banner</span>
+            <span class="tooltip"><?php echo $this->translate('Banner'); ?></span>
         </li>
         <li>
             <a href="/admin/noticias" class="<?php echo ($this->nameView == 'noticias' || $this->nameView == 'editor') ? 'active' : '' ?>">
                 <i class="far fa-newspaper"></i>
-                <span class="links_name">Noticias</span>
+                <span class="links_name"> <?php echo $this->translate('Noticias'); ?> </span>
             </a>
-            <span class="tooltip">Noticias</span>
+            <span class="tooltip"> <?php echo $this->translate('Noticias'); ?> </span>
         </li>
         <li>
             <a href="/admin/galeria" class="<?php echo $this->nameView == 'galeria' ? 'active' : '' ?>">
                 <i class="far fa-images"></i>
-                <span class="links_name">Galerias</span>
+                <span class="links_name"> <?php echo $this->translate('Galerias'); ?></span>
             </a>
-            <span class="tooltip">Galerías</span>
+            <span class="tooltip"> <?php echo $this->translate('Galerias'); ?></span>
         </li>
         <li>
             <a href="/admin/archivos" class="<?php echo $this->nameView == 'archivos' ? 'active' : '' ?>">
                 <i class="far fa-folder-open"></i>
-                <span class="links_name">Archivos</span>
+                <span class="links_name"> <?php echo $this->translate('Archivos'); ?> </span>
             </a>
-            <span class="tooltip">Archivos</span>
+            <span class="tooltip"> <?php echo $this->translate('Archivos'); ?> </span>
         </li>
         <li>
             <a href="/admin/modal" class="<?php echo $this->nameView == 'modal' ? 'active' : '' ?>">
                 <i class="far fa-window-maximize"></i>
-                <span class="links_name">Ventana emergente</span>
+                <span class="links_name"> <?php echo $this->translate('Ventana emergente'); ?> </span>
             </a>
-            <span class="tooltip">Emergente</span>
+            <span class="tooltip"> <?php echo $this->translate('Emergente'); ?> </span>
         </li>
     </ul>
 </aside>

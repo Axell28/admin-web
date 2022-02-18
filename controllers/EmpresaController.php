@@ -7,6 +7,7 @@ class Empresa extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         parent::validarSesion();
         $this->model = new EmpresaModel();
         $this->nameView = strtolower(get_class($this));

@@ -51,13 +51,13 @@
 
         <div class="d-flex px-1" style="align-items: center;">
             <div class="tab-titulo">
-                ARCHIVOS
+                <?php echo $this->translate('ARCHIVOS'); ?>
             </div>
             <div class="ms-auto d-flex" style="align-items: center;">
-                <div class="me-4"><input type="search" v-model="buscar" class="form-control bg-light" placeholder="Buscar archivos"></div>
+                <div class="me-4"><input type="search" v-model="buscar" class="form-control bg-light" placeholder="<?php echo $this->translate('Buscar archivos'); ?>"></div>
                 <label class="btn btn-success text-white px-3" for="fileupload">
                     <span><i class="fas fa-cloud-upload-alt"></i></span>
-                    <span class="ms-1" id="loadtext">Cargar archivo</span>
+                    <span class="ms-1" id="loadtext"><?php echo $this->translate('Cargar archivo'); ?></span>
                 </label>
                 <input type="file" id="fileupload" size="60120" accept="image/*" @change.prevent="cargarArchivo()">
             </div>
@@ -66,10 +66,10 @@
         <div class="row pt-1 pb-3">
             <div class="col-2">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="position: sticky; top: 5.5em;">
-                    <button class="nav-link active text-start d-flex" id="tab-fotos-tab" data-bs-toggle="pill" data-bs-target="#tab-fotos" type="button" role="tab" aria-controls="tab-fotos" aria-selected="true" @click="tabactive = 0"><span><i class="far fa-folder-open"></i>&nbsp; Imagenes</span></button>
-                    <button class="nav-link text-start d-flex" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" @click="tabactive = 1"><span><i class="far fa-folder-open"></i></i>&nbsp; Banner</span></button>
-                    <button class="nav-link text-start d-flex" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false" @click="tabactive = 2"><i class="far fa-folder-open"></i></i>&nbsp; Videos</button>
-                    <button class="nav-link text-start d-flex" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false" @click="tabactive = 3"><i class="far fa-folder-open"></i></i>&nbsp; Archivos</button>
+                    <button class="nav-link active text-start d-flex" id="tab-fotos-tab" data-bs-toggle="pill" data-bs-target="#tab-fotos" type="button" role="tab" aria-controls="tab-fotos" aria-selected="true" @click="tabactive = 0"><span><i class="far fa-folder-open"></i>&nbsp; <?php echo $this->translate('Imagenes'); ?></span></button>
+                    <button class="nav-link text-start d-flex" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" @click="tabactive = 1"><span><i class="far fa-folder-open"></i></i>&nbsp; <?php echo $this->translate('Banner'); ?></span></button>
+                    <button class="nav-link text-start d-flex" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false" @click="tabactive = 2"><i class="far fa-folder-open"></i></i>&nbsp; <?php echo $this->translate('Videos'); ?></button>
+                    <button class="nav-link text-start d-flex" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false" @click="tabactive = 3"><i class="far fa-folder-open"></i></i>&nbsp; <?php echo $this->translate('Archivos'); ?></button>
                 </div>
             </div>
             <div class="col">
@@ -78,12 +78,12 @@
                         <table class="table border-top">
                             <thead>
                                 <tr>
-                                    <th style="width: 40px; font-weight: bold;">#</th>
-                                    <th class="text-start fw-bold">NOMBRE DE ARCHIVO</th>
-                                    <th style="width: 80px; font-weight: bold;">TIPO</th>
-                                    <th style="width: 100px; font-weight: bold;">TAMAÑO</th>
-                                    <th style="width: 180px; font-weight: bold;">MODIFICACIÓN</th>
-                                    <th style="width: 165px; font-weight: bold;">OPCIONES</th>
+                                <th style="width: 40px; font-weight: bold;">#</th>
+                                    <th class="text-start fw-bold"> <?php echo $this->translate('NOMBRE DE ARCHIVO'); ?></th>
+                                    <th style="width: 80px; font-weight: bold;"><?php echo $this->translate('TIPO'); ?></th>
+                                    <th style="width: 100px; font-weight: bold;"><?php echo $this->translate('TAMAÑO'); ?></th>
+                                    <th style="width: 180px; font-weight: bold;"><?php echo $this->translate('MODIFICACIÓN'); ?></th>
+                                    <th style="width: 165px; font-weight: bold;"><?php echo $this->translate('OPCIONES'); ?></th>
                                 </tr>
                             </thead>
                             <tbody style="border-top: none;">
@@ -100,7 +100,7 @@
                                     </td>
                                 </tr>
                                 <tr v-show="arrImages.length == 0">
-                                    <td colspan="6">No se encontrarón archivos</td>
+                                    <td colspan="6"><?php echo $this->translate('No se encontrarón archivos'); ?></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -110,11 +110,11 @@
                             <thead>
                                 <tr>
                                     <th style="width: 40px; font-weight: bold;">#</th>
-                                    <th class="text-start fw-bold">NOMBRE DE ARCHIVO</th>
-                                    <th style="width: 80px; font-weight: bold;">TIPO</th>
-                                    <th style="width: 100px; font-weight: bold;">TAMAÑO</th>
-                                    <th style="width: 180px; font-weight: bold;">MODIFICACIÓN</th>
-                                    <th style="width: 165px; font-weight: bold;">OPCIONES</th>
+                                    <th class="text-start fw-bold"> <?php echo $this->translate('NOMBRE DE ARCHIVO'); ?></th>
+                                    <th style="width: 80px; font-weight: bold;"><?php echo $this->translate('TIPO'); ?></th>
+                                    <th style="width: 100px; font-weight: bold;"><?php echo $this->translate('TAMAÑO'); ?></th>
+                                    <th style="width: 180px; font-weight: bold;"><?php echo $this->translate('MODIFICACIÓN'); ?></th>
+                                    <th style="width: 165px; font-weight: bold;"><?php echo $this->translate('OPCIONES'); ?></th>
                                 </tr>
                             </thead>
                             <tbody style="border-top: none;">
@@ -131,7 +131,7 @@
                                     </td>
                                 </tr>
                                 <tr v-show="arrBanner.length == 0">
-                                    <td colspan="6">No se encontrarón archivos</td>
+                                    <td colspan="6"><?php echo $this->translate('No se encontrarón archivos'); ?></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -141,11 +141,11 @@
                             <thead>
                                 <tr>
                                     <th style="width: 40px; font-weight: bold;">#</th>
-                                    <th class="text-start fw-bold">NOMBRE DE ARCHIVO</th>
-                                    <th style="width: 80px; font-weight: bold;">TIPO</th>
-                                    <th style="width: 100px; font-weight: bold;">TAMAÑO</th>
-                                    <th style="width: 180px; font-weight: bold;">MODIFICACIÓN</th>
-                                    <th style="width: 165px; font-weight: bold;">OPCIONES</th>
+                                    <th class="text-start fw-bold"> <?php echo $this->translate('NOMBRE DE ARCHIVO'); ?></th>
+                                    <th style="width: 80px; font-weight: bold;"><?php echo $this->translate('TIPO'); ?></th>
+                                    <th style="width: 100px; font-weight: bold;"><?php echo $this->translate('TAMAÑO'); ?></th>
+                                    <th style="width: 180px; font-weight: bold;"><?php echo $this->translate('MODIFICACIÓN'); ?></th>
+                                    <th style="width: 165px; font-weight: bold;"><?php echo $this->translate('OPCIONES'); ?></th>
                                 </tr>
                             </thead>
                             <tbody style="border-top: none;">
@@ -162,7 +162,7 @@
                                     </td>
                                 </tr>
                                 <tr v-show="arrVideos.length == 0">
-                                    <td colspan="6">No se encontrarón archivos</td>
+                                    <td colspan="6"><?php echo $this->translate('No se encontrarón archivos'); ?></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -172,11 +172,11 @@
                             <thead>
                                 <tr>
                                     <th style="width: 40px; font-weight: bold;">#</th>
-                                    <th class="text-start fw-bold">NOMBRE DE ARCHIVO</th>
-                                    <th style="width: 80px; font-weight: bold;">TIPO</th>
-                                    <th style="width: 100px; font-weight: bold;">TAMAÑO</th>
-                                    <th style="width: 180px; font-weight: bold;">MODIFICACIÓN</th>
-                                    <th style="width: 165px; font-weight: bold;">OPCIONES</th>
+                                    <th class="text-start fw-bold"> <?php echo $this->translate('NOMBRE DE ARCHIVO'); ?></th>
+                                    <th style="width: 80px; font-weight: bold;"><?php echo $this->translate('TIPO'); ?></th>
+                                    <th style="width: 100px; font-weight: bold;"><?php echo $this->translate('TAMAÑO'); ?></th>
+                                    <th style="width: 180px; font-weight: bold;"><?php echo $this->translate('MODIFICACIÓN'); ?></th>
+                                    <th style="width: 165px; font-weight: bold;"><?php echo $this->translate('OPCIONES'); ?></th>
                                 </tr>
                             </thead>
                             <tbody style="border-top: none;">
@@ -193,7 +193,7 @@
                                     </td>
                                 </tr>
                                 <tr v-show="arrFiles.length == 0">
-                                    <td colspan="6">No se encontrarón archivos</td>
+                                    <td colspan="6"><?php echo $this->translate('No se encontrarón archivos'); ?></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -257,7 +257,7 @@
                     const fileup = document.getElementById("fileupload").files[0];
                     const sizekb = parseInt(fileup.size / 1024);
                     if (sizekb > 60120) {
-                        this.mostrarAlert("El archivo supera el límite del peso permitido, Max(60MB)", "warning");
+                        this.mostrarAlert("<?php echo $this->translate('El archivo supera el límite del peso permitido, Max(60MB)'); ?>", "warning");
                     } else {
                         document.getElementById("fileupload").disabled = true;
                         let http = new XMLHttpRequest();
@@ -272,11 +272,11 @@
                         });
                         http.addEventListener("load", function() {
                             let res = http.responseText;
-                            document.getElementById("loadtext").innerText = "Cargar archivo";
+                            document.getElementById("loadtext").innerText = "<?php echo $this->translate('Cargar archivo'); ?>";
                             document.getElementById("fileupload").disabled = false;
                             if (res.trim() == "OK") {
                                 vue.listarArchivos(vue.tabactive);
-                                vue.mostrarAlert("Archivo subido correctamente", "success");
+                                vue.mostrarAlert("<?php echo $this->translate('Archivo subido correctamente'); ?>", "success");
                             } else {
                                 vue.mostrarAlert(res, "error");
                                 document.getElementById("fileupload").disabled = false;
@@ -289,11 +289,11 @@
                     let vue = this;
                     Swal.fire({
                         icon: 'question',
-                        text: '¿Está seguro de eliminar este archivo?',
+                        text: '<?php echo $this->translate('¿Está seguro de eliminar este archivo?'); ?>',
                         showDenyButton: true,
                         allowOutsideClick: false,
-                        confirmButtonText: 'Aceptar',
-                        denyButtonText: 'Cancelar',
+                        confirmButtonText: '<?php echo $this->translate('Aceptar'); ?>',
+                        denyButtonText: '<?php echo $this->translate('Cancelar'); ?>',
                     }).then(async (result) => {
                         if (result.isConfirmed) {
                             let uri = "/admin/archivos/eliminar";
@@ -302,7 +302,7 @@
                             let resp = await this.requestAJAX(uri, data);
                             if (resp.trim() == "OK") {
                                 vue.listarArchivos(vue.tabactive);
-                                vue.mostrarAlert("Archivo eliminado", "success");
+                                vue.mostrarAlert("<?php echo $this->translate('Archivo eliminado'); ?>", "success");
                             } else {
                                 vue.mostrarAlert(resp, "error");
                             }
@@ -317,7 +317,7 @@
                     aux.select();
                     document.execCommand("copy");
                     aux.remove();
-                    this.mostrarAlert("Enlace copiado al portapapeles", "success");
+                    this.mostrarAlert("<?php echo $this->translate('Enlace copiado al portapapeles'); ?>", "success");
                 },
                 requestAJAX(uri, data) {
                     const resp = fetch(uri, {

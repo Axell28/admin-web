@@ -35,6 +35,7 @@
             break-inside: avoid;
             margin-bottom: 6px;
             overflow: hidden;
+            transition: all .5s ease;
         }
 
         #content-grid img {

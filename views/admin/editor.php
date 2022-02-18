@@ -118,25 +118,25 @@
         <form id="formNoticia" action="/entrada/preview" method="POST" target="_blank" onsubmit="showpreview(event)" onkeypress="return event.keyCode != 13;">
             <div class="d-flex px-1" style="align-items: center;">
                 <div class="tab-titulo">
-                    EDICIÓN
+                    <?php echo $this->translate('EDICIÓN'); ?>
                 </div>
                 <div class="ms-auto d-flex" style="align-items: center;">
-                    <button class="btn btn-danger text-white" type="button" data-bs-toggle="modal" data-bs-target="#modalFiles"><i class="fas fa-search"></i>&nbsp; Buscar archivos</button>
-                    <button class="btn btn-success text-white mx-3" type="submit"><i class="fas fa-eye"></i>&nbsp; Vista previa</button>
-                    <button class="btn btn-primary text-white" type="button" onclick="guardarNoticia()"><i class="fas fa-save"></i>&nbsp; Guardar noticia</button>
+                    <button class="btn btn-danger text-white" type="button" data-bs-toggle="modal" data-bs-target="#modalFiles"><i class="fas fa-search"></i>&nbsp; <?php echo $this->translate('Buscar archivos'); ?> </button>
+                    <button class="btn btn-success text-white mx-3" type="submit"><i class="fas fa-eye"></i>&nbsp; <?php echo $this->translate('Vista previa'); ?> </button>
+                    <button class="btn btn-primary text-white" type="button" onclick="guardarNoticia()"><i class="fas fa-save"></i>&nbsp; <?php echo $this->translate('Guardar noticia'); ?> </button>
                 </div>
             </div>
             <hr>
             <div class="row pt-2">
                 <div class="col">
-                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo de publicación" value="<?php echo $this->noticiaInfo['titulo'] ?>" autocomplete="off" maxlength="140" required>
+                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="<?php echo $this->translate('Titulo de publicación'); ?>" value="<?php echo htmlspecialchars($this->noticiaInfo['titulo']) ?>" autocomplete="off" maxlength="140" required>
                     <div class="pt-3">
                         <textarea id="editor"><?php echo $this->noticiaInfo['cuerpo'] ?></textarea>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="card bg-light p-3">
-                        <span>Categoría:</span>
+                        <span><?php echo $this->translate('Categoría:'); ?></span>
                         <select class="form-select mt-1 mb-3" name="categ">
                             <?php
                             foreach ($this->listCategs as $key => $val) : ?>
@@ -146,12 +146,12 @@
                             <?php endforeach;
                             ?>
                         </select>
-                        <span>Fecha de publicación:</span>
+                        <span><?php echo $this->translate('Fecha de publicación:'); ?></span>
                         <input type="date" class="form-control mt-1 mb-3" name="fecpub" value="<?php echo $this->noticiaInfo['fecpub'] ?>">
-                        <span>Detalle:</span>
+                        <span><?php echo $this->translate('Detalle:'); ?></span>
                         <textarea class="form-control mt-1 mb-3" rows="1" id="txtdetalle" name="detalle" maxlength="250" placeholder="Opcional"><?php echo $this->noticiaInfo['detalle'] ?></textarea>
-                        <span>Imagen de portada:</span>
-                        <input type="link" class="form-control mt-1 mb-3" name="portada" id="textportada" value="<?php echo $this->noticiaInfo['portada'] ?>" onchange="onchangePortada(this.value)" placeholder="Link de imgen" autocomplete="off">
+                        <span><?php echo $this->translate('Imagen de portada:'); ?></span>
+                        <input type="link" class="form-control mt-1 mb-3" name="portada" id="textportada" value="<?php echo $this->noticiaInfo['portada'] ?>" onchange="onchangePortada(this.value)" placeholder="Link de imagen" autocomplete="off">
                         <img id="img-portada" src="<?php echo $this->noticiaInfo["portada"]; ?>" onerror="this.src = `https://via.placeholder.com/320x220`" class="rounded" width="100%" style="height: 200px; object-fit: cover;">
                         <!-- elementos ocultos -->
                         <input type="hidden" name="idnot" value="<?php echo $this->noticiaInfo['idnot'] ?>">
@@ -168,13 +168,13 @@
                     <div class="modal-header py-2 border-bottom">
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-fotos-tab" data-bs-toggle="pill" data-bs-target="#pills-fotos" type="button" role="tab" aria-controls="pills-fotos" aria-selected="true" onclick="getCantFiles(<?php echo count($this->listFiles['fotos']) ?>, 1)">Imagenes</button>
+                                <button class="nav-link active" id="pills-fotos-tab" data-bs-toggle="pill" data-bs-target="#pills-fotos" type="button" role="tab" aria-controls="pills-fotos" aria-selected="true" onclick="getCantFiles(<?php echo count($this->listFiles['fotos']) ?>, 1)"> <?php echo $this->translate('Imagenes'); ?> </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-videos-tab" data-bs-toggle="pill" data-bs-target="#pills-videos" type="button" role="tab" aria-controls="pills-videos" aria-selected="false" onclick="getCantFiles(<?php echo count($this->listFiles['video']) ?>, 2)">Videos</button>
+                                <button class="nav-link" id="pills-videos-tab" data-bs-toggle="pill" data-bs-target="#pills-videos" type="button" role="tab" aria-controls="pills-videos" aria-selected="false" onclick="getCantFiles(<?php echo count($this->listFiles['video']) ?>, 2)"><?php echo $this->translate('Videos'); ?></button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-files-tab" data-bs-toggle="pill" data-bs-target="#pills-files" type="button" role="tab" aria-controls="pills-files" aria-selected="false" onclick="getCantFiles(<?php echo count($this->listFiles['files']) ?>, 3)">Archivos</button>
+                                <button class="nav-link" id="pills-files-tab" data-bs-toggle="pill" data-bs-target="#pills-files" type="button" role="tab" aria-controls="pills-files" aria-selected="false" onclick="getCantFiles(<?php echo count($this->listFiles['files']) ?>, 3)"><?php echo $this->translate('Archivos'); ?></button>
                             </li>
                         </ul>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -213,8 +213,8 @@
                         </div>
                     </div>
                     <div class="card-footer bg-white d-flex py-3" style="align-items: center;">
-                        <span id="cant-files">Mostrando 0 resultados</span>
-                        <a class="ms-auto text-primary" onclick="cargarArchivos()" style="cursor: pointer;">Cargar más resultados &nbsp;<i class="fas fa-chevron-right"></i></a>
+                        <span id="cant-files"><?php echo $this->translate('Mostrando 0 resultados'); ?></span>
+                        <a class="ms-auto text-primary" onclick="cargarArchivos()" style="cursor: pointer;"> <?php echo $this->translate('Cargar más resultados'); ?> &nbsp;<i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -233,12 +233,12 @@
         // run tinymce
         tinymce.init({
             selector: '#editor',
-            language: "es",
+            language: "<?php echo LANG_DEFAULT ?>",
             encoding: 'UTF-8',
             plugins: 'link media table image emoticons advlist lists code table template example paste table',
             toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | numlist bullist checklist | forecolor backcolor | link media image pageembed emoticons | table | removeformat code ',
             menubar: false,
-            content_style: '@import url("https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap"); body { font-family: "Signika", sans-serif; font-size: 17px; line-height: 1.7; }',
+            content_style: '@import url("https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap"); body { font-family: "Signika", sans-serif; font-size: 17px; line-height: 1.6; }',
             height: '800',
             object_resizing: true,
             fix_list_elements: true,
@@ -282,7 +282,7 @@
             let titulo = document.getElementById("titulo");
             if (titulo.value == "") {
                 titulo.focus();
-                mostrarAlert("Debe ingresar el titulo de la publicación para continuar", "warning");
+                mostrarAlert("<?php echo $this->translate('Debe ingresar el titulo de la publicación para continuar'); ?>", "warning");
                 return;
             }
             document.getElementById("cuerpo").value = tinyMCE.get('editor').getContent();
@@ -294,7 +294,7 @@
                 return res.text()
             }).then(function(res) {
                 if (res.trim() == "OK") {
-                    mostrarAlert("Publicación <?php echo $this->action == 'guardar' ? 'guardada' : 'editada' ?> correctamente", "success");
+                    mostrarAlert("<?php echo $this->translate('Publicación' . $this->action == 'guardar' ? 'guardada' : 'editada' . ' correctamente' ); ?>", "success");
                 } else {
                     mostrarAlert(res, "error");
                 }
@@ -304,12 +304,12 @@
         const getCantFiles = (cant, tab) => {
             tabFile = tab;
             cant = tab == 1 ? cont : cant;
-            document.getElementById("cant-files").innerText = 'Mostrando ' + cant + ' resultados';
+            document.getElementById("cant-files").innerText = '<?php echo $this->translate('Mostrando'); ?> ' + cant + ' <?php echo $this->translate('resultados'); ?>';
         }
 
         const cargarArchivos = () => {
             if (cont >= arrFotos.length || tabFile !== 1) {
-                mostrarAlert('Ya no existe más archivos que mostrar', 'warning');
+                mostrarAlert('<?php echo $this->translate('Ya no existe más archivos que mostrar'); ?>', 'warning');
                 return;
             }
             let mbody = document.querySelector('.modal-body');
@@ -321,7 +321,7 @@
             }
             cont += 24;
             document.getElementById("row-fotos").innerHTML = html;
-            document.getElementById("cant-files").innerText = 'Mostrando ' + vmax + ' resultados';
+            document.getElementById("cant-files").innerText = '<?php echo $this->translate('Mostrando'); ?> ' + vmax + ' <?php echo $this->translate('resultados'); ?>';
             mbody.scrollTop = mbody.scrollHeight;
         }
 
