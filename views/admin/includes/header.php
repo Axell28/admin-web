@@ -9,7 +9,7 @@
     <div class="ms-auto d-flex">
         <div class="me-4">
             <i class="fas fa-calendar-alt"></i>
-            <span>&nbsp;<?php echo Funciones::getFechaActual() ?></span>
+            <span>&nbsp;<?php echo $this->translate(Funciones::getFechaActual()) ?></span>
         </div>
         <a href="/admin/login/logout" class="ms-1 text-white">
             <i class="fas fa-sign-out-alt"></i>

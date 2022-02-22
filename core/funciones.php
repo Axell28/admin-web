@@ -23,6 +23,26 @@ class Funciones
         return password_hash($pass, PASSWORD_DEFAULT);
     }
 
+    public static function translate(string $str, string $convert = 'en')
+    {
+        $gt = new GoogleTranslate();
+        $str = $gt->translate(LANG_DEFAULT, $convert, $str);
+        return $str;
+    }
+
+    public static function translateHTML(string $html, string $convert = 'en')
+    {
+        $gt = new GoogleTranslate();
+        $dom = new DOMDocument();
+        $dom->loadHTML("<meta http-equiv='Content-Type' content='charset=utf-8' /> " . $html);
+        $nodos = $dom->getElementsByTagName('div');
+        for ($i = 0; $i < $nodos->length; $i++) {
+            $aux = $nodos->item($i)->textContent;
+            $nodos->item($i)->textContent = $gt->translate(LANG_DEFAULT, $convert, $aux);
+        }
+        return $dom->saveHTML();
+    }
+
     public static function limpString($str)
     {
         $str = preg_replace(['/\s+/', '/^\s|\s$/'], [' ', ''], $str);

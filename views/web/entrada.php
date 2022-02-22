@@ -13,18 +13,19 @@ if (isset($uri[1])) {
     }
     $idCateg = $arrNoticia['categoria'];
     $arrRecientes = $model->listarNoticiasWeb(0, 4, '%');
+
 } else {
     header("Location: /error");
 }
 ?>
 <!DOCTYPE html>
-<html lang="<?= LANG_DEFAULT ?>">
+<html lang="<?= $lang ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?php echo $empresa['metades'] ?>">
-    <title><?php echo EMPRESA ?></title>
+    <title><?php echo $empresa['nombre'] ?></title>
     <link rel="shortcut icon" href="<?php echo WEBURL ?>/assets/img/icons/escudo.png" type="image/png">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="<?php echo WEBURL ?>/assets/css/bootstrap.min.css">
@@ -95,7 +96,7 @@ if (isset($uri[1])) {
                         <h3 class="mb-3"><?php echo $arrNoticia['titulo']; ?></h3>
                         <p><i class="far fa-calendar-alt"></i>&nbsp; 13-01-2021</p>
                     </div>
-                    <div class="card-bodyp text-justify p-2 pt-4">
+                    <div class="card-body text-justify p-2 pt-4" id="body-news">
                         <?php echo $arrNoticia['cuerpo']; ?>
                     </div>
                 </div>
@@ -124,6 +125,14 @@ if (isset($uri[1])) {
     </section>
 
     <br><br><br>
+
+    <script>
+        let html = document.querySelectorAll('#body-news div')
+        html.forEach(element => {
+            let cuerpo = element.textContent;
+            console.log(element.textContent);
+        });
+    </script>
 
 
 </body>

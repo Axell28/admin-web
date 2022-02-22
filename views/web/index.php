@@ -8,7 +8,7 @@ $arrNoticias = $modelB->listarNoticiasWeb(0, 4, '%');
 $arrModal = $modelC->obtenerModal();
 ?>
 <!DOCTYPE html>
-<html lang="<?= LANG_DEFAULT ?>">
+<html lang="<?= $lang ?>">
 
 <head>
     <meta charset="UTF-8">

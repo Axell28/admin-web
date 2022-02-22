@@ -6,7 +6,7 @@ require_once __DIR__ . '/core/funciones.php';
 require_once __DIR__ . '/core/controller.php';
 require_once __DIR__ . '/core/GoogleTranslate.php';
 
-// echo Funciones::generarPass('contraseña'); exit;
+// echo Funciones::generarPass('contraseña'); exit(1);
 
 $uri = isset($_GET['uri']) ? $_GET['uri'] : 'index';
 $uri = rtrim($uri, '/');
@@ -42,6 +42,9 @@ if ($uri[0] == 'admin') {
         die('Error:: Controller does not exist.');
     }
 } else {
+    //session_start();
+    $lang = LANG_DEFAULT; // isset($_SESSION['lang']) ? $_SESSION['lang'] : LANG_DEFAULT;
+    // $fileView = DIROOT . "/views/web/{$lang}/${$uri}.php";
     $fileView = DIROOT . "/views/web/{$uri[0]}.php";
     if (file_exists($fileView)) {
         $empresa = new EmpresaModel();
@@ -49,6 +52,7 @@ if ($uri[0] == 'admin') {
         $nameview = $uri[0];
         include_once $fileView;
     } else {
+        // include_once DIROOT . "/views/web/{$lang}/error.php";
         include_once DIROOT . '/views/web/error.php';
     }
 }

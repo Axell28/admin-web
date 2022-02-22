@@ -18,9 +18,9 @@ class Controller
         }
     }
 
-    public function translate(string $str)
+    public function translate(string $str, string $convert = 'en')
     {
-        $str = $this->gt->translate(LANG_DEFAULT, 'en', $str);
+        $str = $this->gt->translate(LANG_DEFAULT, $convert, $str);
         return $str;
     }
 

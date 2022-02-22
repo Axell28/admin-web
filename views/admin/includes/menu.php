@@ -38,9 +38,9 @@
         <li>
             <a href="/admin/modal" class="<?php echo $this->nameView == 'modal' ? 'active' : '' ?>">
                 <i class="far fa-window-maximize"></i>
-                <span class="links_name"> <?php echo $this->translate('Ventana emergente'); ?> </span>
+                <span class="links_name"> <?php echo $this->translate('Pop-up'); ?> </span>
             </a>
-            <span class="tooltip"> <?php echo $this->translate('Emergente'); ?> </span>
+            <span class="tooltip"> <?php echo $this->translate('Pop-up'); ?> </span>
         </li>
     </ul>
 </aside>

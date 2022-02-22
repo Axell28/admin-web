@@ -233,7 +233,7 @@
         // run tinymce
         tinymce.init({
             selector: '#editor',
-            language: "<?php echo LANG_DEFAULT ?>",
+            language: "en",
             encoding: 'UTF-8',
             plugins: 'link media table image emoticons advlist lists code table template example paste table',
             toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | numlist bullist checklist | forecolor backcolor | link media image pageembed emoticons | table | removeformat code ',
@@ -294,7 +294,7 @@
                 return res.text()
             }).then(function(res) {
                 if (res.trim() == "OK") {
-                    mostrarAlert("<?php echo $this->translate('Publicación' . $this->action == 'guardar' ? 'guardada' : 'editada' . ' correctamente' ); ?>", "success");
+                    mostrarAlert("<?php echo $this->translate('Publicación' . $this->action == 'guardar' ? 'guardada' : 'editada' . ' correctamente'); ?>", "success");
                 } else {
                     mostrarAlert(res, "error");
                 }

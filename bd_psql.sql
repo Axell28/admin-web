@@ -187,14 +187,14 @@ SELECT setval('"public"."empresa_idemp_seq"', 2, false);
 -- ----------------------------
 ALTER SEQUENCE "public"."galeria_idgal_seq"
 OWNED BY "public"."galeria"."idgal";
-SELECT setval('"public"."galeria_idgal_seq"', 8, true);
+SELECT setval('"public"."galeria_idgal_seq"', 1001, true);
 
 -- ----------------------------
 -- Alter sequences owned by
 -- ----------------------------
 ALTER SEQUENCE "public"."noticias_idnot_seq"
 OWNED BY "public"."noticias"."idnot";
-SELECT setval('"public"."noticias_idnot_seq"', 5, true);
+SELECT setval('"public"."noticias_idnot_seq"', 101, true);
 
 -- ----------------------------
 -- Alter sequences owned by

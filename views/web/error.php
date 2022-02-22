@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="<?= LANG_DEFAULT ?>">
+<html lang="<?= $lang ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo EMPRESA ?></title>
+    <title>404 NOT FOUND</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/web.css">

@@ -123,11 +123,11 @@
 
         <div class="d-flex px-1" style="align-items: center;">
             <div class="tab-titulo">
-                CREAR GALERÍA
+                <?php echo $this->translate('CREAR GALERÍA'); ?>
             </div>
             <div class="ms-auto d-flex flex-row" style="align-items: center;">
-                <button class="btn btn-danger text-white mx-3" data-bs-toggle="modal" data-bs-target="#modalFiles"><i class="fas fa-search"></i>&nbsp; Buscar archivos</button>
-                <button class="btn btn-success text-white" onclick="guardarGaleria()"><i class="fas fa-save"></i>&nbsp; Guardar galería</button>
+                <button class="btn btn-danger text-white mx-3" data-bs-toggle="modal" data-bs-target="#modalFiles"><i class="fas fa-search"></i>&nbsp; <?php echo $this->translate('Buscar archivos'); ?></button>
+                <button class="btn btn-success text-white" onclick="guardarGaleria()"><i class="fas fa-save"></i>&nbsp; <?php echo $this->translate('Guardar galería'); ?></button>
             </div>
         </div>
         <hr>
@@ -137,25 +137,25 @@
             </div>
             <div class="col-3">
                 <form id="formGaleria" class="card bg-light p-3 pt-4 shadow-sm" style="position: sticky; top: 5.5em;">
-                    <span>Titulo de galería:</span>
+                    <span><?php echo $this->translate('Titulo de galería:'); ?></span>
                     <input type="text" class="form-control mt-1 mb-3" name="titulo" value="<?php echo $this->galeriaInfo['titulo'] ?>" autocomplete="off">
-                    <span>Detalle:</span>
-                    <textarea class="form-control mt-1 mb-3" rows="3" name="detalle" placeholder="Opcional" maxlength="250"><?php echo $this->galeriaInfo['detalle'] ?></textarea>
-                    <span>Imagen de portada:</span>
-                    <input type="text" class="form-control mt-1 mb-2" name="portada" value="<?php echo $this->galeriaInfo['portada'] ?>" placeholder="Link de imagen" autocomplete="off">
+                    <span><?php echo $this->translate('Detalle:'); ?></span>
+                    <textarea class="form-control mt-1 mb-3" rows="3" name="detalle" placeholder="<?php echo $this->translate('Opcional'); ?>" maxlength="250"><?php echo $this->galeriaInfo['detalle'] ?></textarea>
+                    <span><?php echo $this->translate('Imagen de portada:'); ?></span>
+                    <input type="text" class="form-control mt-1 mb-2" name="portada" value="<?php echo $this->galeriaInfo['portada'] ?>" placeholder="<?php echo $this->translate('Link de imagen'); ?>" autocomplete="off">
                     <hr>
                     <div class="row pt-1">
                         <div class="col">
-                            <span>Modo de galería:</span>
+                            <span><?php echo $this->translate('Modo de galería:'); ?></span>
                             <select class="form-select mt-1 mb-3" name="modo" id="modoGaleria" onchange="cambiarModo()">
-                                <option value="A" <?php echo $this->galeriaInfo['modo'] == 'A' ? 'selected' : '' ?>>Collage</option>
-                                <option value="B" <?php echo $this->galeriaInfo['modo'] == 'B' ? 'selected' : '' ?>>Cuadrícula</option>
+                                <option value="A" <?php echo $this->galeriaInfo['modo'] == 'A' ? 'selected' : '' ?>><?php echo $this->translate('Collage'); ?></option>
+                                <option value="B" <?php echo $this->galeriaInfo['modo'] == 'B' ? 'selected' : '' ?>><?php echo $this->translate('Cuadrícula'); ?></option>
                             </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <span>Nro. de columnas:</span>
+                            <span><?php echo $this->translate('Nro. de columnas:'); ?></span>
                             <input type="number" name="colum" class="form-control mt-1 mb-3" min="1" max="6" value="<?php echo $this->galeriaInfo['ncolum'] ?>" onchange="cambiarColumns(this.value)">
                         </div>
                         <div class="col-4">
@@ -173,7 +173,7 @@
             <div class="modal-dialog modal-xl modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Seleccionar Imagen</h5>
+                        <h5 class="modal-title"><?php echo $this->translate('Seleccionar Imagen'); ?></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body px-4">
@@ -182,8 +182,8 @@
                     <div class="card-footer d-flex bg-white py-3" style="align-items: center;">
                         <span id="cant-files">0 resultados</span>
                         <div class="ms-auto" style="display: flex; align-items: center;">
-                            <a class="text-primary me-4" onclick="insertImagenxLink()" style="cursor: pointer;">Insertar link</a>
-                            <a class="text-primary" style="cursor: pointer;" onclick="cargarArchivos()">Cargar más resultados &nbsp;<i class="fas fa-angle-right"></i></a>
+                            <a class="text-primary me-4" onclick="insertImagenxLink()" style="cursor: pointer;"><?php echo $this->translate('Insertar por link'); ?></a>
+                            <a class="text-primary" style="cursor: pointer;" onclick="cargarArchivos()"><?php echo $this->translate('Cargar más resultados'); ?> &nbsp;<i class="fas fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -252,6 +252,7 @@
             }).then(function(res) {
                 if (res.trim() == "OK") {
                     mostrarAlert('Galería <?php echo $this->action == 'guardar' ? 'guardada' : 'editada' ?> correctamente', 'success');
+                    mostrarAlert('<?php echo $this->translate('Galería ' . $this->action == 'guardar' ? 'guardada' : 'editada' . ' correctamente'); ?>', 'success');
                 } else {
                     mostrarAlert(res, 'error');
                 }
@@ -259,7 +260,7 @@
         }
 
         const insertImagenxLink = () => {
-            const uri = prompt('Ingrese el link de la imagen');
+            const uri = prompt('<?php echo $this->translate('Ingrese el link de la imagen'); ?>');
             if (uri) {
                 agregarItem('default', 'img', uri);
             }
@@ -267,7 +268,7 @@
 
         const cargarArchivos = () => {
             if (cont >= arrFotos.length) {
-                mostrarAlert('Ya no existe más archivos que mostrar', 'warning');
+                mostrarAlert('<?php echo $this->translate('Ya no existe más archivos que mostrar'); ?>', 'warning');
                 return;
             }
             let mbody = document.querySelector('.modal-body');
@@ -279,7 +280,7 @@
             }
             cont += arrFotos.length < 24 ? arrFotos.length : 24;
             document.getElementById("row-fotos").innerHTML = html;
-            document.getElementById("cant-files").innerText = vmax + ' resultados';
+            document.getElementById("cant-files").innerText = vmax + ' <?php echo $this->translate('resultados'); ?>';
             mbody.scrollTop = mbody.scrollHeight;
         }
 

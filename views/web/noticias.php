@@ -8,13 +8,13 @@ $arrNoticias = $modelo->listarNoticiasWeb($initE, LIMXPAG, $categ);
 $arrCategorias = $modelo->listarCategorias();
 ?>
 <!DOCTYPE html>
-<html lang="<?= LANG_DEFAULT ?>">
+<html lang="<?= $lang ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?php echo $empresa['metades'] ?>">
-    <title><?php echo EMPRESA ?></title>
+    <title><?php echo $empresa['nombre'] ?></title>
     <link rel="shortcut icon" href="<?php echo WEBURL ?>/assets/img/icons/escudo.png" type="image/png">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
