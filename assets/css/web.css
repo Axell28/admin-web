@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap"); 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 :root {
     --color1: #f88221;
@@ -7,8 +7,8 @@
 }
 
 body {
-    font-family: "Signika", sans-serif;
-    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
     color: #4b4b4b;
     line-height: 1.7;
 }

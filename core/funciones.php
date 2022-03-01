@@ -30,9 +30,10 @@ class Funciones
         return $str;
     }
 
+    // NO USAR ESTA FUNCIÓN TODAVÍA
     public static function translateHTML(string $html, string $convert = 'en')
     {
-        $gt = new GoogleTranslate();
+        /* $gt = new GoogleTranslate();
         $dom = new DOMDocument();
         $dom->loadHTML("<meta http-equiv='Content-Type' content='charset=utf-8' /> " . $html);
         $nodos = $dom->getElementsByTagName('div');
@@ -40,7 +41,7 @@ class Funciones
             $aux = $nodos->item($i)->textContent;
             $nodos->item($i)->textContent = $gt->translate(LANG_DEFAULT, $convert, $aux);
         }
-        return $dom->saveHTML();
+        return $dom->saveHTML(); */
     }
 
     public static function limpString($str)
