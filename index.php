@@ -1,5 +1,10 @@
 <?php
 
+// permitir acceso CORS con apache
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Methods: GET, POST");
+header("Allow: GET, POST");
+
 require_once __DIR__ . '/core/config.php';
 require_once __DIR__ . '/core/conexion.php';
 require_once __DIR__ . '/core/funciones.php';

@@ -65,12 +65,16 @@
 
         const validarLogueo = (e) => {
             e.preventDefault();
-            let uri = "<?php echo WEBURL ?>/admin/login/auth";
+            let uri = "/admin/login/auth";
             let data = new FormData(document.getElementById('formLogin'));
             fetch(uri, {
                 method: "POST",
                 mode: 'cors',
-                body: data
+                body: data,
+                headers: new Headers({
+                    'Access-Control-Allow-Origin': '*',
+                    'Acces-Control-Allow-Methods' : 'GET,POST'
+                })
             }).then(function(res) {
                 return res.text()
             }).then(function(res) {
