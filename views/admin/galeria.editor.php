@@ -183,7 +183,7 @@
                         <span id="cant-files">0 resultados</span>
                         <div class="ms-auto" style="display: flex; align-items: center;">
                             <a class="text-primary me-4" onclick="insertImagenxLink()" style="cursor: pointer;"><?php echo $this->translate('Insertar por link'); ?></a>
-                            <a class="text-primary" style="cursor: pointer;" onclick="cargarArchivos()"><?php echo $this->translate('Cargar más resultados'); ?> &nbsp;<i class="fas fa-angle-right"></i></a>
+                            <a class="text-primary" style="cursor: pointer;" onclick="cargarArchivos()"><?php echo $this->translate('Cargar más resultados'); ?></a>
                         </div>
                     </div>
                 </div>
@@ -276,7 +276,7 @@
             let vmax = (cont + 24) >= arrFotos.length ? arrFotos.length : (cont + 24);
             for (let i = cont; i < vmax; i++) {
                 const element = arrFotos[i];
-                html += `<div class="col-sm-2 my-2"> <div class="box-enlace-img" onclick="agregarItem('${element.name}', '${element.tipo}', '${element.path}')"> <div class="enlace-img">${element.name}</div><img src="${element.path}" width="100%" height="170" style="object-fit: cover;"> </div></div>`;
+                html += `<div class="col-sm-2 my-2"> <div class="box-enlace-img" onclick="agregarItem('${element.name}', '${element.tipo}', '${element.path}')"> <div class="enlace-img">${element.name}</div><img src="${element.path}" width="100%" height="160" style="object-fit: cover;"> </div></div>`;
             }
             cont += arrFotos.length < 24 ? arrFotos.length : 24;
             document.getElementById("row-fotos").innerHTML = html;

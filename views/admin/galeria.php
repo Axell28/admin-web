@@ -24,6 +24,12 @@
 
     <!-- styles -->
     <style>
+        div.row button.btn {
+            width: 32px;
+            height: 33px;
+            padding: 0;
+        }
+
         div.card-footer {
             display: flex;
             flex-direction: row;

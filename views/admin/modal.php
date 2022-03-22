@@ -113,7 +113,7 @@
 
         <div class="d-flex px-1" style="align-items: center;">
             <div class="tab-titulo">
-                VENTANA EMERGENTE
+                VENTANA POP-UP
             </div>
             <div class="ms-auto d-flex flex-row" style="align-items: center;">
                 <div class="form-check form-check-inline">
