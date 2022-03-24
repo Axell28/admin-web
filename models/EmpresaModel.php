@@ -24,13 +24,11 @@ class EmpresaModel extends Conexion
     public function getDatosEmpresa()
     {
         try {
-            $sql = "SELECT * FROM empresa LIMIT 1";
+            $sql = "SELECT * FROM empresa order by idemp";
             $stm = $this->pdo->prepare($sql);
             $stm->execute();
             $res = array();
-            if ($stm->rowCount() > 0) {
-                $res = $stm->fetchAll(PDO::FETCH_ASSOC)[0];
-            }
+            $res = $stm->fetchAll(PDO::FETCH_ASSOC);
             return $res;
         } catch (PDOException $e) {
             die($e->getMessage());

@@ -22,23 +22,27 @@ class Empresa extends Controller
     public function actualizar()
     {
         if (!empty($_POST)) {
-            $params = array();
-            $params[] = parent::getPost('nombre');
-            $params[] = parent::getPost('telefono');
-            $params[] = parent::getPost('celular');
-            $params[] = parent::getPost('direction');
-            $params[] = parent::getPost('correo');
-            $params[] = parent::getPost('metades');
-            $params[] = parent::getPost('facebook');
-            $params[] = parent::getPost('instagram');
-            $params[] = parent::getPost('whatsapp');
-            $params[] = parent::getPost('youtube');
-            $params[] = parent::getPost('twitter');
-            $params[] = parent::getPost('intranet');
-            $params[] = parent::getPost('liblink');
-            $params[] = parent::getPost('libmail');
-            $params[] = parent::getPost('idemp');
-            $result = $this->model->editarDataEmpresa($params);
+            $arrDataEmp = parent::getPost("data");
+            $arrDataEmp = json_decode($arrDataEmp, true);
+            foreach ($arrDataEmp as $value) :
+                $params = array();
+                $params[] = $value['nombre'];
+                $params[] = $value['telefono'];
+                $params[] = $value['celular'];
+                $params[] = $value['direction'];
+                $params[] = $value['correo'];
+                $params[] = $value['metades'];
+                $params[] = $value['facebook'];
+                $params[] = $value['instagram'];
+                $params[] = $value['whatsapp'];
+                $params[] = $value['youtube'];
+                $params[] = $value['twitter'];
+                $params[] = $value['intranet'];
+                $params[] = $value['liblink'];
+                $params[] = $value['libmail'];
+                $params[] = $value['idemp'];
+                $result = $this->model->editarDataEmpresa($params);
+            endforeach;
             if ($result) echo 'OK';
         } else {
             die('Error: No se pudo actualizar los datos');

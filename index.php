@@ -54,6 +54,8 @@ if ($uri[0] == 'admin') {
     if (file_exists($fileView)) {
         $empresa = new EmpresaModel();
         $empresa = $empresa->getDatosEmpresa();
+        $empresa = $empresa[0];
+        // si existe mas locales ejm usar ( $empresa2 = $empresa[1], $empresa3 =  $empresa[2] );
         $nameview = $uri[0];
         include_once $fileView;
     } else {
