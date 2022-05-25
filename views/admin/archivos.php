@@ -348,8 +348,6 @@
                 limpiarNameFile(str) {
                     str = str.replace(/\s+/g, '-');
                     str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, '');
-                    ext = str.split('.').pop();
-                    str = str.slice(0, 20) + '.' + ext;
                     return str;
                 }
             }
